@@ -1,686 +1,420 @@
 ```html
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Lagom Terrace — Restaurant & Bar</title>
+<!-- REPLACE ONLY THE <main class="main"> SECTION OF YOUR CURRENT WEBSITE WITH THIS -->
+<!-- THIS PRESERVES YOUR EXISTING HERO, NAVIGATION, STYLING, ANIMATIONS, RESPONSIVENESS, AND IMAGE DESIGN -->
 
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<main class="main">
 
-<style>
-:root{
-  --teal-dark:#083633;
-  --teal:#0f5c57;
-  --teal-light:#1f7f77;
-  --gold:#d2ae57;
-  --cream:#faf7f2;
-  --muted:#bdd3d1;
-  --card-bg:rgba(255,255,255,.06);
-  --border:rgba(210,174,87,.18);
-  --radius:18px;
-}
-
-*{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
-}
-
-html{
-  scroll-behavior:smooth;
-}
-
-body{
-  font-family:'Jost',sans-serif;
-  background:var(--teal-dark);
-  color:var(--cream);
-  overflow-x:hidden;
-}
-
-/* HERO */
-
-.hero{
-  padding:70px 20px 60px;
-  text-align:center;
-  background:
-    linear-gradient(160deg,#062825 0%, #0c4743 50%, #136660 100%);
-  position:relative;
-}
-
-.hero::before{
-  content:'';
-  position:absolute;
-  inset:0;
-  background:
-    radial-gradient(circle at top,
-    rgba(210,174,87,.14),
-    transparent 65%);
-}
-
-.hero small{
-  letter-spacing:.3em;
-  color:var(--gold);
-  text-transform:uppercase;
-  position:relative;
-  z-index:2;
-}
-
-.hero h1{
-  font-family:'Cormorant Garamond',serif;
-  font-size:clamp(3rem,10vw,6rem);
-  margin:15px 0;
-  font-weight:600;
-  position:relative;
-  z-index:2;
-}
-
-.hero p{
-  max-width:700px;
-  margin:auto;
-  color:var(--muted);
-  line-height:1.8;
-  position:relative;
-  z-index:2;
-}
-
-.hero-meta{
-  margin-top:30px;
-  display:flex;
-  justify-content:center;
-  flex-wrap:wrap;
-  gap:20px;
-  color:var(--muted);
-  font-size:.9rem;
-}
-
-/* NAV */
-
-nav{
-  position:sticky;
-  top:0;
-  z-index:999;
-  background:rgba(6,40,37,.96);
-  backdrop-filter:blur(10px);
-  border-bottom:1px solid rgba(255,255,255,.06);
-}
-
-.nav-wrap{
-  max-width:1200px;
-  margin:auto;
-  display:flex;
-  gap:12px;
-  overflow-x:auto;
-  padding:14px;
-}
-
-.nav-wrap::-webkit-scrollbar{
-  display:none;
-}
-
-.nav-btn{
-  border:none;
-  background:transparent;
-  color:var(--muted);
-  padding:10px 18px;
-  border-radius:40px;
-  cursor:pointer;
-  transition:.25s;
-  white-space:nowrap;
-  font-size:.8rem;
-  text-transform:uppercase;
-  letter-spacing:.08em;
-}
-
-.nav-btn:hover{
-  background:rgba(255,255,255,.08);
-  color:white;
-}
-
-.nav-btn.active{
-  background:var(--gold);
-  color:#052522;
-}
-
-/* MAIN */
-
-.container{
-  max-width:1200px;
-  margin:auto;
-  padding:40px 20px 80px;
-}
-
-.section{
-  margin-bottom:80px;
-}
-
-.section-title{
-  display:flex;
-  align-items:center;
-  gap:15px;
-  margin-bottom:25px;
-}
-
-.section-title h2{
-  font-family:'Cormorant Garamond',serif;
-  font-size:2.3rem;
-  font-weight:600;
-}
-
-.section-line{
-  flex:1;
-  height:1px;
-  background:linear-gradient(to right,var(--gold),transparent);
-}
-
-/* BANNER */
-
-.banner{
-  width:100%;
-  height:260px;
-  object-fit:cover;
-  border-radius:var(--radius);
-  margin-bottom:30px;
-  border:1px solid rgba(255,255,255,.06);
-}
-
-/* GRID */
-
-.grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-  gap:20px;
-}
-
-/* CARD */
-
-.card{
-  background:var(--card-bg);
-  border:1px solid var(--border);
-  border-radius:var(--radius);
-  overflow:hidden;
-  transition:.25s;
-}
-
-.card:hover{
-  transform:translateY(-4px);
-  border-color:rgba(210,174,87,.45);
-}
-
-.card img{
-  width:100%;
-  height:210px;
-  object-fit:cover;
-}
-
-.card-content{
-  padding:18px;
-}
-
-.card-top{
-  display:flex;
-  justify-content:space-between;
-  gap:15px;
-  margin-bottom:8px;
-}
-
-.card-title{
-  font-weight:500;
-  font-size:1rem;
-}
-
-.price{
-  color:var(--gold);
-  font-family:'Cormorant Garamond',serif;
-  font-size:1.3rem;
-  white-space:nowrap;
-}
-
-.card p{
-  color:var(--muted);
-  font-size:.88rem;
-  line-height:1.7;
-}
-
-/* FOOTER */
-
-footer{
-  padding:35px 20px;
-  text-align:center;
-  border-top:1px solid rgba(255,255,255,.08);
-  color:var(--muted);
-}
-
-/* MOBILE */
-
-@media(max-width:700px){
-
-  .hero{
-    padding:55px 18px 45px;
-  }
-
-  .banner{
-    height:200px;
-  }
-
-  .section-title h2{
-    font-size:2rem;
-  }
-}
-</style>
-</head>
-
-<body>
-
-<header class="hero">
-
-  <small>Restaurant & Bar</small>
-
-  <h1>Lagom Terrace</h1>
-
-  <p>
-    Experience the perfect balance of flavors with premium dishes,
-    handcrafted cocktails, refreshing drinks, and unforgettable dining.
-  </p>
-
-  <div class="hero-meta">
-    <span>🕐 Tue – Sat: 11:00 AM – 11:30 PM</span>
-    <span>❌ Closed Sundays & Mondays</span>
-    <span>📍 Belize</span>
-  </div>
-
-</header>
-
-<nav>
-  <div class="nav-wrap">
-
-    <button class="nav-btn active" onclick="scrollToSection('appetizers')">Appetizers</button>
-    <button class="nav-btn" onclick="scrollToSection('burgers')">Burgers</button>
-    <button class="nav-btn" onclick="scrollToSection('pastas')">Pastas</button>
-    <button class="nav-btn" onclick="scrollToSection('chicken')">Chicken</button>
-    <button class="nav-btn" onclick="scrollToSection('shrimp')">Shrimp</button>
-    <button class="nav-btn" onclick="scrollToSection('fish')">Fish</button>
-    <button class="nav-btn" onclick="scrollToSection('drinks')">Drinks</button>
-
-  </div>
-</nav>
-
-<main class="container">
-
-<!-- APPETIZERS -->
-
-<section class="section" id="appetizers">
-
-  <div class="section-title">
-    <h2>🥗 Appetizers</h2>
-    <div class="section-line"></div>
-  </div>
-
-  <img class="banner"
-  src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?q=80&w=1400&auto=format&fit=crop"
-  alt="Appetizers">
-
-  <div class="grid">
-
-    <div class="card">
-      <img src="https://images.unsplash.com/photo-1625944525533-473f1b3d54b3?q=80&w=1200&auto=format&fit=crop">
-      <div class="card-content">
-        <div class="card-top">
-          <div class="card-title">Loaded Potato</div>
-          <div class="price">$15</div>
-        </div>
-        <p>
-          Creamy mashed potato with sautéed mushrooms,
-          bacon bits, mozzarella and cream.
-        </p>
-      </div>
+  <!-- APPETIZERS -->
+  <section class="menu-section" id="appetizers">
+    <div class="section-header">
+      <span class="section-icon">🥗</span>
+      <h2 class="section-title">Appetizers</h2>
+      <div class="section-line"></div>
     </div>
 
-    <div class="card">
-      <img src="https://images.unsplash.com/photo-1541592106381-b31e9677c0e5?q=80&w=1200&auto=format&fit=crop">
-      <div class="card-content">
-        <div class="card-top">
-          <div class="card-title">Mozzarella Sticks</div>
-          <div class="price">$17</div>
+    <img class="section-image"
+    src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?q=80&w=1400&auto=format&fit=crop"
+    alt="Appetizers">
+
+    <div class="menu-grid">
+
+      <div class="menu-card">
+        <img class="food-img" src="https://images.unsplash.com/photo-1625944525533-473f1b3d54b3?q=80&w=1200&auto=format&fit=crop">
+        <div class="card-info">
+          <div class="card-name">Loaded Potato</div>
+          <div class="card-desc">
+            Creamy mashed potato with sautéed mushrooms, bacon bits, mozzarella and cream
+          </div>
+          <div class="card-variants">
+            Chicken $20 • Shrimp $25 • Arrachera $25
+          </div>
         </div>
-        <p>Crispy golden mozzarella sticks served hot.</p>
+        <div class="card-price">$15</div>
       </div>
+
+      <div class="menu-card">
+        <img class="food-img" src="https://images.unsplash.com/photo-1548340748-6d2b7d7da280?q=80&w=1200&auto=format&fit=crop">
+        <div class="card-info">
+          <div class="card-name">Mozzarella Sticks</div>
+        </div>
+        <div class="card-price">$17</div>
+      </div>
+
+      <div class="menu-card">
+        <img class="food-img" src="https://images.unsplash.com/photo-1608039755401-742074f0548d?q=80&w=1200&auto=format&fit=crop">
+        <div class="card-info">
+          <div class="card-name">Fried Dumplings</div>
+          <div class="card-desc">Fried Pork Dumplings</div>
+        </div>
+        <div class="card-price">$16</div>
+      </div>
+
+      <div class="menu-card">
+        <img class="food-img" src="https://images.unsplash.com/photo-1585032226651-759b368d7246?q=80&w=1200&auto=format&fit=crop">
+        <div class="card-info">
+          <div class="card-name">Shrimp Cocktail</div>
+        </div>
+        <div class="card-price">$19</div>
+      </div>
+
+      <div class="menu-card">
+        <img class="food-img" src="https://images.unsplash.com/photo-1513456852971-30c0b8199d4d?q=80&w=1200&auto=format&fit=crop">
+        <div class="card-info">
+          <div class="card-name">Nachos</div>
+          <div class="card-variants">Chicken $21 • Beef $21</div>
+        </div>
+        <div class="card-price">$16</div>
+      </div>
+
+      <div class="menu-card">
+        <img class="food-img" src="https://images.unsplash.com/photo-1628178636282-b8b6d9f5c21f?q=80&w=1200&auto=format&fit=crop">
+        <div class="card-info">
+          <div class="card-name">Cheesy Fries</div>
+          <div class="card-variants">Chicken $21 • Beef $21</div>
+        </div>
+        <div class="card-price">$16</div>
+      </div>
+
+      <div class="menu-card">
+        <img class="food-img" src="https://images.unsplash.com/photo-1562967916-eb82221dfb92?q=80&w=1200&auto=format&fit=crop">
+        <div class="card-info">
+          <div class="card-name">Chicken Botanas</div>
+          <div class="card-variants">5pc $13 • 10pc $20</div>
+        </div>
+      </div>
+
+      <div class="menu-card">
+        <img class="food-img" src="https://images.unsplash.com/photo-1559847844-d721426d6edc?q=80&w=1200&auto=format&fit=crop">
+        <div class="card-info">
+          <div class="card-name">Smoked Pork Salpicon</div>
+          <div class="card-variants">Small $20 • Large $35</div>
+        </div>
+      </div>
+
+      <div class="menu-card">
+        <img class="food-img" src="https://images.unsplash.com/photo-1611250188496-e966043a0629?q=80&w=1200&auto=format&fit=crop">
+        <div class="card-info">
+          <div class="card-name">Ceviche Shrimp</div>
+          <div class="card-variants">Small $20 • Large $35</div>
+        </div>
+      </div>
+
+      <div class="menu-card">
+        <img class="food-img" src="https://images.unsplash.com/photo-1559339352-11d035aa65de?q=80&w=1200&auto=format&fit=crop">
+        <div class="card-info">
+          <div class="card-name">Ceviche Octopus</div>
+          <div class="card-variants">Small $20 • Large $35</div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- WINGS -->
+  <section class="menu-section" id="wings">
+    <div class="section-header">
+      <span class="section-icon">🍗</span>
+      <h2 class="section-title">Wings / Chicken Fingers</h2>
+      <div class="section-line"></div>
     </div>
 
-    <div class="card">
-      <img src="https://images.unsplash.com/photo-1585032226651-759b368d7246?q=80&w=1200&auto=format&fit=crop">
-      <div class="card-content">
-        <div class="card-top">
-          <div class="card-title">Shrimp Cocktail</div>
-          <div class="price">$19</div>
+    <img class="section-image"
+    src="https://images.unsplash.com/photo-1527477396000-e27163b481c2?q=80&w=1400&auto=format&fit=crop">
+
+    <div class="menu-grid single-col">
+
+      <div class="menu-card">
+        <img class="food-img" src="https://images.unsplash.com/photo-1562967916-eb82221dfb92?q=80&w=1200&auto=format&fit=crop">
+
+        <div class="card-info">
+          <div class="card-name">Chicken Wings / Fingers</div>
+
+          <div class="card-variants">
+            5pc $13 • 10pc $21 • 15pc $29
+          </div>
+
+          <div class="flavors-grid">
+            <span class="flavor-pill">Honey Mustard</span>
+            <span class="flavor-pill">Lemon Pepper</span>
+            <span class="flavor-pill">Garlic Parmesan</span>
+            <span class="flavor-pill">Hawaiian BBQ</span>
+            <span class="flavor-pill">Spicy BBQ</span>
+            <span class="flavor-pill">Chipotle</span>
+            <span class="flavor-pill">Teriyaki BBQ</span>
+            <span class="flavor-pill">Creamy Jalapeño</span>
+            <span class="flavor-pill">Spicy Buffalo</span>
+            <span class="flavor-pill">Mango Habanero</span>
+          </div>
         </div>
-        <p>Fresh chilled shrimp served with house cocktail sauce.</p>
       </div>
     </div>
+  </section>
 
-  </div>
-
-</section>
-
-<!-- BURGERS -->
-
-<section class="section" id="burgers">
-
-  <div class="section-title">
-    <h2>🍔 Burgers</h2>
-    <div class="section-line"></div>
-  </div>
-
-  <img class="banner"
-  src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?q=80&w=1400&auto=format&fit=crop"
-  alt="Burgers">
-
-  <div class="grid">
-
-    <div class="card">
-      <img src="https://images.unsplash.com/photo-1550547660-d9450f859349?q=80&w=1200&auto=format&fit=crop">
-      <div class="card-content">
-        <div class="card-top">
-          <div class="card-title">Bacon Cheese Burger</div>
-          <div class="price">$18</div>
-        </div>
-        <p>
-          Juicy burger topped with crispy bacon and melted cheese.
-        </p>
-      </div>
+  <!-- BURGERS -->
+  <section class="menu-section" id="burgers">
+    <div class="section-header">
+      <span class="section-icon">🍔</span>
+      <h2 class="section-title">Burgers</h2>
+      <div class="section-line"></div>
     </div>
 
-    <div class="card">
-      <img src="https://images.unsplash.com/photo-1572802419224-296b0aeee0d9?q=80&w=1200&auto=format&fit=crop">
-      <div class="card-content">
-        <div class="card-top">
-          <div class="card-title">Jalapeño Popper Burger</div>
-          <div class="price">$21</div>
+    <img class="section-image"
+    src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?q=80&w=1400&auto=format&fit=crop">
+
+    <div class="menu-grid">
+
+      <div class="menu-card">
+        <img class="food-img" src="https://images.unsplash.com/photo-1550547660-d9450f859349?q=80&w=1200&auto=format&fit=crop">
+
+        <div class="card-info">
+          <div class="card-name">Regular Burger</div>
+          <div class="card-desc">
+            Your choice between fried/grilled chicken or grilled beef
+          </div>
         </div>
-        <p>
-          Loaded with jalapeños, creamy sauce and crispy toppings.
-        </p>
+
+        <div class="card-price">$16</div>
       </div>
+
+      <div class="menu-card">
+        <img class="food-img" src="https://images.unsplash.com/photo-1572802419224-296b0aeee0d9?q=80&w=1200&auto=format&fit=crop">
+
+        <div class="card-info">
+          <div class="card-name">Bacon Cheese Burger</div>
+        </div>
+
+        <div class="card-price">$18</div>
+      </div>
+
+      <div class="menu-card">
+        <img class="food-img" src="https://images.unsplash.com/photo-1561758033-d89a9ad46330?q=80&w=1200&auto=format&fit=crop">
+
+        <div class="card-info">
+          <div class="card-name">Lagom Double Pattie Burger</div>
+        </div>
+
+        <div class="card-price">$30</div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- PASTAS -->
+  <section class="menu-section" id="pastas">
+    <div class="section-header">
+      <span class="section-icon">🍝</span>
+      <h2 class="section-title">Pastas</h2>
+      <div class="section-line"></div>
     </div>
 
-    <div class="card">
-      <img src="https://images.unsplash.com/photo-1561758033-d89a9ad46330?q=80&w=1200&auto=format&fit=crop">
-      <div class="card-content">
-        <div class="card-top">
-          <div class="card-title">Lagom Double Pattie Burger</div>
-          <div class="price">$30</div>
+    <img class="section-image"
+    src="https://images.unsplash.com/photo-1621996346565-e3dbc646d9a9?q=80&w=1400&auto=format&fit=crop">
+
+    <div class="menu-grid">
+
+      <div class="menu-card">
+        <img class="food-img" src="https://images.unsplash.com/photo-1622973536968-3ead9e780960?q=80&w=1200&auto=format&fit=crop">
+
+        <div class="card-info">
+          <div class="card-name">Spaghetti ala Bolognese</div>
+          <div class="card-desc">
+            Red pomodoro sauce with ground steak & parmesan cheese
+          </div>
         </div>
-        <p>
-          Signature double burger stacked with premium toppings.
-        </p>
+
+        <div class="card-price">$25</div>
       </div>
+
+      <div class="menu-card">
+        <img class="food-img" src="https://images.unsplash.com/photo-1645112411341-6c4fd023714a?q=80&w=1200&auto=format&fit=crop">
+
+        <div class="card-info">
+          <div class="card-name">Fettuccine Alfredo</div>
+          <div class="card-desc">
+            White Alfredo sauce with parmesan cheese
+          </div>
+
+          <div class="card-variants">
+            Chicken $22 • Shrimp $27
+          </div>
+        </div>
+
+        <div class="card-price">$15</div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- CHICKEN -->
+  <section class="menu-section" id="chicken">
+    <div class="section-header">
+      <span class="section-icon">🍗</span>
+      <h2 class="section-title">Chicken</h2>
+      <div class="section-line"></div>
     </div>
 
-  </div>
+    <img class="section-image"
+    src="https://images.unsplash.com/photo-1604908176997-125f25cc6f3d?q=80&w=1400&auto=format&fit=crop">
 
-</section>
+    <div class="menu-grid">
 
-<!-- PASTAS -->
+      <div class="menu-card">
+        <img class="food-img" src="https://images.unsplash.com/photo-1527477396000-e27163b481c2?q=80&w=1200&auto=format&fit=crop">
 
-<section class="section" id="pastas">
-
-  <div class="section-title">
-    <h2>🍝 Pastas</h2>
-    <div class="section-line"></div>
-  </div>
-
-  <img class="banner"
-  src="https://images.unsplash.com/photo-1621996346565-e3dbc646d9a9?q=80&w=1400&auto=format&fit=crop"
-  alt="Pastas">
-
-  <div class="grid">
-
-    <div class="card">
-      <img src="https://images.unsplash.com/photo-1622973536968-3ead9e780960?q=80&w=1200&auto=format&fit=crop">
-      <div class="card-content">
-        <div class="card-top">
-          <div class="card-title">Spaghetti ala Bolognese</div>
-          <div class="price">$25</div>
+        <div class="card-info">
+          <div class="card-name">Grilled Chicken</div>
         </div>
-        <p>
-          Pomodoro sauce with ground steak and parmesan cheese.
-        </p>
+
+        <div class="card-price">$19</div>
       </div>
+
+      <div class="menu-card">
+        <img class="food-img" src="https://images.unsplash.com/photo-1600891964599-f61ba0e24092?q=80&w=1200&auto=format&fit=crop">
+
+        <div class="card-info">
+          <div class="card-name">Chicken Fajitas</div>
+        </div>
+
+        <div class="card-price">$23</div>
+      </div>
+
+      <div class="menu-card">
+        <img class="food-img" src="https://images.unsplash.com/photo-1518492104633-130d0cc84637?q=80&w=1200&auto=format&fit=crop">
+
+        <div class="card-info">
+          <div class="card-name">Creamy Mushroom Chicken</div>
+          <div class="card-desc">
+            Grilled chicken drizzled with creamy mushroom sauce
+          </div>
+        </div>
+
+        <div class="card-price">$25</div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- SHRIMP -->
+  <section class="menu-section" id="shrimp">
+    <div class="section-header">
+      <span class="section-icon">🍤</span>
+      <h2 class="section-title">Shrimp</h2>
+      <div class="section-line"></div>
     </div>
 
-    <div class="card">
-      <img src="https://images.unsplash.com/photo-1645112411341-6c4fd023714a?q=80&w=1200&auto=format&fit=crop">
-      <div class="card-content">
-        <div class="card-top">
-          <div class="card-title">Fettuccine Alfredo</div>
-          <div class="price">$15</div>
+    <img class="section-image"
+    src="https://images.unsplash.com/photo-1627308595171-d1b5d67129c4?q=80&w=1400&auto=format&fit=crop">
+
+    <div class="menu-grid">
+
+      <div class="menu-card">
+        <img class="food-img" src="https://images.unsplash.com/photo-1625944524160-8f1f09f10c2d?q=80&w=1200&auto=format&fit=crop">
+
+        <div class="card-info">
+          <div class="card-name">Garlic Shrimp</div>
         </div>
-        <p>
-          Rich creamy Alfredo sauce with parmesan cheese.
-        </p>
+
+        <div class="card-price">$22</div>
       </div>
+
+      <div class="menu-card">
+        <img class="food-img" src="https://images.unsplash.com/photo-1559847844-d721426d6edc?q=80&w=1200&auto=format&fit=crop">
+
+        <div class="card-info">
+          <div class="card-name">Shrimp Fajitas</div>
+        </div>
+
+        <div class="card-price">$25</div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- FISH -->
+  <section class="menu-section" id="fish">
+    <div class="section-header">
+      <span class="section-icon">🐟</span>
+      <h2 class="section-title">Fish</h2>
+      <div class="section-line"></div>
     </div>
 
-  </div>
+    <img class="section-image"
+    src="https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?q=80&w=1400&auto=format&fit=crop">
 
-</section>
+    <div class="menu-grid">
 
-<!-- CHICKEN -->
+      <div class="menu-card">
+        <img class="food-img" src="https://images.unsplash.com/photo-1579631542720-3a87824fff86?q=80&w=1200&auto=format&fit=crop">
 
-<section class="section" id="chicken">
-
-  <div class="section-title">
-    <h2>🍗 Chicken</h2>
-    <div class="section-line"></div>
-  </div>
-
-  <img class="banner"
-  src="https://images.unsplash.com/photo-1600891964599-f61ba0e24092?q=80&w=1400&auto=format&fit=crop"
-  alt="Chicken">
-
-  <div class="grid">
-
-    <div class="card">
-      <img src="https://images.unsplash.com/photo-1527477396000-e27163b481c2?q=80&w=1200&auto=format&fit=crop">
-      <div class="card-content">
-        <div class="card-top">
-          <div class="card-title">Chicken Fajitas</div>
-          <div class="price">$23</div>
+        <div class="card-info">
+          <div class="card-name">Fish & Chips</div>
         </div>
-        <p>
-          Sizzling chicken fajitas with peppers and onions.
-        </p>
+
+        <div class="card-price">$19</div>
       </div>
+
+      <div class="menu-card">
+        <img class="food-img" src="https://images.unsplash.com/photo-1559847844-5315695dadae?q=80&w=1200&auto=format&fit=crop">
+
+        <div class="card-info">
+          <div class="card-name">Grilled Fish Fillet</div>
+        </div>
+
+        <div class="card-price">$22</div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- MEATS -->
+  <section class="menu-section" id="meats">
+    <div class="section-header">
+      <span class="section-icon">🥩</span>
+      <h2 class="section-title">Meats</h2>
+      <div class="section-line"></div>
     </div>
 
-    <div class="card">
-      <img src="https://images.unsplash.com/photo-1604908176997-125f25cc6f3d?q=80&w=1200&auto=format&fit=crop">
-      <div class="card-content">
-        <div class="card-top">
-          <div class="card-title">Caribbean Jerk Chicken</div>
-          <div class="price">$23</div>
+    <img class="section-image"
+    src="https://images.unsplash.com/photo-1544025162-d76694265947?q=80&w=1400&auto=format&fit=crop">
+
+    <div class="menu-grid">
+
+      <div class="menu-card">
+        <img class="food-img" src="https://images.unsplash.com/photo-1529042410759-befb1204b468?q=80&w=1200&auto=format&fit=crop">
+
+        <div class="card-info">
+          <div class="card-name">Swedish Meat Balls</div>
+
+          <div class="card-desc">
+            Mixture of seasoned pork and beef meatballs covered in creamy gravy
+          </div>
         </div>
-        <p>
-          Bold Caribbean flavors with house jerk seasoning.
-        </p>
+
+        <div class="card-price">$25</div>
       </div>
-    </div>
 
-  </div>
+      <div class="menu-card">
+        <img class="food-img" src="https://images.unsplash.com/photo-1558030006-450675393462?q=80&w=1200&auto=format&fit=crop">
 
-</section>
-
-<!-- SHRIMP -->
-
-<section class="section" id="shrimp">
-
-  <div class="section-title">
-    <h2>🍤 Shrimp</h2>
-    <div class="section-line"></div>
-  </div>
-
-  <img class="banner"
-  src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?q=80&w=1400&auto=format&fit=crop"
-  alt="Shrimp">
-
-  <div class="grid">
-
-    <div class="card">
-      <img src="https://images.unsplash.com/photo-1625944524160-8f1f09f10c2d?q=80&w=1200&auto=format&fit=crop">
-      <div class="card-content">
-        <div class="card-top">
-          <div class="card-title">Garlic Shrimp</div>
-          <div class="price">$22</div>
+        <div class="card-info">
+          <div class="card-name">Grilled Pork Chops</div>
         </div>
-        <p>
-          Garlic butter shrimp cooked to perfection.
-        </p>
-      </div>
-    </div>
 
-    <div class="card">
-      <img src="https://images.unsplash.com/photo-1627308595171-d1b5d67129c4?q=80&w=1200&auto=format&fit=crop">
-      <div class="card-content">
-        <div class="card-top">
-          <div class="card-title">Shrimp Fajitas</div>
-          <div class="price">$25</div>
+        <div class="card-price">$27</div>
+      </div>
+
+      <div class="menu-card">
+        <img class="food-img" src="https://images.unsplash.com/photo-1551024506-0bccd828d307?q=80&w=1200&auto=format&fit=crop">
+
+        <div class="card-info">
+          <div class="card-name">Grilled Arrachera</div>
         </div>
-        <p>
-          Grilled shrimp with sautéed peppers and onions.
-        </p>
+
+        <div class="card-price">$33</div>
       </div>
+
     </div>
-
-  </div>
-
-</section>
-
-<!-- FISH -->
-
-<section class="section" id="fish">
-
-  <div class="section-title">
-    <h2>🐟 Fish</h2>
-    <div class="section-line"></div>
-  </div>
-
-  <img class="banner"
-  src="https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?q=80&w=1400&auto=format&fit=crop"
-  alt="Fish">
-
-  <div class="grid">
-
-    <div class="card">
-      <img src="https://images.unsplash.com/photo-1579631542720-3a87824fff86?q=80&w=1200&auto=format&fit=crop">
-      <div class="card-content">
-        <div class="card-top">
-          <div class="card-title">Fish & Chips</div>
-          <div class="price">$19</div>
-        </div>
-        <p>
-          Crispy battered fish with golden fries.
-        </p>
-      </div>
-    </div>
-
-    <div class="card">
-      <img src="https://images.unsplash.com/photo-1559847844-5315695dadae?q=80&w=1200&auto=format&fit=crop">
-      <div class="card-content">
-        <div class="card-top">
-          <div class="card-title">Grilled Fish Fillet</div>
-          <div class="price">$22</div>
-        </div>
-        <p>
-          Fresh grilled fish served with house sides.
-        </p>
-      </div>
-    </div>
-
-  </div>
-
-</section>
-
-<!-- DRINKS -->
-
-<section class="section" id="drinks">
-
-  <div class="section-title">
-    <h2>🍹 Cocktails & Drinks</h2>
-    <div class="section-line"></div>
-  </div>
-
-  <img class="banner"
-  src="https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?q=80&w=1400&auto=format&fit=crop"
-  alt="Cocktails">
-
-  <div class="grid">
-
-    <div class="card">
-      <img src="https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?q=80&w=1200&auto=format&fit=crop">
-      <div class="card-content">
-        <div class="card-top">
-          <div class="card-title">Margarita</div>
-          <div class="price">$16</div>
-        </div>
-        <p>
-          Refreshing tequila cocktail with citrus flavors.
-        </p>
-      </div>
-    </div>
-
-    <div class="card">
-      <img src="https://images.unsplash.com/photo-1577805947697-89e18249d767?q=80&w=1200&auto=format&fit=crop">
-      <div class="card-content">
-        <div class="card-top">
-          <div class="card-title">Piña Colada</div>
-          <div class="price">$15</div>
-        </div>
-        <p>
-          Tropical coconut and pineapple blended cocktail.
-        </p>
-      </div>
-    </div>
-
-    <div class="card">
-      <img src="https://images.unsplash.com/photo-1470337458703-46ad1756a187?q=80&w=1200&auto=format&fit=crop">
-      <div class="card-content">
-        <div class="card-top">
-          <div class="card-title">Long Island Ice Tea</div>
-          <div class="price">$17</div>
-        </div>
-        <p>
-          Strong classic cocktail with a citrus finish.
-        </p>
-      </div>
-    </div>
-
-  </div>
-
-</section>
+  </section>
 
 </main>
-
-<footer>
-  © 2026 <strong>Lagom Terrace</strong> — Restaurant & Bar
-</footer>
-
-<script>
-
-function scrollToSection(id){
-
-  document.getElementById(id).scrollIntoView({
-    behavior:'smooth'
-  });
-
-  document.querySelectorAll('.nav-btn').forEach(btn=>{
-    btn.classList.remove('active');
-  });
-
-  event.target.classList.add('active');
-}
-
-</script>
-
-</body>
-</html>
 ```
