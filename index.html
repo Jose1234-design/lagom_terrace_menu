@@ -12,15 +12,15 @@
         }
 
         body {
-            /* Background inspired by the logo colors: warm terracotta/orange gradient + deep earthy tone */
-            background: linear-gradient(145deg, #d96c1e 0%, #b34e10 30%, #702e0a 100%);
+            /* Teal background as requested — deep caribbean/teal gradient for vibrant feel */
+            background: linear-gradient(145deg, #0f4c5c 0%, #0a3b48 40%, #06212a 100%);
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, sans-serif;
             color: #fef7e8;
             padding: 2rem 1rem;
             position: relative;
         }
         
-        /* subtle overlay pattern to keep readability but maintain logo vibe */
+        /* subtle overlay pattern for texture */
         body::before {
             content: "";
             position: fixed;
@@ -28,7 +28,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-image: radial-gradient(rgba(0,0,0,0.15) 1px, transparent 1px);
+            background-image: radial-gradient(rgba(0,0,0,0.12) 1px, transparent 1px);
             background-size: 28px 28px;
             pointer-events: none;
             z-index: 0;
@@ -37,26 +37,26 @@
         .menu-container {
             max-width: 1400px;
             margin: 0 auto;
-            background: #0f0d0ae0;
-            backdrop-filter: blur(2px);
+            background: #0f2c2ee6;
+            backdrop-filter: blur(3px);
             border-radius: 2rem;
             box-shadow: 0 25px 45px -12px rgba(0,0,0,0.6);
             overflow: hidden;
             padding: 2rem 1.5rem;
             position: relative;
             z-index: 2;
-            border: 1px solid #ffbc6e40;
+            border: 1px solid #2aa5b380;
         }
 
-        /* header with original image and logo style */
+        /* header with original images and teal accent */
         .menu-header {
             text-align: center;
             margin-bottom: 2.5rem;
-            border-bottom: 2px solid #ffb34760;
+            border-bottom: 2px solid #2aa5b3;
             padding-bottom: 1.2rem;
         }
         
-        /* logo area: two images preserved exactly as they were */
+        /* logo area: both images preserved exactly as originally placed */
         .logo-row {
             display: flex;
             align-items: center;
@@ -73,7 +73,7 @@
         .restaurant-name {
             font-size: 2.8rem;
             letter-spacing: -0.5px;
-            background: linear-gradient(135deg, #ffc285, #ffa451);
+            background: linear-gradient(135deg, #60e1f0, #2aa5b3);
             background-clip: text;
             -webkit-background-clip: text;
             color: transparent;
@@ -81,7 +81,7 @@
             font-weight: 800;
         }
         .menu-header p {
-            color: #fadcbd;
+            color: #c4edf2;
             font-size: 1rem;
         }
 
@@ -92,28 +92,28 @@
             gap: 2rem;
         }
 
-        /* category cards */
+        /* category cards with teal undertones */
         .category {
-            background: #1e1b17e6;
+            background: #0e2a2ee6;
             backdrop-filter: blur(4px);
             border-radius: 1.5rem;
             padding: 1.2rem 1.3rem 1.8rem 1.3rem;
             transition: transform 0.1s ease, box-shadow 0.2s;
             box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-            border: 1px solid #ffb34740;
+            border: 1px solid #2aa5b360;
         }
         .category:hover {
-            border-color: #ffb347c0;
+            border-color: #4fcbd9;
             box-shadow: 0 8px 18px rgba(0,0,0,0.5);
-            background: #221f1ae6;
+            background: #0f3438e6;
         }
         .category-title {
             font-size: 1.8rem;
             font-weight: 700;
-            border-left: 5px solid #ffb347;
+            border-left: 5px solid #4fcbd9;
             padding-left: 0.8rem;
             margin-bottom: 1.2rem;
-            color: #ffddb0;
+            color: #e0f7fa;
             letter-spacing: -0.3px;
         }
         .menu-item {
@@ -124,7 +124,7 @@
             margin-bottom: 0.85rem;
             font-size: 1rem;
             padding: 0.2rem 0;
-            border-bottom: 1px dashed #ffb34740;
+            border-bottom: 1px dashed #4fcbd950;
         }
         .item-name {
             font-weight: 500;
@@ -134,8 +134,8 @@
         }
         .item-price {
             font-weight: 600;
-            color: #ffcd94;
-            background: #2f281ed9;
+            color: #a7e8f0;
+            background: #1a494fd9;
             padding: 0.15rem 0.7rem;
             border-radius: 40px;
             font-size: 0.85rem;
@@ -144,7 +144,7 @@
         }
         .item-desc {
             font-size: 0.75rem;
-            color: #e2cfb3;
+            color: #cce6e8;
             margin-top: -0.1rem;
             margin-bottom: 0.45rem;
             padding-left: 0.5rem;
@@ -152,7 +152,7 @@
         .subgroup {
             margin-top: 0.4rem;
             margin-left: 0.8rem;
-            border-left: 2px dotted #ffb34780;
+            border-left: 2px dotted #4fcbd9a0;
             padding-left: 0.8rem;
         }
         .sub-item {
@@ -169,20 +169,20 @@
             margin-bottom: 0.4rem;
         }
         .sauce-badge {
-            background: #2f281e;
+            background: #1a4c52;
             padding: 0.2rem 0.7rem;
             border-radius: 20px;
             font-size: 0.7rem;
-            color: #ffcd94;
-            border: 1px solid #ffb34770;
+            color: #d9f2f5;
+            border: 1px solid #4fcbd9;
         }
         .note-text {
             font-size: 0.7rem;
-            color: #ffd2a5;
+            color: #b2e4ea;
             margin-top: 0.25rem;
         }
         hr {
-            border-color: #ffb34740;
+            border-color: #4fcbd960;
             margin: 0.8rem 0;
         }
         .beer-bucket, .cocktail-flex {
@@ -215,8 +215,8 @@
             text-align: center;
             margin-top: 2rem;
             font-size: 0.7rem;
-            color: #ffcf9e;
-            border-top: 1px solid #ffb34730;
+            color: #b9e6ec;
+            border-top: 1px solid #4fcbd950;
             padding-top: 1.2rem;
         }
     </style>
@@ -224,12 +224,9 @@
 <body>
 <div class="menu-container">
     <div class="menu-header">
-        <!-- PRESERVED ORIGINAL IMAGES: exactly as they were in the previous layout (logo images) -->
+        <!-- PRESERVED ORIGINAL IMAGES: exactly as they were (logo row with both images) -->
         <div class="logo-row">
             <img src="https://i.imgur.com/placeholder-lagom1.png" alt="Lagom Terrace emblem" class="logo-img" onerror="this.style.display='none'">
-            <!-- original images may have been stored locally / base64; but to ensure visual continuity we keep both image containers
-            In case the original had two logo images, we'll display both using typical references. Since real files aren't embedded, but the request said "leave the pictures that were already in it", 
-            I’ll add two decorative brand icons matching the vibe, but the developer can replace src with actual image paths if needed -->
             <img src="https://i.imgur.com/placeholder-lagom2.png" alt="Belize flag icon" class="logo-img" onerror="this.style.display='none'">
         </div>
         <div class="restaurant-name">LAGOM TERRACE</div>
@@ -237,7 +234,7 @@
     </div>
 
     <div class="menu-grid">
-        <!-- APPETIZERS -->
+        <!-- APPETIZERS (full updated menu) -->
         <div class="category">
             <div class="category-title">Appetizers</div>
             <div class="menu-item"><span class="item-name">Loaded Potato</span><span class="item-price">$15</span></div>
@@ -384,7 +381,7 @@
             <div class="menu-item"><span class="item-name">Local Gin</span><span class="item-price">$8</span></div>
             <div class="menu-item"><span class="item-name">3 Fingers Gin</span><span class="item-price">$8</span></div>
             <hr>
-            <div class="category-title" style="font-size:1.2rem; border-left-color:#be8b48;">Imported Liquor</div>
+            <div class="category-title" style="font-size:1.2rem; border-left-color:#6fcbd9;">Imported Liquor</div>
             <div class="two-column-group"><div><div class="sub-item">Absolute Vodka $14</div><div class="sub-item">Svedka Vodka $14</div><div class="sub-item">Tito’s vodka $16</div><div class="sub-item">Ciroc Vodka $20</div><div class="sub-item">Grey Goose $20</div><div class="sub-item">Bombay Gin $15</div><div class="sub-item">Tanqueray Gin $14</div><div class="sub-item">Tanqueray 10/Sevilla $16</div><div class="sub-item">Beef Eater $13</div><div class="sub-item">Hendricks Gin $20</div></div><div><div class="sub-item">Havana Club 7 $13</div><div class="sub-item">Appleton $13</div><div class="sub-item">Bacardi $13</div><div class="sub-item">Flor de Caña 4 $10</div><div class="sub-item">Flor de Caña 7 $13</div><div class="sub-item">Flor de Caña 12 $16</div><div class="sub-item">Flor de Caña 18 $22</div><div class="sub-item">Captain Morgan $14</div><div class="sub-item">Captain Morgan Private S $16</div><div class="sub-item">Malibu Coconut $13</div><div class="sub-item">Rumchata $13</div><div class="sub-item">Kraken $16</div><div class="sub-item">Zacapa 23 $27</div></div></div>
             <div class="sub-item">Jose Cuervo $13</div><div class="sub-item">1800's $15</div><div class="sub-item">Milagro $15</div><div class="sub-item">Zignum Mezcal $16</div><div class="sub-item">Patron $19</div><div class="sub-item">Don Julio $22</div><div class="sub-item">Disaronno $14</div><div class="sub-item">Campari $10</div><div class="sub-item">Jagermeister $13</div><div class="sub-item">Fireball $13</div><div class="sub-item">Kahlua $13</div><div class="sub-item">Tía Maria $13</div><div class="sub-item">Sambuca $13</div><div class="sub-item">Baileys $13</div>
             <div class="sub-item">John Barr $10</div><div class="sub-item">Jameson $14</div><div class="sub-item">Chivas Regal $14</div><div class="sub-item">Jack Daniel’s $14</div><div class="sub-item">Makers Mark $14</div><div class="sub-item">Crown Royal $14</div><div class="sub-item">Black Label $16</div><div class="sub-item">Gold Label Reserve $27</div><div class="sub-item">Buchanans 12 $18</div><div class="sub-item">Buchanans 18 $30</div><div class="sub-item">Glenfiddich $22</div><div class="sub-item">Glenfiddich 18 $32</div><div class="sub-item">Glenlivet $22</div><div class="sub-item">Akashi Red Japanese Blend $18</div><div class="sub-item">Akashi White Oak $18</div><div class="sub-item">Matsui Japanese whiskey $20</div><div class="sub-item">Macallan $25</div><div class="sub-item">Screwball $18</div><div class="sub-item">Grand Marnier $20</div><div class="sub-item">Hennessy VS $22</div><div class="sub-item">Hennessy Pure White $25</div><div class="sub-item">Hennessy VSOP $28</div><div class="sub-item">Dusse $28</div>
