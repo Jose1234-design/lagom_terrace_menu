@@ -1,1067 +1,399 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Lagom Terrace — Restaurant & Bar</title>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
-<style>
-  :root {
-    --teal-deep: #0d4a47;
-    --teal-mid: #0f5c57;
-    --teal-bright: #1a7a73;
-    --teal-light: #2a9d93;
-    --gold: #c9a84c;
-    --gold-light: #e2c97e;
-    --cream: #fdf8f0;
-    --white: #ffffff;
-    --text-muted: #a8c5c3;
-    --card-bg: rgba(255,255,255,0.06);
-    --card-border: rgba(201,168,76,0.2);
-    --radius: 14px;
-  }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Lagom Restaurant | Menu</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-  * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            background-color: #0a0c10;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, sans-serif;
+            color: #f5f0e8;
+            padding: 2rem 1rem;
+        }
 
-  html { scroll-behavior: smooth; }
+        .menu-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: #111318;
+            border-radius: 2rem;
+            box-shadow: 0 25px 45px -12px rgba(0,0,0,0.6);
+            overflow: hidden;
+            padding: 2rem 1.5rem;
+        }
 
-  body {
-    font-family: 'Jost', sans-serif;
-    background-color: var(--teal-deep);
-    color: var(--cream);
-    min-height: 100vh;
-    overflow-x: hidden;
-  }
+        /* header */
+        .menu-header {
+            text-align: center;
+            margin-bottom: 2.5rem;
+            border-bottom: 2px solid #ffb34730;
+            padding-bottom: 1.2rem;
+        }
+        .menu-header h1 {
+            font-size: 2.8rem;
+            letter-spacing: -0.5px;
+            background: linear-gradient(135deg, #ffb347, #ff8c42);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            margin-bottom: 0.5rem;
+        }
+        .menu-header p {
+            color: #bcafa2;
+            font-size: 1rem;
+        }
 
-  /* ── HERO ── */
-  .hero {
-    background: linear-gradient(160deg, #08302d 0%, #0d4a47 40%, #0f5c57 100%);
-    position: relative;
-    padding: 60px 24px 50px;
-    text-align: center;
-    overflow: hidden;
-  }
-  .hero::before {
-    content: '';
-    position: absolute; inset: 0;
-    background: radial-gradient(ellipse at 50% 0%, rgba(201,168,76,0.12) 0%, transparent 70%);
-    pointer-events: none;
-  }
-  .hero-label {
-    font-family: 'Jost', sans-serif;
-    font-weight: 500;
-    font-size: 0.72rem;
-    letter-spacing: 0.22em;
-    color: var(--gold);
-    text-transform: uppercase;
-    margin-bottom: 14px;
-  }
-  .hero h1 {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(2.8rem, 8vw, 5.5rem);
-    font-weight: 600;
-    color: var(--cream);
-    line-height: 1.05;
-    margin-bottom: 18px;
-  }
-  .hero-desc {
-    font-size: 0.95rem;
-    font-weight: 300;
-    color: var(--text-muted);
-    max-width: 480px;
-    margin: 0 auto 28px;
-    line-height: 1.7;
-  }
-  .hero-meta {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 20px;
-  }
-  .hero-meta-item {
-    display: flex;
-    align-items: center;
-    gap: 7px;
-    font-size: 0.82rem;
-    font-weight: 400;
-    color: var(--text-muted);
-  }
-  .hero-meta-item span.icon { font-size: 1rem; }
-  .hero-meta-item.closed span.icon { color: #e07070; }
-  .hero-meta-item.open span.icon { color: var(--gold); }
-  .gold-line {
-    width: 60px; height: 1px;
-    background: linear-gradient(90deg, transparent, var(--gold), transparent);
-    margin: 28px auto 0;
-  }
+        /* grid layout */
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+            gap: 2rem;
+        }
 
-  /* ── STICKY NAV ── */
-  .sticky-nav {
-    position: sticky;
-    top: 0;
-    z-index: 100;
-    background: rgba(8,48,45,0.97);
-    backdrop-filter: blur(12px);
-    border-bottom: 1px solid rgba(201,168,76,0.15);
-    padding: 0 16px;
-  }
-  .nav-tabs {
-    display: flex;
-    gap: 2px;
-    overflow-x: auto;
-    scrollbar-width: none;
-    -ms-overflow-style: none;
-    padding: 10px 0;
-    max-width: 900px;
-    margin: 0 auto;
-    justify-content: center;
-    flex-wrap: wrap;
-  }
-  .nav-tabs::-webkit-scrollbar { display: none; }
-  .nav-tab {
-    padding: 7px 16px;
-    border-radius: 20px;
-    font-size: 0.78rem;
-    font-weight: 500;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    cursor: pointer;
-    white-space: nowrap;
-    border: 1px solid transparent;
-    color: var(--text-muted);
-    background: transparent;
-    transition: all 0.2s;
-  }
-  .nav-tab:hover { color: var(--cream); border-color: rgba(201,168,76,0.3); }
-  .nav-tab.active {
-    background: var(--gold);
-    color: var(--teal-deep);
-    font-weight: 600;
-    border-color: var(--gold);
-  }
-
-  /* ── MAIN ── */
-  .main { max-width: 900px; margin: 0 auto; padding: 40px 16px 80px; }
-
-  /* ── SECTION ── */
-  .menu-section { margin-bottom: 52px; }
-  .section-header {
-    display: flex;
-    align-items: center;
-    gap: 16px;
-    margin-bottom: 24px;
-  }
-  .section-icon { font-size: 1.6rem; }
-  .section-title {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(1.6rem, 4vw, 2.2rem);
-    font-weight: 600;
-    color: var(--cream);
-    letter-spacing: 0.01em;
-  }
-  .section-line {
-    flex: 1;
-    height: 1px;
-    background: linear-gradient(90deg, rgba(201,168,76,0.4), transparent);
-  }
-
-  /* ── FEATURED IMAGE BANNER ── */
-  .section-image {
-    width: 100%;
-    height: 180px;
-    object-fit: cover;
-    border-radius: var(--radius);
-    margin-bottom: 20px;
-    opacity: 0.82;
-    border: 1px solid rgba(201,168,76,0.15);
-  }
-
-  /* ── MENU GRID ── */
-  .menu-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-    gap: 12px;
-  }
-  .menu-grid.single-col { grid-template-columns: 1fr; }
-
-  /* ── MENU CARD ── */
-  .menu-card {
-    background: var(--card-bg);
-    border: 1px solid var(--card-border);
-    border-radius: var(--radius);
-    padding: 16px 18px;
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    gap: 12px;
-    transition: background 0.2s, border-color 0.2s, transform 0.2s;
-    cursor: default;
-  }
-  .menu-card:hover {
-    background: rgba(255,255,255,0.1);
-    border-color: rgba(201,168,76,0.45);
-    transform: translateY(-2px);
-  }
-  .food-img {
-    width: 60px;
-    height: 60px;
-    object-fit: cover;
-    border-radius: 8px;
-    flex-shrink: 0;
-  }
-  .card-info { flex: 1; min-width: 0; }
-  .card-name {
-    font-family: 'Jost', sans-serif;
-    font-weight: 500;
-    font-size: 0.95rem;
-    color: var(--cream);
-    margin-bottom: 4px;
-    line-height: 1.3;
-  }
-  .card-desc {
-    font-size: 0.78rem;
-    color: var(--text-muted);
-    font-weight: 300;
-    line-height: 1.5;
-  }
-  .card-price {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 1.15rem;
-    font-weight: 600;
-    color: var(--gold);
-    white-space: nowrap;
-    padding-top: 1px;
-    flex-shrink: 0;
-  }
-  .card-variants {
-    font-size: 0.73rem;
-    color: var(--text-muted);
-    margin-top: 5px;
-    font-weight: 300;
-  }
-
-  /* ── WINGS FLAVORS ── */
-  .flavors-grid {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 7px;
-    margin-top: 8px;
-  }
-  .flavor-pill {
-    background: rgba(201,168,76,0.1);
-    border: 1px solid rgba(201,168,76,0.25);
-    border-radius: 20px;
-    padding: 4px 11px;
-    font-size: 0.72rem;
-    color: var(--gold-light);
-    font-weight: 400;
-  }
-
-  /* ── DRINKS SPECIAL ── */
-  .drinks-col {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 10px;
-  }
-  @media (max-width: 500px) { .drinks-col { grid-template-columns: 1fr; } }
-
-  /* ── BEER TABLE ── */
-  .beer-table {
-    width: 100%;
-    border-collapse: collapse;
-    font-size: 0.88rem;
-  }
-  .beer-table th {
-    text-align: left;
-    padding: 8px 14px;
-    font-size: 0.7rem;
-    font-weight: 600;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--gold);
-    border-bottom: 1px solid rgba(201,168,76,0.2);
-  }
-  .beer-table td {
-    padding: 11px 14px;
-    border-bottom: 1px solid rgba(255,255,255,0.05);
-    color: var(--cream);
-    font-weight: 300;
-  }
-  .beer-table td.price { color: var(--gold); font-family: 'Cormorant Garamond', serif; font-size: 1rem; font-weight: 600; }
-  .beer-table tr:last-child td { border-bottom: none; }
-  .beer-table tr:hover td { background: rgba(255,255,255,0.04); }
-  .beer-wrap {
-    background: var(--card-bg);
-    border: 1px solid var(--card-border);
-    border-radius: var(--radius);
-    overflow: hidden;
-  }
-
-  /* ── CRAFT BEER ── */
-  .craft-beer-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    gap: 10px;
-    margin-top: 12px;
-  }
-  .craft-pill {
-    background: rgba(26,122,115,0.25);
-    border: 1px solid rgba(42,157,147,0.3);
-    border-radius: var(--radius);
-    padding: 12px 14px;
-    font-size: 0.84rem;
-    color: var(--cream);
-    font-weight: 400;
-  }
-  .craft-pill .seasonal-tag {
-    display: inline-block;
-    font-size: 0.65rem;
-    background: rgba(201,168,76,0.15);
-    color: var(--gold);
-    padding: 2px 7px;
-    border-radius: 10px;
-    margin-left: 6px;
-    vertical-align: middle;
-    font-weight: 500;
-  }
-
-  /* ── SUBSECTION LABEL ── */
-  .sub-label {
-    font-size: 0.72rem;
-    font-weight: 600;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: var(--gold);
-    margin: 22px 0 12px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-  }
-  .sub-label::after {
-    content: '';
-    flex: 1;
-    height: 1px;
-    background: rgba(201,168,76,0.2);
-  }
-
-  /* ── FOOTER ── */
-  footer {
-    text-align: center;
-    padding: 30px 16px;
-    border-top: 1px solid rgba(201,168,76,0.15);
-    font-size: 0.78rem;
-    color: var(--text-muted);
-    font-weight: 300;
-  }
-  footer strong { color: var(--gold); font-weight: 500; }
-
-  /* ── IMAGES ── */
-  img { display: block; }
-
-  @media (max-width: 600px) {
-    .hero { padding: 44px 16px 38px; }
-    .main { padding: 28px 12px 60px; }
-    .menu-grid { grid-template-columns: 1fr; }
-  }
-</style>
+        /* category cards */
+        .category {
+            background: #1e212b;
+            border-radius: 1.5rem;
+            padding: 1.2rem 1.3rem 1.8rem 1.3rem;
+            transition: transform 0.1s ease, box-shadow 0.2s;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+            border: 1px solid #2f3340;
+        }
+        .category:hover {
+            border-color: #ffb34760;
+            box-shadow: 0 8px 18px rgba(0,0,0,0.4);
+        }
+        .category-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            border-left: 5px solid #ffb347;
+            padding-left: 0.8rem;
+            margin-bottom: 1.2rem;
+            color: #ffdcb5;
+            letter-spacing: -0.3px;
+        }
+        .menu-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            flex-wrap: wrap;
+            margin-bottom: 0.85rem;
+            font-size: 1rem;
+            padding: 0.2rem 0;
+            border-bottom: 1px dashed #2c2f3a;
+        }
+        .item-name {
+            font-weight: 500;
+            color: #efe6db;
+            flex: 2;
+            font-size: 1rem;
+        }
+        .item-price {
+            font-weight: 600;
+            color: #ffbc6e;
+            background: #2a2e3b;
+            padding: 0.15rem 0.7rem;
+            border-radius: 40px;
+            font-size: 0.85rem;
+            margin-left: 0.8rem;
+            white-space: nowrap;
+        }
+        .item-desc {
+            font-size: 0.75rem;
+            color: #a99e8f;
+            margin-top: -0.1rem;
+            margin-bottom: 0.45rem;
+            padding-left: 0.5rem;
+        }
+        .subgroup {
+            margin-top: 0.4rem;
+            margin-left: 0.8rem;
+            border-left: 2px dotted #ffb34750;
+            padding-left: 0.8rem;
+        }
+        .sub-item {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.9rem;
+            margin-bottom: 0.4rem;
+        }
+        .sauce-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 0.5rem;
+            margin-bottom: 0.4rem;
+        }
+        .sauce-badge {
+            background: #2f3342;
+            padding: 0.2rem 0.7rem;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            color: #ffcd94;
+        }
+        .note-text {
+            font-size: 0.7rem;
+            color: #ffb347aa;
+            margin-top: 0.25rem;
+        }
+        hr {
+            border-color: #2f3545;
+            margin: 0.8rem 0;
+        }
+        .beer-bucket, .cocktail-flex {
+            font-size: 0.85rem;
+        }
+        @media (max-width: 760px) {
+            .menu-container {
+                padding: 1rem;
+            }
+            .category-title {
+                font-size: 1.5rem;
+            }
+            .menu-item {
+                font-size: 0.9rem;
+            }
+        }
+        .two-column-group {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 0.5rem;
+        }
+    </style>
 </head>
 <body>
-
-<!-- HERO -->
-<header class="hero">
-  <p class="hero-label">Restaurant &amp; Bar</p>
-  <h1>Lagom Terrace</h1>
-  <p class="hero-desc">Experience the perfect balance of flavors. From savory appetizers to refreshing cocktails, discover our carefully curated menu.</p>
-  <div class="hero-meta">
-    <span class="hero-meta-item open"><span class="icon">🕐</span> Tue – Sat: 11:00 AM – 11:30 PM</span>
-    <span class="hero-meta-item closed"><span class="icon">✕</span> Closed Sun &amp; Mon</span>
-    <span class="hero-meta-item"><span class="icon">📍</span> Belize</span>
-  </div>
-  <div class="gold-line"></div>
-</header>
-
-<!-- STICKY NAV -->
-<nav class="sticky-nav">
-  <div class="nav-tabs" id="navTabs">
-    <button class="nav-tab active" onclick="scrollTo('appetizers',this)">Appetizers</button>
-    <button class="nav-tab" onclick="scrollTo('wings',this)">Wings</button>
-    <button class="nav-tab" onclick="scrollTo('burgers',this)">Burgers</button>
-    <button class="nav-tab" onclick="scrollTo('quesadillas',this)">Quesadillas</button>
-    <button class="nav-tab" onclick="scrollTo('pastas',this)">Pastas</button>
-    <button class="nav-tab" onclick="scrollTo('chicken',this)">Chicken</button>
-    <button class="nav-tab" onclick="scrollTo('shrimp',this)">Shrimp</button>
-    <button class="nav-tab" onclick="scrollTo('fish',this)">Fish</button>
-    <button class="nav-tab" onclick="scrollTo('meats',this)">Meats</button>
-    <button class="nav-tab" onclick="scrollTo('beers',this)">Beers</button>
-    <button class="nav-tab" onclick="scrollTo('spirits',this)">Spirits</button>
-    <button class="nav-tab" onclick="scrollTo('cocktails',this)">Cocktails</button>
-    <button class="nav-tab" onclick="scrollTo('shots',this)">Shots</button>
-  </div>
-</nav>
-
-<main class="main">
-
-  <!-- APPETIZERS -->
-  <section class="menu-section" id="appetizers">
-    <div class="section-header">
-      <span class="section-icon">🥗</span>
-      <h2 class="section-title">Appetizers</h2>
-      <div class="section-line"></div>
+<div class="menu-container">
+    <div class="menu-header">
+        <h1>LAGOM</h1>
+        <p>Kitchen • Bar • Craft Beer — Fresh Flavors, Bold Moments</p>
     </div>
 
     <div class="menu-grid">
-      <div class="menu-card">
-        <img class="food-img" src="https://images.unsplash.com/photo-1625944525533-473f1b3d54b3?q=80&w=1200&auto=format&fit=crop">
-        <div class="card-info">
-          <div class="card-name">Loaded Potato</div>
-          <div class="card-desc">Creamy mashed potato with sautéed mushrooms, bacon bits, mozzarella and cream</div>
-          <div class="card-variants">Chicken $20 • Shrimp $25 • Arrachera $25</div>
+        <!-- APPETIZERS -->
+        <div class="category">
+            <div class="category-title">Appetizers</div>
+            <div class="menu-item"><span class="item-name">Loaded Potato</span><span class="item-price">$15</span></div>
+            <div class="item-desc">Creamy mashed potato with sautéed mushrooms, bacon bits, mozzarella & cream</div>
+            <div class="subgroup">
+                <div class="sub-item"><span>➕ Chicken</span><span class="item-price">$20</span></div>
+                <div class="sub-item"><span>➕ Shrimp</span><span class="item-price">$25</span></div>
+                <div class="sub-item"><span>➕ Arrachera</span><span class="item-price">$25</span></div>
+            </div>
+            <div class="menu-item"><span class="item-name">Mozzarella Sticks</span><span class="item-price">$17</span></div>
+            <div class="menu-item"><span class="item-name">Fried Dumplings</span><span class="item-price">$16</span></div>
+            <div class="item-desc">Fried Pork Dumplings</div>
+            <div class="menu-item"><span class="item-name">Shrimp Cocktail</span><span class="item-price">$19</span></div>
+            <div class="menu-item"><span class="item-name">Nachos</span><span class="item-price">$16</span></div>
+            <div class="subgroup"><div class="sub-item"><span>Chicken</span><span class="item-price">$21</span></div><div class="sub-item"><span>Beef</span><span class="item-price">$21</span></div></div>
+            <div class="menu-item"><span class="item-name">Cheesy Fries</span><span class="item-price">$16</span></div>
+            <div class="subgroup"><div class="sub-item"><span>Chicken</span><span class="item-price">$21</span></div><div class="sub-item"><span>Beef</span><span class="item-price">$21</span></div></div>
+            <div class="menu-item"><span class="item-name">Chicken Botanas</span><span class="item-price">5pc $13 / 10pc $20</span></div>
+            <div class="menu-item"><span class="item-name">Smoked Pork Salpicon</span><span class="item-price">Small $20</span></div>
+            <div class="menu-item"><span class="item-name"></span><span class="item-price">Large $35</span></div>
+            <div class="menu-item"><span class="item-name">Ceviche Shrimp</span><span class="item-price">Small $20</span></div>
+            <div class="menu-item"><span class="item-name"></span><span class="item-price">Large $35</span></div>
+            <div class="menu-item"><span class="item-name">Ceviche Octopus</span><span class="item-price">Small $20</span></div>
+            <div class="menu-item"><span class="item-name"></span><span class="item-price">Large $35</span></div>
+            <div class="menu-item"><span class="item-name">Ceviche Conchs (seasonal)</span><span class="item-price">Small $20 / Large $35</span></div>
+            <div class="menu-item"><span class="item-name">Ceviche mix 2 options</span><span class="item-price">$35</span></div>
+            <div class="menu-item"><span class="item-name">Ceviche mix 3 options</span><span class="item-price">$47</span></div>
+            <div class="menu-item"><span class="item-name">Wings / Chicken Fingers</span><span class="item-price">5pc $13 / 10pc $21 / 15pc $29</span></div>
+            <div class="sauce-list">
+                <span class="sauce-badge">Honey Mustard</span> <span class="sauce-badge">Lemon Pepper</span> <span class="sauce-badge">Garlic Parmesan</span>
+                <span class="sauce-badge">Hawaiian BBQ</span> <span class="sauce-badge">Spicy BBQ</span> <span class="sauce-badge">Chipotle</span>
+                <span class="sauce-badge">Teriyaki BBQ</span> <span class="sauce-badge">Creamy Jalapeño</span> <span class="sauce-badge">Spicy Buffalo</span>
+                <span class="sauce-badge">Mango Habanero</span>
+            </div>
         </div>
-        <div class="card-price">$15</div>
-      </div>
 
-      <div class="menu-card">
-        <img class="food-img" src="https://images.unsplash.com/photo-1548340748-6d2b7d7da280?q=80&w=1200&auto=format&fit=crop">
-        <div class="card-info">
-          <div class="card-name">Mozzarella Sticks</div>
+        <!-- BURGERS -->
+        <div class="category">
+            <div class="category-title">Burgers</div>
+            <div class="note-text">Your choice between fried/grilled chicken or grilled beef</div>
+            <div class="menu-item"><span class="item-name">Regular Burger</span><span class="item-price">$16</span></div>
+            <div class="menu-item"><span class="item-name">Bacon Cheese Burger</span><span class="item-price">$18</span></div>
+            <div class="menu-item"><span class="item-name">Teriyaki Hawaiian Burger</span><span class="item-price">$21</span></div>
+            <div class="menu-item"><span class="item-name">Jalapeño Popper Burger</span><span class="item-price">$21</span></div>
+            <div class="menu-item"><span class="item-name">Spicy Chipotle Burger</span><span class="item-price">$21</span></div>
+            <div class="menu-item"><span class="item-name">Lagom Double Pattie Burger</span><span class="item-price">$30</span></div>
         </div>
-        <div class="card-price">$17</div>
-      </div>
 
-      <div class="menu-card">
-        <img class="food-img" src="https://images.unsplash.com/photo-1608039755401-742074f0548d?q=80&w=1200&auto=format&fit=crop">
-        <div class="card-info">
-          <div class="card-name">Fried Dumplings</div>
-          <div class="card-desc">Fried Pork Dumplings</div>
+        <!-- QUESADILLAS -->
+        <div class="category">
+            <div class="category-title">Quesadillas</div>
+            <div class="menu-item"><span class="item-name">Cheese</span><span class="item-price">$12</span></div>
+            <div class="menu-item"><span class="item-name">Chicken</span><span class="item-price">$17</span></div>
+            <div class="menu-item"><span class="item-name">Shrimp</span><span class="item-price">$23</span></div>
+            <div class="menu-item"><span class="item-name">Arrachera</span><span class="item-price">$25</span></div>
         </div>
-        <div class="card-price">$16</div>
-      </div>
 
-      <div class="menu-card">
-        <img class="food-img" src="https://images.unsplash.com/photo-1585032226651-759b368d7246?q=80&w=1200&auto=format&fit=crop">
-        <div class="card-info">
-          <div class="card-name">Shrimp Cocktail</div>
+        <!-- PASTAS -->
+        <div class="category">
+            <div class="category-title">Pastas</div>
+            <div class="menu-item"><span class="item-name">Spaghetti ala Bolognese</span><span class="item-price">$25</span></div>
+            <div class="item-desc">Red pomodoro sauce with ground steak & Parmesan cheese</div>
+            <div class="menu-item"><span class="item-name">Fettuccine Alfredo</span><span class="item-price">$15</span></div>
+            <div class="item-desc">White Alfredo sauce with Parmesan cheese</div>
+            <div class="subgroup"><div class="sub-item"><span>➕ Chicken</span><span class="item-price">$22</span></div><div class="sub-item"><span>➕ Shrimp</span><span class="item-price">$27</span></div></div>
         </div>
-        <div class="card-price">$19</div>
-      </div>
 
-      <div class="menu-card">
-        <img class="food-img" src="https://images.unsplash.com/photo-1513456852971-30c0b8199d4d?q=80&w=1200&auto=format&fit=crop">
-        <div class="card-info">
-          <div class="card-name">Nachos</div>
-          <div class="card-variants">Chicken $21 • Beef $21</div>
+        <!-- CHICKEN -->
+        <div class="category">
+            <div class="category-title">Chicken</div>
+            <div class="menu-item"><span class="item-name">Grilled Chicken</span><span class="item-price">$19</span></div>
+            <div class="menu-item"><span class="item-name">Chicken Fajitas</span><span class="item-price">$23</span></div>
+            <div class="menu-item"><span class="item-name">Mozzarella Chicken</span><span class="item-price">$23</span></div>
+            <div class="item-desc">Fried chicken breast with pomodoro sauce and mozzarella cheese</div>
+            <div class="menu-item"><span class="item-name">Caribbean Jerk Chicken</span><span class="item-price">$23</span></div>
+            <div class="menu-item"><span class="item-name">Creamy Mushroom Chicken</span><span class="item-price">$25</span></div>
+            <div class="item-desc">Grilled chicken drizzled with creamy mushroom sauce</div>
         </div>
-        <div class="card-price">$16</div>
-      </div>
 
-      <div class="menu-card">
-        <img class="food-img" src="https://images.unsplash.com/photo-1628178636282-b8b6d9f5c21f?q=80&w=1200&auto=format&fit=crop">
-        <div class="card-info">
-          <div class="card-name">Cheesy Fries</div>
-          <div class="card-variants">Chicken $21 • Beef $21</div>
+        <!-- SHRIMP -->
+        <div class="category">
+            <div class="category-title">Shrimp</div>
+            <div class="menu-item"><span class="item-name">Grilled Shrimp</span><span class="item-price">$19</span></div>
+            <div class="menu-item"><span class="item-name">Fried Shrimp</span><span class="item-price">$19</span></div>
+            <div class="menu-item"><span class="item-name">Garlic Shrimp</span><span class="item-price">$22</span></div>
+            <div class="menu-item"><span class="item-name">Shrimp Fajitas</span><span class="item-price">$25</span></div>
+            <div class="menu-item"><span class="item-name">Coconut Curry Fried Shrimp</span><span class="item-price">$25</span></div>
         </div>
-        <div class="card-price">$16</div>
-      </div>
 
-      <div class="menu-card">
-        <img class="food-img" src="https://images.unsplash.com/photo-1562967916-eb82221dfb92?q=80&w=1200&auto=format&fit=crop">
-        <div class="card-info">
-          <div class="card-name">Chicken Botanas</div>
-          <div class="card-variants">5pc $13 • 10pc $20</div>
+        <!-- FISH -->
+        <div class="category">
+            <div class="category-title">Fish</div>
+            <div class="menu-item"><span class="item-name">Fish Burger</span><span class="item-price">$19</span></div>
+            <div class="menu-item"><span class="item-name">Fish & Chips</span><span class="item-price">$19</span></div>
+            <div class="menu-item"><span class="item-name">Fried Fish Fillet</span><span class="item-price">$22</span></div>
+            <div class="menu-item"><span class="item-name">Grilled Fish Fillet</span><span class="item-price">$22</span></div>
         </div>
-      </div>
 
-      <div class="menu-card">
-        <img class="food-img" src="https://images.unsplash.com/photo-1559847844-d721426d6edc?q=80&w=1200&auto=format&fit=crop">
-        <div class="card-info">
-          <div class="card-name">Smoked Pork Salpicon</div>
-          <div class="card-variants">Small $20 • Large $35</div>
+        <!-- MEATS -->
+        <div class="category">
+            <div class="category-title">Meats</div>
+            <div class="menu-item"><span class="item-name">Swedish meat balls</span><span class="item-price">$25</span></div>
+            <div class="item-desc">Mixture of seasoned pork and beef meatballs covered in rich savory creamy gravy with special mashed potato and side of greens</div>
+            <div class="menu-item"><span class="item-name">Grilled Pork Chops</span><span class="item-price">$27</span></div>
+            <div class="menu-item"><span class="item-name">Steak Fajitas</span><span class="item-price">$25</span></div>
+            <div class="menu-item"><span class="item-name">Grilled Arrachera</span><span class="item-price">$33</span></div>
         </div>
-      </div>
 
-      <div class="menu-card">
-        <img class="food-img" src="https://images.unsplash.com/photo-1611250188496-e966043a0629?q=80&w=1200&auto=format&fit=crop">
-        <div class="card-info">
-          <div class="card-name">Ceviche Shrimp</div>
-          <div class="card-variants">Small $20 • Large $35</div>
+        <!-- BEERS & CRAFT -->
+        <div class="category">
+            <div class="category-title">Beers</div>
+            <div class="menu-item"><span class="item-name">Light House</span><span class="item-price">$5</span><span style="margin-left:auto; margin-right:0.5rem;">Bucket $26</span></div>
+            <div class="menu-item"><span class="item-name">Belikin</span><span class="item-price">$5</span><span class="item-price">Bucket $26</span></div>
+            <div class="menu-item"><span class="item-name">Belikin Light</span><span class="item-price">$5</span><span class="item-price">Bucket $26</span></div>
+            <div class="menu-item"><span class="item-name">Stout</span><span class="item-price">$5</span><span class="item-price">Bucket $26</span></div>
+            <div class="menu-item"><span class="item-name">Land Shark</span><span class="item-price">$6</span><span class="item-price">Bucket $33</span></div>
+            <div class="menu-item"><span class="item-name">Hard seltzer</span><span class="item-price">$6</span><span class="item-price">Bucket $33</span></div>
+            <div class="menu-item"><span class="item-name">Heineken</span><span class="item-price">$7</span><span class="item-price">Bucket $39</span></div>
+            <div class="menu-item"><span class="item-name">Guinness</span><span class="item-price">$7</span><span class="item-price">Bucket $39</span></div>
+            <div class="menu-item"><span class="item-name">Bakehouse citrus</span><span class="item-price">$7</span></div>
+            <div class="menu-item"><span class="item-name">Kayn cola</span><span class="item-price">$7</span></div>
+            <div class="menu-item"><span class="item-name">Ova drive</span><span class="item-price">$8</span></div>
+            <div class="menu-item"><span class="item-name">Smirnoff</span><span class="item-price">$8.50</span></div>
+            <div class="menu-item"><span class="item-name">Red Stripe</span><span class="item-price">$8.50</span></div>
+            <div class="menu-item"><span class="item-name">Rude Boy</span><span class="item-price">$8.50</span></div>
+            <div class="menu-item"><span class="item-name">Xxl wine can</span><span class="item-price">$15</span></div>
+            <div class="menu-item"><span class="item-name">Draft Two-5 Craft Beer</span><span class="item-price">$9</span></div>
+            <div class="item-desc">Valencia IPA • Piña Pale Ale • Sour Sop Hazy IPA • Fever Grass Witbier • Mango Ale • Coconut • Pumpkin Spice Ale • Chamoy (seasonal)</div>
+            <div class="menu-item"><span class="item-name">Flight Two-5 Craft Beer</span><span class="item-price">$20</span></div>
         </div>
-      </div>
 
-      <div class="menu-card">
-        <img class="food-img" src="https://images.unsplash.com/photo-1559339352-11d035aa65de?q=80&w=1200&auto=format&fit=crop">
-        <div class="card-info">
-          <div class="card-name">Ceviche Octopus</div>
-          <div class="card-variants">Small $20 • Large $35</div>
+        <!-- RUMS & SPIRITS (Local & Imported) -->
+        <div class="category">
+            <div class="category-title">Rums & Spirits</div>
+            <div class="menu-item"><span class="item-name">Local Rum</span><span class="item-price">$5</span></div>
+            <div class="menu-item"><span class="item-name">Coconut Rum</span><span class="item-price">$8</span></div>
+            <div class="menu-item"><span class="item-name">5 Barrel</span><span class="item-price">$8</span></div>
+            <div class="menu-item"><span class="item-name">Extra Mature</span><span class="item-price">$8</span></div>
+            <div class="menu-item"><span class="item-name">Copali</span><span class="item-price">$10</span></div>
+            <div class="menu-item"><span class="item-name">Kayn Rum</span><span class="item-price">$10</span></div>
+            <div class="menu-item"><span class="item-name">Belizean Blue Signature</span><span class="item-price">$12</span></div>
+            <div class="menu-item"><span class="item-name">Local Vodka</span><span class="item-price">$8</span></div>
+            <div class="menu-item"><span class="item-name">Bake house Vodka</span><span class="item-price">$10</span></div>
+            <div class="menu-item"><span class="item-name">Local Gin</span><span class="item-price">$8</span></div>
+            <div class="menu-item"><span class="item-name">3 Fingers Gin</span><span class="item-price">$8</span></div>
+            <hr>
+            <div class="category-title" style="font-size:1.2rem; border-left-color:#be8b48;">Imported Liquor</div>
+            <div class="two-column-group"><div><div class="sub-item">Absolute Vodka $14</div><div class="sub-item">Svedka Vodka $14</div><div class="sub-item">Tito’s vodka $16</div><div class="sub-item">Ciroc Vodka $20</div><div class="sub-item">Grey Goose $20</div><div class="sub-item">Bombay Gin $15</div><div class="sub-item">Tanqueray Gin $14</div><div class="sub-item">Tanqueray 10/Sevilla $16</div><div class="sub-item">Beef Eater $13</div><div class="sub-item">Hendricks Gin $20</div></div><div><div class="sub-item">Havana Club 7 $13</div><div class="sub-item">Appleton $13</div><div class="sub-item">Bacardi $13</div><div class="sub-item">Flor de Caña 4 $10</div><div class="sub-item">Flor de Caña 7 $13</div><div class="sub-item">Flor de Caña 12 $16</div><div class="sub-item">Flor de Caña 18 $22</div><div class="sub-item">Captain Morgan $14</div><div class="sub-item">Captain Morgan Private S $16</div><div class="sub-item">Malibu Coconut $13</div><div class="sub-item">Rumchata $13</div><div class="sub-item">Kraken $16</div><div class="sub-item">Zacapa 23 $27</div></div></div>
+            <div class="sub-item">Jose Cuervo $13</div><div class="sub-item">1800's $15</div><div class="sub-item">Milagro $15</div><div class="sub-item">Zignum Mezcal $16</div><div class="sub-item">Patron $19</div><div class="sub-item">Don Julio $22</div><div class="sub-item">Disaronno $14</div><div class="sub-item">Campari $10</div><div class="sub-item">Jagermeister $13</div><div class="sub-item">Fireball $13</div><div class="sub-item">Kahlua $13</div><div class="sub-item">Tía Maria $13</div><div class="sub-item">Sambuca $13</div><div class="sub-item">Baileys $13</div>
+            <div class="sub-item">John Barr $10</div><div class="sub-item">Jameson $14</div><div class="sub-item">Chivas Regal $14</div><div class="sub-item">Jack Daniel’s $14</div><div class="sub-item">Makers Mark $14</div><div class="sub-item">Crown Royal $14</div><div class="sub-item">Black Label $16</div><div class="sub-item">Gold Label Reserve $27</div><div class="sub-item">Buchanans 12 $18</div><div class="sub-item">Buchanans 18 $30</div><div class="sub-item">Glenfiddich $22</div><div class="sub-item">Glenfiddich 18 $32</div><div class="sub-item">Glenlivet $22</div><div class="sub-item">Akashi Red Japanese Blend $18</div><div class="sub-item">Akashi White Oak $18</div><div class="sub-item">Matsui Japanese whiskey $20</div><div class="sub-item">Macallan $25</div><div class="sub-item">Screwball $18</div><div class="sub-item">Grand Marnier $20</div><div class="sub-item">Hennessy VS $22</div><div class="sub-item">Hennessy Pure White $25</div><div class="sub-item">Hennessy VSOP $28</div><div class="sub-item">Dusse $28</div>
         </div>
-      </div>
 
-      <div class="menu-card">
-        <img class="food-img" src="https://images.unsplash.com/photo-1611250188496-e966043a0629?q=80&w=1200&auto=format&fit=crop">
-        <div class="card-info">
-          <div class="card-name">Ceviche Conchs</div>
-          <div class="card-variants">Small $20 • Large $35</div>
+        <!-- COCKTAILS -->
+        <div class="category">
+            <div class="category-title">Cocktails</div>
+            <div class="menu-item"><span class="item-name">Panty Rippers</span><span class="item-price">$10</span></div>
+            <div class="menu-item"><span class="item-name">Leap Frog</span><span class="item-price">$10</span></div>
+            <div class="menu-item"><span class="item-name">Green Hurricane</span><span class="item-price">$10</span></div>
+            <div class="menu-item"><span class="item-name">Rum Punch</span><span class="item-price">$10</span></div>
+            <div class="menu-item"><span class="item-name">Admiral's Quencher</span><span class="item-price">$13</span></div>
+            <div class="menu-item"><span class="item-name">Crocodile Cooler</span><span class="item-price">$13</span></div>
+            <div class="menu-item"><span class="item-name">Electric Lemonade</span><span class="item-price">$13</span></div>
+            <div class="menu-item"><span class="item-name">Blue Monkey Wrench</span><span class="item-price">$13</span></div>
+            <div class="menu-item"><span class="item-name">Kayn Smash</span><span class="item-price">$14</span></div>
+            <div class="menu-item"><span class="item-name">Berries Gin sour</span><span class="item-price">$14</span></div>
+            <div class="menu-item"><span class="item-name">Bakehouse nutty fudge martini</span><span class="item-price">$15</span></div>
+            <div class="menu-item"><span class="item-name">Passion gin fizz</span><span class="item-price">$14</span></div>
+            <div class="menu-item"><span class="item-name">Porn star</span><span class="item-price">$15</span></div>
         </div>
-      </div>
 
-      <div class="menu-card">
-        <img class="food-img" src="https://images.unsplash.com/photo-1559339352-11d035aa65de?q=80&w=1200&auto=format&fit=crop">
-        <div class="card-info">
-          <div class="card-name">Ceviche Mix</div>
-          <div class="card-variants">2 options $35 • 3 options $47</div>
+        <!-- OTHER DRINKS & FAVORITES -->
+        <div class="category">
+            <div class="category-title">Other Drinks & Specialties</div>
+            <div class="menu-item"><span class="item-name">Water</span><span class="item-price">$2.5</span></div>
+            <div class="menu-item"><span class="item-name">Sodas</span><span class="item-price">$2.5</span></div>
+            <div class="menu-item"><span class="item-name">Natural Juices</span><span class="item-price">$4</span></div>
+            <div class="menu-item"><span class="item-name">Iced coffee</span><span class="item-price">$10</span></div>
+            <div class="menu-item"><span class="item-name">Frozen coffee</span><span class="item-price">$12</span></div>
+            <div class="menu-item"><span class="item-name">Red Wine (Merlot/Cabernet)</span><span class="item-price">$14</span></div>
+            <div class="menu-item"><span class="item-name">White Wine (Chardonnay/Zinfandel)</span><span class="item-price">$14</span></div>
+            <div class="menu-item"><span class="item-name">Bottle Wine</span><span class="item-price">$60-$100</span></div>
+            <div class="menu-item"><span class="item-name">Tequila Sunrise</span><span class="item-price">$14</span></div>
+            <div class="menu-item"><span class="item-name">Paloma</span><span class="item-price">$14</span></div>
+            <div class="menu-item"><span class="item-name">White/Black Russian</span><span class="item-price">$15</span></div>
+            <div class="menu-item"><span class="item-name">Daiquiri</span><span class="item-price">$15</span></div>
+            <div class="menu-item"><span class="item-name">Mojitos</span><span class="item-price">$15</span></div>
+            <div class="menu-item"><span class="item-name">Piña Colada</span><span class="item-price">$15</span></div>
+            <div class="menu-item"><span class="item-name">Baileys Colada</span><span class="item-price">$17</span></div>
+            <div class="menu-item"><span class="item-name">Margarita</span><span class="item-price">$16</span></div>
+            <div class="menu-item"><span class="item-name">Beerita</span><span class="item-price">$19-$23</span></div>
+            <div class="menu-item"><span class="item-name">Sangria</span><span class="item-price">$17</span></div>
+            <div class="menu-item"><span class="item-name">Long Island Ice Tea</span><span class="item-price">$17</span></div>
+            <div class="menu-item"><span class="item-name">Michelada</span><span class="item-price">$8-$11</span></div>
+            <hr>
+            <div class="category-title" style="font-size:1.2rem;">Lagom Favorites</div>
+            <div class="menu-item"><span class="item-name">Liter Michingona</span><span class="item-price">$15-$21</span></div>
+            <div class="menu-item"><span class="item-name">Liter Rum & Coke</span><span class="item-price">$14</span></div>
+            <div class="menu-item"><span class="item-name">Liter Panty Ripper</span><span class="item-price">$18</span></div>
+            <div class="menu-item"><span class="item-name">Liter Coolers</span><span class="item-price">$22</span></div>
+            <div class="menu-item"><span class="item-name">Fire Bombs</span><span class="item-price">$21</span></div>
+            <div class="menu-item"><span class="item-name">Irish Bombs</span><span class="item-price">$21</span></div>
+            <div class="menu-item"><span class="item-name">Rude Bombs</span><span class="item-price">$28</span></div>
+            <div class="category-title" style="font-size:1.1rem; margin-top:0.5rem;">Batches</div>
+            <div class="menu-item"><span class="item-name">Deez Nuts</span><span class="item-price">$32</span></div>
+            <div class="menu-item"><span class="item-name">Crocodile Sperm</span><span class="item-price">$32</span></div>
+            <div class="menu-item"><span class="item-name">Kamikazee</span><span class="item-price">$32</span></div>
+            <div class="menu-item"><span class="item-name">Sex @ my Friends House</span><span class="item-price">$37</span></div>
+            <div class="category-title" style="font-size:1.1rem;">Shots</div>
+            <div class="sauce-list">
+                <span class="sauce-badge">Brain Cell $13</span> <span class="sauce-badge">Cinnamon Toast Crunch $13</span> <span class="sauce-badge">Cuervo Miester $13</span>
+                <span class="sauce-badge">Liquid Cocaine $13</span> <span class="sauce-badge">Cristal Meth $13</span> <span class="sauce-badge">Melon Drop $13</span>
+                <span class="sauce-badge">Flaming Cucaracha $13</span> <span class="sauce-badge">Baby Guinness $13</span> <span class="sauce-badge">Blow Job $13</span>
+                <span class="sauce-badge">Screaming Orgasm $13</span> <span class="sauce-badge">Jager Bomb $15</span> <span class="sauce-badge">Blazing French Connection $27</span>
+            </div>
         </div>
-      </div>
     </div>
-  </section>
-
-  <!-- WINGS -->
-  <section class="menu-section" id="wings">
-    <div class="section-header">
-      <span class="section-icon">🍗</span>
-      <h2 class="section-title">Wings / Chicken Fingers</h2>
-      <div class="section-line"></div>
-    </div>
-
-    <div class="menu-grid single-col">
-
-      <div class="menu-card">
-        <img class="food-img" src="https://images.unsplash.com/photo-1562967916-eb82221dfb92?q=80&w=1200&auto=format&fit=crop">
-
-        <div class="card-info">
-          <div class="card-name">Chicken Wings / Fingers</div>
-
-          <div class="card-variants">
-            5pc $13 • 10pc $21 • 15pc $29
-          </div>
-
-          <div class="flavors-grid">
-            <span class="flavor-pill">Honey Mustard</span>
-            <span class="flavor-pill">Lemon Pepper</span>
-            <span class="flavor-pill">Garlic Parmesan</span>
-            <span class="flavor-pill">Hawaiian BBQ</span>
-            <span class="flavor-pill">Spicy BBQ</span>
-            <span class="flavor-pill">Chipotle</span>
-            <span class="flavor-pill">Teriyaki BBQ</span>
-            <span class="flavor-pill">Creamy Jalapeño</span>
-            <span class="flavor-pill">Spicy Buffalo</span>
-            <span class="flavor-pill">Mango Habanero</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- BURGERS -->
-  <section class="menu-section" id="burgers">
-    <div class="section-header">
-      <span class="section-icon">🍔</span>
-      <h2 class="section-title">Burgers</h2>
-      <div class="section-line"></div>
-    </div>
-
-    <div class="menu-grid">
-
-      <div class="menu-card">
-        <img class="food-img" src="https://images.unsplash.com/photo-1550547660-d9450f859349?q=80&w=1200&auto=format&fit=crop">
-        <div class="card-info">
-          <div class="card-name">Regular Burger</div>
-          <div class="card-desc">Your choice between fried/grilled chicken or grilled beef</div>
-        </div>
-        <div class="card-price">$16</div>
-      </div>
-
-      <div class="menu-card">
-        <img class="food-img" src="https://images.unsplash.com/photo-1572802419224-296b0aeee0d9?q=80&w=1200&auto=format&fit=crop">
-        <div class="card-info">
-          <div class="card-name">Bacon Cheese Burger</div>
-        </div>
-        <div class="card-price">$18</div>
-      </div>
-
-      <div class="menu-card">
-        <img class="food-img" src="https://images.unsplash.com/photo-1572802419224-296b0aeee0d9?q=80&w=1200&auto=format&fit=crop">
-        <div class="card-info">
-          <div class="card-name">Teriyaki Hawaiian Burger</div>
-        </div>
-        <div class="card-price">$21</div>
-      </div>
-
-      <div class="menu-card">
-        <img class="food-img" src="https://images.unsplash.com/photo-1572802419224-296b0aeee0d9?q=80&w=1200&auto=format&fit=crop">
-        <div class="card-info">
-          <div class="card-name">Jalapeño Popper Burger</div>
-        </div>
-        <div class="card-price">$21</div>
-      </div>
-
-      <div class="menu-card">
-        <img class="food-img" src="https://images.unsplash.com/photo-1572802419224-296b0aeee0d9?q=80&w=1200&auto=format&fit=crop">
-        <div class="card-info">
-          <div class="card-name">Spicy Chipotle Burger</div>
-        </div>
-        <div class="card-price">$21</div>
-      </div>
-
-      <div class="menu-card">
-        <img class="food-img" src="https://images.unsplash.com/photo-1561758033-d89a9ad46330?q=80&w=1200&auto=format&fit=crop">
-        <div class="card-info">
-          <div class="card-name">Lagom Double Pattie Burger</div>
-        </div>
-        <div class="card-price">$30</div>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- QUESADILLAS -->
-  <section class="menu-section" id="quesadillas">
-    <div class="section-header">
-      <span class="section-icon">🫓</span>
-      <h2 class="section-title">Quesadillas</h2>
-      <div class="section-line"></div>
-    </div>
-
-    <div class="menu-grid">
-      <div class="menu-card">
-        <div class="card-info">
-          <div class="card-name">Cheese</div>
-        </div>
-        <div class="card-price">$12</div>
-      </div>
-
-      <div class="menu-card">
-        <div class="card-info">
-          <div class="card-name">Chicken</div>
-        </div>
-        <div class="card-price">$17</div>
-      </div>
-
-      <div class="menu-card">
-        <div class="card-info">
-          <div class="card-name">Shrimp</div>
-        </div>
-        <div class="card-price">$23</div>
-      </div>
-
-      <div class="menu-card">
-        <div class="card-info">
-          <div class="card-name">Arrachera</div>
-        </div>
-        <div class="card-price">$25</div>
-      </div>
-    </div>
-  </section>
-
-  <!-- PASTAS -->
-  <section class="menu-section" id="pastas">
-    <div class="section-header">
-      <span class="section-icon">🍝</span>
-      <h2 class="section-title">Pastas</h2>
-      <div class="section-line"></div>
-    </div>
-
-    <div class="menu-grid">
-
-      <div class="menu-card">
-        <img class="food-img" src="https://images.unsplash.com/photo-1622973536968-3ead9e780960?q=80&w=1200&auto=format&fit=crop">
-        <div class="card-info">
-          <div class="card-name">Spaghetti ala Bolognese</div>
-          <div class="card-desc">Red pomodoro sauce with ground steak & parmesan cheese</div>
-        </div>
-        <div class="card-price">$25</div>
-      </div>
-
-      <div class="menu-card">
-        <img class="food-img" src="https://images.unsplash.com/photo-1645112411341-6c4fd023714a?q=80&w=1200&auto=format&fit=crop">
-        <div class="card-info">
-          <div class="card-name">Fettuccine Alfredo</div>
-          <div class="card-desc">White Alfredo sauce with parmesan cheese</div>
-          <div class="card-variants">Chicken $22 • Shrimp $27</div>
-        </div>
-        <div class="card-price">$15</div>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- CHICKEN -->
-  <section class="menu-section" id="chicken">
-    <div class="section-header">
-      <span class="section-icon">🍗</span>
-      <h2 class="section-title">Chicken</h2>
-      <div class="section-line"></div>
-    </div>
-
-    <div class="menu-grid">
-
-      <div class="menu-card">
-        <img class="food-img" src="https://images.unsplash.com/photo-1527477396000-e27163b481c2?q=80&w=1200&auto=format&fit=crop">
-        <div class="card-info">
-          <div class="card-name">Grilled Chicken</div>
-        </div>
-        <div class="card-price">$19</div>
-      </div>
-
-      <div class="menu-card">
-        <img class="food-img" src="https://images.unsplash.com/photo-1600891964599-f61ba0e24092?q=80&w=1200&auto=format&fit=crop">
-        <div class="card-info">
-          <div class="card-name">Chicken Fajitas</div>
-        </div>
-        <div class="card-price">$23</div>
-      </div>
-
-      <div class="menu-card">
-        <img class="food-img" src="https://images.unsplash.com/photo-1600891964599-f61ba0e24092?q=80&w=1200&auto=format&fit=crop">
-        <div class="card-info">
-          <div class="card-name">Mozzarella Chicken</div>
-        </div>
-        <div class="card-price">$23</div>
-      </div>
-
-      <div class="menu-card">
-        <img class="food-img" src="https://images.unsplash.com/photo-1600891964599-f61ba0e24092?q=80&w=1200&auto=format&fit=crop">
-        <div class="card-info">
-          <div class="card-name">Caribbean Jerk Chicken</div>
-        </div>
-        <div class="card-price">$23</div>
-      </div>
-
-      <div class="menu-card">
-        <img class="food-img" src="https://images.unsplash.com/photo-1518492104633-130d0cc84637?q=80&w=1200&auto=format&fit=crop">
-        <div class="card-info">
-          <div class="card-name">Creamy Mushroom Chicken</div>
-          <div class="card-desc">Grilled chicken drizzled with creamy mushroom sauce</div>
-        </div>
-        <div class="card-price">$25</div>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- SHRIMP -->
-  <section class="menu-section" id="shrimp">
-    <div class="section-header">
-      <span class="section-icon">🍤</span>
-      <h2 class="section-title">Shrimp</h2>
-      <div class="section-line"></div>
-    </div>
-
-    <div class="menu-grid">
-
-      <div class="menu-card">
-        <img class="food-img" src="https://images.unsplash.com/photo-1625944524160-8f1f09f10c2d?q=80&w=1200&auto=format&fit=crop">
-        <div class="card-info">
-          <div class="card-name">Fried Shrimp</div>
-        </div>
-        <div class="card-price">$19</div>
-      </div>
-
-      <div class="menu-card">
-        <img class="food-img" src="https://images.unsplash.com/photo-1625944524160-8f1f09f10c2d?q=80&w=1200&auto=format&fit=crop">
-        <div class="card-info">
-          <div class="card-name">Garlic Shrimp</div>
-        </div>
-        <div class="card-price">$22</div>
-      </div>
-
-      <div class="menu-card">
-        <img class="food-img" src="https://images.unsplash.com/photo-1625944524160-8f1f09f10c2d?q=80&w=1200&auto=format&fit=crop">
-        <div class="card-info">
-          <div class="card-name">Shrimp Fajitas</div>
-        </div>
-        <div class="card-price">$25</div>
-      </div>
-
-      <div class="menu-card">
-        <img class="food-img" src="https://images.unsplash.com/photo-1625944524160-8f1f09f10c2d?q=80&w=1200&auto=format&fit=crop">
-        <div class="card-info">
-          <div class="card-name">Coconut Curry Fried Shrimp</div>
-        </div>
-        <div class="card-price">$25</div>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- FISH -->
-  <section class="menu-section" id="fish">
-    <div class="section-header">
-      <span class="section-icon">🐟</span>
-      <h2 class="section-title">Fish</h2>
-      <div class="section-line"></div>
-    </div>
-
-    <div class="menu-grid">
-
-      <div class="menu-card">
-        <img class="food-img" src="https://images.unsplash.com/photo-1579631542720-3a87824fff86?q=80&w=1200&auto=format&fit=crop">
-        <div class="card-info">
-          <div class="card-name">Fish & Chips</div>
-        </div>
-        <div class="card-price">$19</div>
-      </div>
-
-      <div class="menu-card">
-        <img class="food-img" src="https://images.unsplash.com/photo-1559847844-5315695dadae?q=80&w=1200&auto=format&fit=crop">
-        <div class="card-info">
-          <div class="card-name">Fried Fish Fillet</div>
-        </div>
-        <div class="card-price">$22</div>
-      </div>
-
-      <div class="menu-card">
-        <img class="food-img" src="https://images.unsplash.com/photo-1559847844-5315695dadae?q=80&w=1200&auto=format&fit=crop">
-        <div class="card-info">
-          <div class="card-name">Grilled Fish Fillet</div>
-        </div>
-        <div class="card-price">$22</div>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- MEATS -->
-  <section class="menu-section" id="meats">
-    <div class="section-header">
-      <span class="section-icon">🥩</span>
-      <h2 class="section-title">Meats</h2>
-      <div class="section-line"></div>
-    </div>
-
-    <div class="menu-grid">
-
-      <div class="menu-card">
-        <img class="food-img" src="https://images.unsplash.com/photo-1529042410759-befb1204b468?q=80&w=1200&auto=format&fit=crop">
-        <div class="card-info">
-          <div class="card-name">Swedish Meatballs</div>
-          <div class="card-desc">Mixture of seasoned pork and beef meatballs covered in creamy gravy</div>
-        </div>
-        <div class="card-price">$25</div>
-      </div>
-
-      <div class="menu-card">
-        <img class="food-img" src="https://images.unsplash.com/photo-1558030006-450675393462?q=80&w=1200&auto=format&fit=crop">
-        <div class="card-info">
-          <div class="card-name">Grilled Pork Chops</div>
-        </div>
-        <div class="card-price">$27</div>
-      </div>
-
-      <div class="menu-card">
-        <img class="food-img" src="https://images.unsplash.com/photo-1558030006-450675393462?q=80&w=1200&auto=format&fit=crop">
-        <div class="card-info">
-          <div class="card-name">Steak Fajitas</div>
-        </div>
-        <div class="card-price">$25</div>
-      </div>
-
-      <div class="menu-card">
-        <img class="food-img" src="https://images.unsplash.com/photo-1551024506-0bccd828d307?q=80&w=1200&auto=format&fit=crop">
-        <div class="card-info">
-          <div class="card-name">Grilled Arrachera</div>
-        </div>
-        <div class="card-price">$33</div>
-      </div>
-
-    </div>
-  </section>
-
-<!-- BEERS -->
-<section class="menu-section" id="beers">
-  <div class="section-header">
-    <span class="section-icon">🍺</span>
-    <h2 class="section-title">Beers</h2>
-    <div class="section-line"></div>
-  </div>
-
-  <div class="beer-wrap">
-    <table class="beer-table">
-      <thead>
-        <tr>
-          <th>Beer</th>
-          <th>Regular</th>
-          <th>Bucket</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr><td>Light House</td><td class="price">$5</td><td class="price">$26</td></tr>
-        <tr><td>Belikin</td><td class="price">$5</td><td class="price">$26</td></tr>
-        <tr><td>Belikin Light</td><td class="price">$5</td><td class="price">$26</td></tr>
-        <tr><td>Stout</td><td class="price">$5</td><td class="price">$26</td></tr>
-        <tr><td>Land Shark</td><td class="price">$6</td><td class="price">$33</td></tr>
-        <tr><td>Hard Seltzer</td><td class="price">$6</td><td class="price">$33</td></tr>
-        <tr><td>Heineken</td><td class="price">$7</td><td class="price">$39</td></tr>
-        <tr><td>Guinness</td><td class="price">$7</td><td class="price">$39</td></tr>
-        <tr><td>Bakehouse Citrus</td><td class="price">$7</td><td class="price">—</td></tr>
-        <tr><td>Kayn Cola</td><td class="price">$7</td><td class="price">—</td></tr>
-        <tr><td>Ova Drive</td><td class="price">$8</td><td class="price">—</td></tr>
-        <tr><td>Draft Two-5 Craft Beer</td><td class="price">$9</td><td class="price">—</td></tr>
-      </tbody>
-    </table>
-  </div>
-
-  <div class="sub-label">Two-5 Craft Beer Varieties</div>
-  <div class="craft-beer-grid">
-    <div class="craft-pill">Valencia IPA</div>
-    <div class="craft-pill">Piña Pale Ale</div>
-    <div class="craft-pill">Sour Sop Hazzy IPA</div>
-    <div class="craft-pill">Fever Grass Witbier</div>
-    <div class="craft-pill">Mango Ale <span class="seasonal-tag">Seasonal</span></div>
-    <div class="craft-pill">Coconut <span class="seasonal-tag">Seasonal</span></div>
-    <div class="craft-pill">Pumpkin Spice Ale <span class="seasonal-tag">Seasonal</span></div>
-    <div class="craft-pill">Chamoy <span class="seasonal-tag">Seasonal</span></div>
-  </div>
-</section>
-
-<!-- SPIRITS -->
-<section class="menu-section" id="spirits">
-  <div class="section-header">
-    <span class="section-icon">🥃</span>
-    <h2 class="section-title">Spirits</h2>
-    <div class="section-line"></div>
-  </div>
-
-  <div class="sub-label">Local Spirits</div>
-  <div class="menu-grid">
-    <div class="menu-card"><div class="card-info"><div class="card-name">Local Rum</div></div><div class="card-price">$5</div></div>
-    <div class="menu-card"><div class="card-info"><div class="card-name">Local Vodka</div></div><div class="card-price">$8</div></div>
-    <div class="menu-card"><div class="card-info"><div class="card-name">Local Gin</div></div><div class="card-price">$8</div></div>
-  </div>
-
-  <div class="sub-label">Premium Rum</div>
-  <div class="menu-grid">
-    <div class="menu-card"><div class="card-info"><div class="card-name">Coconut Rum</div></div><div class="card-price">$8</div></div>
-    <div class="menu-card"><div class="card-info"><div class="card-name">5 Barrel</div></div><div class="card-price">$8</div></div>
-    <div class="menu-card"><div class="card-info"><div class="card-name">Extra Mature</div></div><div class="card-price">$8</div></div>
-    <div class="menu-card"><div class="card-info"><div class="card-name">Copali</div></div><div class="card-price">$10</div></div>
-    <div class="menu-card"><div class="card-info"><div class="card-name">Kayn Rum</div></div><div class="card-price">$10</div></div>
-    <div class="menu-card"><div class="card-info"><div class="card-name">Belizean Blue Signature</div></div><div class="card-price">$12</div></div>
-  </div>
-
-  <div class="sub-label">Tequila &amp; Mezcal</div>
-  <div class="menu-grid">
-    <div class="menu-card"><div class="card-info"><div class="card-name">Jose Cuervo</div></div><div class="card-price">$13</div></div>
-    <div class="menu-card"><div class="card-info"><div class="card-name">1800's</div></div><div class="card-price">$15</div></div>
-    <div class="menu-card"><div class="card-info"><div class="card-name">Milagro</div></div><div class="card-price">$15</div></div>
-    <div class="menu-card"><div class="card-info"><div class="card-name">Zignum Mezcal</div></div><div class="card-price">$16</div></div>
-    <div class="menu-card"><div class="card-info"><div class="card-name">Patrón</div></div><div class="card-price">$19</div></div>
-    <div class="menu-card"><div class="card-info"><div class="card-name">Don Julio</div></div><div class="card-price">$22</div></div>
-  </div>
-
-  <div class="sub-label">Whiskey &amp; Cognac</div>
-  <div class="menu-grid">
-    <div class="menu-card"><div class="card-info"><div class="card-name">Jameson</div></div><div class="card-price">$14</div></div>
-    <div class="menu-card"><div class="card-info"><div class="card-name">Jack Daniel's</div></div><div class="card-price">$14</div></div>
-    <div class="menu-card"><div class="card-info"><div class="card-name">Hennessy VS</div></div><div class="card-price">$22</div></div>
-    <div class="menu-card"><div class="card-info"><div class="card-name">Hennessy Pure White</div></div><div class="card-price">$25</div></div>
-    <div class="menu-card"><div class="card-info"><div class="card-name">Hennessy VSOP</div></div><div class="card-price">$28</div></div>
-    <div class="menu-card"><div class="card-info"><div class="card-name">Dusse</div></div><div class="card-price">$28</div></div>
-  </div>
-</section>
-
-<!-- COCKTAILS & SHOTS -->
-<section class="menu-section" id="cocktails">
-  <div class="section-header">
-    <span class="section-icon">🍹</span>
-    <h2 class="section-title">Cocktails & Shots</h2>
-    <div class="section-line"></div>
-  </div>
-
-  <div class="sub-label">Signature Cocktails</div>
-  <div class="menu-grid">
-    <div class="menu-card"><div class="card-info"><div class="card-name">Panty Rippers</div></div><div class="card-price">$10</div></div>
-    <div class="menu-card"><div class="card-info"><div class="card-name">Leap Frog</div></div><div class="card-price">$10</div></div>
-    <div class="menu-card"><div class="card-info"><div class="card-name">Green Hurricane</div></div><div class="card-price">$10</div></div>
-    <div class="menu-card"><div class="card-info"><div class="card-name">Rum Punch</div></div><div class="card-price">$10</div></div>
-    <div class="menu-card"><div class="card-info"><div class="card-name">Admiral's Quencher</div></div><div class="card-price">$13</div></div>
-    <div class="menu-card"><div class="card-info"><div class="card-name">Crocodile Cooler</div></div><div class="card-price">$13</div></div>
-    <div class="menu-card"><div class="card-info"><div class="card-name">Electric Lemonade</div></div><div class="card-price">$13</div></div>
-    <div class="menu-card"><div class="card-info"><div class="card-name">Blue Monkey Wrench</div></div><div class="card-price">$13</div></div>
-    <div class="menu-card"><div class="card-info"><div class="card-name">Kayn Smash</div></div><div class="card-price">$14</div></div>
-  </div>
-
-  <div class="sub-label">Classic Cocktails</div>
-  <div class="menu-grid">
-    <div class="menu-card"><div class="card-info"><div class="card-name">Tequila Sunrise</div></div><div class="card-price">$14</div></div>
-    <div class="menu-card"><div class="card-info"><div class="card-name">Paloma</div></div><div class="card-price">$14</div></div>
-    <div class="menu-card"><div class="card-info"><div class="card-name">Mojito</div></div><div class="card-price">$15</div></div>
-    <div class="menu-card"><div class="card-info"><div class="card-name">Piña Colada</div></div><div class="card-price">$15</div></div>
-    <div class="menu-card"><div class="card-info"><div class="card-name">Margarita</div></div><div class="card-price">$16</div></div>
-    <div class="menu-card"><div class="card-info"><div class="card-name">Baileys Colada</div></div><div class="card-price">$17</div></div>
-    <div class="menu-card"><div class="card-info"><div class="card-name">Long Island Ice Tea</div></div><div class="card-price">$17</div></div>
-  </div>
-
-  <div class="sub-label">Lagom Favorites</div>
-  <div class="menu-grid">
-    <div class="menu-card"><div class="card-info"><div class="card-name">Liter Michingona</div></div><div class="card-price">$15–$21</div></div>
-    <div class="menu-card"><div class="card-info"><div class="card-name">Liter Rum &amp; Coke</div></div><div class="card-price">$14</div></div>
-    <div class="menu-card"><div class="card-info"><div class="card-name">Liter Panty Ripper</div></div><div class="card-price">$18</div></div>
-    <div class="menu-card"><div class="card-info"><div class="card-name">Liter Coolers</div></div><div class="card-price">$22</div></div>
-    <div class="menu-card"><div class="card-info"><div class="card-name">Fire Bombs</div></div><div class="card-price">$21</div></div>
-    <div class="menu-card"><div class="card-info"><div class="card-name">Irish Bombs</div></div><div class="card-price">$21</div></div>
-    <div class="menu-card"><div class="card-info"><div class="card-name">Rude Bombs</div></div><div class="card-price">$28</div></div>
-  </div>
-
-  <div class="sub-label">Batches (Serves Multiple)</div>
-  <div class="menu-grid">
-    <div class="menu-card"><div class="card-info"><div class="card-name">Deez Nuts</div></div><div class="card-price">$32</div></div>
-    <div class="menu-card"><div class="card-info"><div class="card-name">Crocodile Sperm</div></div><div class="card-price">$32</div></div>
-    <div class="menu-card"><div class="card-info"><div class="card-name">Kamikazee</div></div><div class="card-price">$32</div></div>
-    <div class="menu-card"><div class="card-info"><div class="card-name">Sex @ My Friend's House</div></div><div class="card-price">$37</div></div>
-  </div>
-</section>
-
-<!-- SHOTS -->
-<section class="menu-section" id="shots">
-  <div class="section-header">
-    <span class="section-icon">🥂</span>
-    <h2 class="section-title">Shots</h2>
-    <div class="section-line"></div>
-  </div>
-
-  <div class="menu-grid">
-    <div class="menu-card"><div class="card-info"><div class="card-name">Brain Cell</div></div><div class="card-price">$13</div></div>
-    <div class="menu-card"><div class="card-info"><div class="card-name">Cinnamon Toast Crunch</div></div><div class="card-price">$13</div></div>
-    <div class="menu-card"><div class="card-info"><div class="card-name">Cuervo Miester</div></div><div class="card-price">$13</div></div>
-    <div class="menu-card"><div class="card-info"><div class="card-name">Liquid Cocaine</div></div><div class="card-price">$13</div></div>
-    <div class="menu-card"><div class="card-info"><div class="card-name">Cristal Meth</div></div><div class="card-price">$13</div></div>
-    <div class="menu-card"><div class="card-info"><div class="card-name">Melon Drop</div></div><div class="card-price">$13</div></div>
-    <div class="menu-card"><div class="card-info"><div class="card-name">Flaming Cucaracha</div></div><div class="card-price">$13</div></div>
-    <div class="menu-card"><div class="card-info"><div class="card-name">Baby Guinness</div></div><div class="card-price">$13</div></div>
-    <div class="menu-card"><div class="card-info"><div class="card-name">Blow Job</div></div><div class="card-price">$13</div></div>
-    <div class="menu-card"><div class="card-info"><div class="card-name">Screaming Orgasm</div></div><div class="card-price">$13</div></div>
-    <div class="menu-card"><div class="card-info"><div class="card-name">Jäger Bomb</div></div><div class="card-price">$15</div></div>
-    <div class="menu-card"><div class="card-info"><div class="card-name">Blazing French Connection</div></div><div class="card-price">$27</div></div>
-  </div>
-</section>
-
-</main>
-
-<footer>
-  <strong>Lagom Terrace</strong> — Restaurant &amp; Bar · Belize<br>
-  <span style="color:var(--gold);font-size:0.8rem;">Tue – Sat: 11:00 AM – 11:30 PM &nbsp;|&nbsp; Closed Sunday &amp; Monday</span>
-</footer>
-
-<script>
-  function scrollTo(id, btn) {
-    document.getElementById(id).scrollIntoView({ behavior: 'smooth', block: 'start' });
-    document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
-    btn.classList.add('active');
-  }
-
-  // Highlight active section on scroll
-  const sections = document.querySelectorAll('.menu-section');
-  const tabs = document.querySelectorAll('.nav-tab');
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        const id = entry.target.id;
-        tabs.forEach(t => {
-          t.classList.toggle('active', t.getAttribute('onclick').includes("'" + id + "'"));
-        });
-      }
-    });
-  }, { threshold: 0.25, rootMargin: '-80px 0px 0px 0px' });
-  sections.forEach(s => observer.observe(s));
-</script>
+    <div style="text-align: center; margin-top: 2rem; font-size: 0.7rem; color: #6a5e4e;">*Prices subject to tax & service. Enjoy responsibly</div>
+</div>
 </body>
 </html>
