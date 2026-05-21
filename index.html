@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewfit=cover">
 <title>Lagom Terrace — Restaurant & Bar | Belize</title>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
@@ -84,6 +84,17 @@
     margin-bottom: 6px;
     font-style: italic;
     line-height: 1.3;
+  }
+  .featured-badge {
+    background: var(--gold);
+    color: #0a3c38;
+    font-size: 0.6rem;
+    font-weight: 600;
+    padding: 2px 8px;
+    border-radius: 20px;
+    margin-left: 8px;
+    vertical-align: middle;
+    text-transform: uppercase;
   }
   .flavor-tags {
     display: flex;
@@ -304,6 +315,7 @@
     <button class="nav-tab" data-target="beers">Beers</button>
     <button class="nav-tab" data-target="spirits">Spirits</button>
     <button class="nav-tab" data-target="cocktails">Cocktails</button>
+    <button class="nav-tab" data-target="lagom-favorites">⭐ Lagom Favorites</button>
     <button class="nav-tab" data-target="shots">Shots</button>
   </div>
 </nav>
@@ -485,15 +497,15 @@
           <tr><td>Hard Seltzer</td><td class="price">$6</td><td class="price">$33</td></tr>
           <tr><td>Heineken</td><td class="price">$7</td><td class="price">$39</td></tr>
           <tr><td>Guinness</td><td class="price">$7</td><td class="price">$39</td></tr>
-          <tr><td>Bakehouse Citrus</td><td class="price">$7</td><td>—</td></tr>
-          <tr><td>Kayn Cola</td><td class="price">$7</td><td>—</td></tr>
-          <tr><td>Ova Drive</td><td class="price">$8</td><td>—</td></tr>
-          <tr><td>Smirnoff</td><td class="price">$8.50</td><td>—</td></tr>
-          <tr><td>Red Stripe</td><td class="price">$8.50</td><td>—</td></tr>
-          <tr><td>Rude Boy</td><td class="price">$8.50</td><td>—</td></tr>
-          <tr><td>XXL Wine Can</td><td class="price">$15</td><td>—</td></tr>
-          <tr><td>Draft Two-5 Craft Beer</td><td class="price">$9</td><td>—</td></tr>
-          <tr><td>Flight Two-5 Craft Beer</td><td class="price">$20</td><td>—</td></tr>
+          <tr><td>Bakehouse Citrus</td><td class="price">$7</td><td class="price">—</td></tr>
+          <tr><td>Kayn Cola</td><td class="price">$7</td><td class="price">—</td></tr>
+          <tr><td>Ova Drive</td><td class="price">$8</td><td class="price">—</td></tr>
+          <tr><td>Smirnoff</td><td class="price">$8.50</td><td class="price">—</td></tr>
+          <tr><td>Red Stripe</td><td class="price">$8.50</td><td class="price">—</td></tr>
+          <tr><td>Rude Boy</td><td class="price">$8.50</td><td class="price">—</td></tr>
+          <tr><td>XXL Wine Can</td><td class="price">$15</td><td class="price">—</td></tr>
+          <tr><td>Draft Two-5 Craft Beer</td><td class="price">$9</td><td class="price">—</td></tr>
+          <tr><td>Flight Two-5 Craft Beer</td><td class="price">$20</td><td class="price">—</td></tr>
         </tbody>
       </table>
     </div>
@@ -645,21 +657,23 @@
         <div class="menu-item-row"><span>Frozen Coffee</span><span>$12</span></div>
       </div>
     </div>
-    <div class="subsection-title">🔥 Lagom Favorites</div>
-    <div class="two-col-grid">
-      <div>
-        <div class="menu-item-row"><span>Liter Michingona</span><span>$15-21</span></div>
-        <div class="menu-item-row"><span>Liter Rum &amp; Coke</span><span>$14</span></div>
-        <div class="menu-item-row"><span>Fire Bombs</span><span>$21</span></div>
-        <div class="menu-item-row"><span>Irish Bombs</span><span>$21</span></div>
-      </div>
-      <div>
-        <div class="menu-item-row"><span>Liter Panty Ripper</span><span>$18</span></div>
-        <div class="menu-item-row"><span>Liter Coolers</span><span>$22</span></div>
-        <div class="menu-item-row"><span>Rude Bombs</span><span>$28</span></div>
+  </section>
+
+  <!-- LAGOM FAVORITES - SEPARATE SECTION -->
+  <section class="menu-section" id="lagom-favorites">
+    <div class="section-header"><span class="section-icon">⭐</span><h2 class="section-title">Lagom Favorites</h2><div class="section-line"></div></div>
+    <div class="menu-card" style="background: linear-gradient(135deg, rgba(31,138,130,0.3), rgba(10,71,67,0.9)); border: 2px solid var(--gold);">
+      <div style="width:100%">
+        <div class="menu-item-row"><span class="menu-item-name">🔥 Liter Michingona</span><span class="menu-item-price">$15 - $21</span></div>
+        <div class="menu-item-row"><span class="menu-item-name">🥤 Liter Rum &amp; Coke</span><span class="menu-item-price">$14</span></div>
+        <div class="menu-item-row"><span class="menu-item-name">🍹 Liter Panty Ripper</span><span class="menu-item-price">$18</span></div>
+        <div class="menu-item-row"><span class="menu-item-name">🧊 Liter Coolers</span><span class="menu-item-price">$22</span></div>
+        <div class="menu-item-row"><span class="menu-item-name">💣 Fire Bombs</span><span class="menu-item-price">$21</span></div>
+        <div class="menu-item-row"><span class="menu-item-name">🍀 Irish Bombs</span><span class="menu-item-price">$21</span></div>
+        <div class="menu-item-row"><span class="menu-item-name">⚡ Rude Bombs</span><span class="menu-item-price">$28</span></div>
       </div>
     </div>
-    <div class="subsection-title">🧪 Batches</div>
+    <div class="subsection-title" style="margin-top: 20px;">🧪 Batch Cocktails</div>
     <div class="two-col-grid">
       <div>
         <div class="menu-item-row"><span>Deez Nuts</span><span>$32</span></div>
