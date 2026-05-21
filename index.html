@@ -1,6 +1,396 @@
-```html
-<!-- REPLACE ONLY THE <main class="main"> SECTION OF YOUR CURRENT WEBSITE WITH THIS -->
-<!-- THIS PRESERVES YOUR EXISTING HERO, NAVIGATION, STYLING, ANIMATIONS, RESPONSIVENESS, AND IMAGE DESIGN -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lagom Terrace — Restaurant & Bar</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --teal-deep: #0d4a47;
+    --teal-mid: #0f5c57;
+    --teal-bright: #1a7a73;
+    --teal-light: #2a9d93;
+    --gold: #c9a84c;
+    --gold-light: #e2c97e;
+    --cream: #fdf8f0;
+    --white: #ffffff;
+    --text-muted: #a8c5c3;
+    --card-bg: rgba(255,255,255,0.06);
+    --card-border: rgba(201,168,76,0.2);
+    --radius: 14px;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Jost', sans-serif;
+    background-color: var(--teal-deep);
+    color: var(--cream);
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    background: linear-gradient(160deg, #08302d 0%, #0d4a47 40%, #0f5c57 100%);
+    position: relative;
+    padding: 60px 24px 50px;
+    text-align: center;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse at 50% 0%, rgba(201,168,76,0.12) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero-label {
+    font-family: 'Jost', sans-serif;
+    font-weight: 500;
+    font-size: 0.72rem;
+    letter-spacing: 0.22em;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 14px;
+  }
+  .hero h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2.8rem, 8vw, 5.5rem);
+    font-weight: 600;
+    color: var(--cream);
+    line-height: 1.05;
+    margin-bottom: 18px;
+  }
+  .hero-desc {
+    font-size: 0.95rem;
+    font-weight: 300;
+    color: var(--text-muted);
+    max-width: 480px;
+    margin: 0 auto 28px;
+    line-height: 1.7;
+  }
+  .hero-meta {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+  }
+  .hero-meta-item {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    font-size: 0.82rem;
+    font-weight: 400;
+    color: var(--text-muted);
+  }
+  .hero-meta-item span.icon { font-size: 1rem; }
+  .hero-meta-item.closed span.icon { color: #e07070; }
+  .hero-meta-item.open span.icon { color: var(--gold); }
+  .gold-line {
+    width: 60px; height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    margin: 28px auto 0;
+  }
+
+  /* ── STICKY NAV ── */
+  .sticky-nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(8,48,45,0.97);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(201,168,76,0.15);
+    padding: 0 16px;
+  }
+  .nav-tabs {
+    display: flex;
+    gap: 2px;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    padding: 10px 0;
+    max-width: 900px;
+    margin: 0 auto;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .nav-tabs::-webkit-scrollbar { display: none; }
+  .nav-tab {
+    padding: 7px 16px;
+    border-radius: 20px;
+    font-size: 0.78rem;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    cursor: pointer;
+    white-space: nowrap;
+    border: 1px solid transparent;
+    color: var(--text-muted);
+    background: transparent;
+    transition: all 0.2s;
+  }
+  .nav-tab:hover { color: var(--cream); border-color: rgba(201,168,76,0.3); }
+  .nav-tab.active {
+    background: var(--gold);
+    color: var(--teal-deep);
+    font-weight: 600;
+    border-color: var(--gold);
+  }
+
+  /* ── MAIN ── */
+  .main { max-width: 900px; margin: 0 auto; padding: 40px 16px 80px; }
+
+  /* ── SECTION ── */
+  .menu-section { margin-bottom: 52px; }
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 24px;
+  }
+  .section-icon { font-size: 1.6rem; }
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1.6rem, 4vw, 2.2rem);
+    font-weight: 600;
+    color: var(--cream);
+    letter-spacing: 0.01em;
+  }
+  .section-line {
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, rgba(201,168,76,0.4), transparent);
+  }
+
+  /* ── FEATURED IMAGE BANNER ── */
+  .section-image {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    border-radius: var(--radius);
+    margin-bottom: 20px;
+    opacity: 0.82;
+    border: 1px solid rgba(201,168,76,0.15);
+  }
+
+  /* ── MENU GRID ── */
+  .menu-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 12px;
+  }
+  .menu-grid.single-col { grid-template-columns: 1fr; }
+
+  /* ── MENU CARD ── */
+  .menu-card {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: var(--radius);
+    padding: 16px 18px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 12px;
+    transition: background 0.2s, border-color 0.2s, transform 0.2s;
+    cursor: default;
+  }
+  .menu-card:hover {
+    background: rgba(255,255,255,0.1);
+    border-color: rgba(201,168,76,0.45);
+    transform: translateY(-2px);
+  }
+  .card-info { flex: 1; min-width: 0; }
+  .card-name {
+    font-family: 'Jost', sans-serif;
+    font-weight: 500;
+    font-size: 0.95rem;
+    color: var(--cream);
+    margin-bottom: 4px;
+    line-height: 1.3;
+  }
+  .card-desc {
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    font-weight: 300;
+    line-height: 1.5;
+  }
+  .card-price {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: var(--gold);
+    white-space: nowrap;
+    padding-top: 1px;
+    flex-shrink: 0;
+  }
+  .card-variants {
+    font-size: 0.73rem;
+    color: var(--text-muted);
+    margin-top: 5px;
+    font-weight: 300;
+  }
+
+  /* ── WINGS FLAVORS ── */
+  .flavors-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 7px;
+    margin-top: 8px;
+  }
+  .flavor-pill {
+    background: rgba(201,168,76,0.1);
+    border: 1px solid rgba(201,168,76,0.25);
+    border-radius: 20px;
+    padding: 4px 11px;
+    font-size: 0.72rem;
+    color: var(--gold-light);
+    font-weight: 400;
+  }
+
+  /* ── DRINKS SPECIAL ── */
+  .drinks-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+  @media (max-width: 500px) { .drinks-col { grid-template-columns: 1fr; } }
+
+  /* ── BEER TABLE ── */
+  .beer-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.88rem;
+  }
+  .beer-table th {
+    text-align: left;
+    padding: 8px 14px;
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--gold);
+    border-bottom: 1px solid rgba(201,168,76,0.2);
+  }
+  .beer-table td {
+    padding: 11px 14px;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+    color: var(--cream);
+    font-weight: 300;
+  }
+  .beer-table td.price { color: var(--gold); font-family: 'Cormorant Garamond', serif; font-size: 1rem; font-weight: 600; }
+  .beer-table tr:last-child td { border-bottom: none; }
+  .beer-table tr:hover td { background: rgba(255,255,255,0.04); }
+  .beer-wrap {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: var(--radius);
+    overflow: hidden;
+  }
+
+  /* ── CRAFT BEER ── */
+  .craft-beer-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 10px;
+    margin-top: 12px;
+  }
+  .craft-pill {
+    background: rgba(26,122,115,0.25);
+    border: 1px solid rgba(42,157,147,0.3);
+    border-radius: var(--radius);
+    padding: 12px 14px;
+    font-size: 0.84rem;
+    color: var(--cream);
+    font-weight: 400;
+  }
+  .craft-pill .seasonal-tag {
+    display: inline-block;
+    font-size: 0.65rem;
+    background: rgba(201,168,76,0.15);
+    color: var(--gold);
+    padding: 2px 7px;
+    border-radius: 10px;
+    margin-left: 6px;
+    vertical-align: middle;
+    font-weight: 500;
+  }
+
+  /* ── SUBSECTION LABEL ── */
+  .sub-label {
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin: 22px 0 12px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .sub-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: rgba(201,168,76,0.2);
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    text-align: center;
+    padding: 30px 16px;
+    border-top: 1px solid rgba(201,168,76,0.15);
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    font-weight: 300;
+  }
+  footer strong { color: var(--gold); font-weight: 500; }
+
+  /* ── IMAGES ── */
+  img { display: block; }
+
+  @media (max-width: 600px) {
+    .hero { padding: 44px 16px 38px; }
+    .main { padding: 28px 12px 60px; }
+    .menu-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<header class="hero">
+  <p class="hero-label">Restaurant &amp; Bar</p>
+  <h1>Lagom Terrace</h1>
+  <p class="hero-desc">Experience the perfect balance of flavors. From savory appetizers to refreshing cocktails, discover our carefully curated menu.</p>
+  <div class="hero-meta">
+    <span class="hero-meta-item open"><span class="icon">🕐</span> Tue – Sat: 11:00 AM – 11:30 PM</span>
+    <span class="hero-meta-item closed"><span class="icon">✕</span> Closed Sun &amp; Mon</span>
+    <span class="hero-meta-item"><span class="icon">📍</span> Belize</span>
+  </div>
+  <div class="gold-line"></div>
+</header>
+
+<!-- STICKY NAV -->
+<nav class="sticky-nav">
+  <div class="nav-tabs" id="navTabs">
+    <button class="nav-tab active" onclick="scrollTo('appetizers',this)">Appetizers</button>
+    <button class="nav-tab" onclick="scrollTo('wings',this)">Wings</button>
+    <button class="nav-tab" onclick="scrollTo('burgers',this)">Burgers</button>
+    <button class="nav-tab" onclick="scrollTo('quesadillas',this)">Quesadillas</button>
+    <button class="nav-tab" onclick="scrollTo('pastas',this)">Pastas</button>
+    <button class="nav-tab" onclick="scrollTo('chicken',this)">Chicken</button>
+    <button class="nav-tab" onclick="scrollTo('shrimp',this)">Shrimp</button>
+    <button class="nav-tab" onclick="scrollTo('fish',this)">Fish</button>
+    <button class="nav-tab" onclick="scrollTo('meats',this)">Meats</button>
+    <button class="nav-tab" onclick="scrollTo('beers',this)">Beers</button>
+    <button class="nav-tab" onclick="scrollTo('spirits',this)">Spirits</button>
+    <button class="nav-tab" onclick="scrollTo('cocktails',this)">Cocktails</button>
+    <button class="nav-tab" onclick="scrollTo('shots',this)">Shots</button>
+  </div>
+</nav>
 
 <main class="main">
 
@@ -417,4 +807,318 @@
   </section>
 
 </main>
-```
+
+<!-- BEERS -->
+<section class="menu-section" id="beers">
+  <div class="section-header">
+    <span class="section-icon">🍺</span>
+    <h2 class="section-title">Beers</h2>
+    <div class="section-line"></div>
+  </div>
+
+  <img class="section-image"
+  src="https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?q=80&w=1400&auto=format&fit=crop">
+
+  <div class="menu-grid">
+
+    <div class="menu-card">
+      <img class="food-img"
+      src="https://images.unsplash.com/photo-1608270586620-248524c67de9?q=80&w=1200&auto=format&fit=crop">
+
+      <div class="card-info">
+        <div class="card-name">Local Beers</div>
+
+        <div class="card-variants">
+          Belikin • Lighthouse • Landshark • Guinness
+        </div>
+      </div>
+
+      <div class="card-price">$6</div>
+    </div>
+
+    <div class="menu-card">
+      <img class="food-img"
+      src="https://images.unsplash.com/photo-1516458464372-ee7eae24b460?q=80&w=1200&auto=format&fit=crop">
+
+      <div class="card-info">
+        <div class="card-name">Imported Beers</div>
+
+        <div class="card-variants">
+          Heineken • Corona • Modelo • Stella
+        </div>
+      </div>
+
+      <div class="card-price">$8</div>
+    </div>
+
+  </div>
+</section>
+
+<!-- COCKTAILS -->
+<section class="menu-section" id="cocktails">
+  <div class="section-header">
+    <span class="section-icon">🍹</span>
+    <h2 class="section-title">Cocktails</h2>
+    <div class="section-line"></div>
+  </div>
+
+  <img class="section-image"
+  src="https://images.unsplash.com/photo-1470337458703-46ad1756a187?q=80&w=1400&auto=format&fit=crop">
+
+  <div class="menu-grid">
+
+    <div class="menu-card">
+      <img class="food-img"
+      src="https://images.unsplash.com/photo-1577805947697-89e18249d767?q=80&w=1200&auto=format&fit=crop">
+
+      <div class="card-info">
+        <div class="card-name">Piña Colada</div>
+      </div>
+
+      <div class="card-price">$15</div>
+    </div>
+
+    <div class="menu-card">
+      <img class="food-img"
+      src="https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?q=80&w=1200&auto=format&fit=crop">
+
+      <div class="card-info">
+        <div class="card-name">Margarita</div>
+      </div>
+
+      <div class="card-price">$16</div>
+    </div>
+
+    <div class="menu-card">
+      <img class="food-img"
+      src="https://images.unsplash.com/photo-1551024709-8f23befc6cf7?q=80&w=1200&auto=format&fit=crop">
+
+      <div class="card-info">
+        <div class="card-name">Mojito</div>
+      </div>
+
+      <div class="card-price">$15</div>
+    </div>
+
+    <div class="menu-card">
+      <img class="food-img"
+      src="https://images.unsplash.com/photo-1563223771-375783ee91ad?q=80&w=1200&auto=format&fit=crop">
+
+      <div class="card-info">
+        <div class="card-name">Sex On The Beach</div>
+      </div>
+
+      <div class="card-price">$17</div>
+    </div>
+
+    <div class="menu-card">
+      <img class="food-img"
+      src="https://images.unsplash.com/photo-1514361892635-eae31ec8c4a8?q=80&w=1200&auto=format&fit=crop">
+
+      <div class="card-info">
+        <div class="card-name">Long Island Ice Tea</div>
+      </div>
+
+      <div class="card-price">$17</div>
+    </div>
+
+    <div class="menu-card">
+      <img class="food-img"
+      src="https://images.unsplash.com/photo-1544145945-f90425340c7e?q=80&w=1200&auto=format&fit=crop">
+
+      <div class="card-info">
+        <div class="card-name">Mai Tai</div>
+      </div>
+
+      <div class="card-price">$16</div>
+    </div>
+
+  </div>
+</section>
+
+<!-- SHOTS -->
+<section class="menu-section" id="shots">
+  <div class="section-header">
+    <span class="section-icon">🥃</span>
+    <h2 class="section-title">Shots</h2>
+    <div class="section-line"></div>
+  </div>
+
+  <img class="section-image"
+  src="https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?q=80&w=1400&auto=format&fit=crop">
+
+  <div class="menu-grid">
+
+    <div class="menu-card">
+      <img class="food-img"
+      src="https://images.unsplash.com/photo-1569529465841-dfecdab7503b?q=80&w=1200&auto=format&fit=crop">
+
+      <div class="card-info">
+        <div class="card-name">Tequila Shot</div>
+      </div>
+
+      <div class="card-price">$8</div>
+    </div>
+
+    <div class="menu-card">
+      <img class="food-img"
+      src="https://images.unsplash.com/photo-1563223771-375783ee91ad?q=80&w=1200&auto=format&fit=crop">
+
+      <div class="card-info">
+        <div class="card-name">Jäger Bomb</div>
+      </div>
+
+      <div class="card-price">$10</div>
+    </div>
+
+    <div class="menu-card">
+      <img class="food-img"
+      src="https://images.unsplash.com/photo-1609951651556-5334e2706168?q=80&w=1200&auto=format&fit=crop">
+
+      <div class="card-info">
+        <div class="card-name">Patrón Shot</div>
+      </div>
+
+      <div class="card-price">$14</div>
+    </div>
+
+  </div>
+</section>
+
+<!-- WINES -->
+<section class="menu-section" id="wines">
+  <div class="section-header">
+    <span class="section-icon">🍷</span>
+    <h2 class="section-title">Wines</h2>
+    <div class="section-line"></div>
+  </div>
+
+  <img class="section-image"
+  src="https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?q=80&w=1400&auto=format&fit=crop">
+
+  <div class="menu-grid">
+
+    <div class="menu-card">
+      <img class="food-img"
+      src="https://images.unsplash.com/photo-1506377247377-2a5b3b417ebb?q=80&w=1200&auto=format&fit=crop">
+
+      <div class="card-info">
+        <div class="card-name">House Red Wine</div>
+      </div>
+
+      <div class="card-price">$9</div>
+    </div>
+
+    <div class="menu-card">
+      <img class="food-img"
+      src="https://images.unsplash.com/photo-1516594915697-87eb3b1c14ea?q=80&w=1200&auto=format&fit=crop">
+
+      <div class="card-info">
+        <div class="card-name">House White Wine</div>
+      </div>
+
+      <div class="card-price">$9</div>
+    </div>
+
+    <div class="menu-card">
+      <img class="food-img"
+      src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?q=80&w=1200&auto=format&fit=crop">
+
+      <div class="card-info">
+        <div class="card-name">Rosé Wine</div>
+      </div>
+
+      <div class="card-price">$10</div>
+    </div>
+
+  </div>
+</section>
+
+<!-- SOFT DRINKS -->
+<section class="menu-section" id="drinks">
+  <div class="section-header">
+    <span class="section-icon">🥤</span>
+    <h2 class="section-title">Soft Drinks</h2>
+    <div class="section-line"></div>
+  </div>
+
+  <img class="section-image"
+  src="https://images.unsplash.com/photo-1497534446932-c925b458314e?q=80&w=1400&auto=format&fit=crop">
+
+  <div class="menu-grid">
+
+    <div class="menu-card">
+      <img class="food-img"
+      src="https://images.unsplash.com/photo-1622483767028-3f66f32aef97?q=80&w=1200&auto=format&fit=crop">
+
+      <div class="card-info">
+        <div class="card-name">Sodas</div>
+
+        <div class="card-variants">
+          Coke • Sprite • Fanta • Ginger Ale
+        </div>
+      </div>
+
+      <div class="card-price">$4</div>
+    </div>
+
+    <div class="menu-card">
+      <img class="food-img"
+      src="https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?q=80&w=1200&auto=format&fit=crop">
+
+      <div class="card-info">
+        <div class="card-name">Fresh Juices</div>
+
+        <div class="card-variants">
+          Orange • Pineapple • Watermelon • Lime
+        </div>
+      </div>
+
+      <div class="card-price">$6</div>
+    </div>
+
+    <div class="menu-card">
+      <img class="food-img"
+      src="https://images.unsplash.com/photo-1517701604599-bb29b565090c?q=80&w=1200&auto=format&fit=crop">
+
+      <div class="card-info">
+        <div class="card-name">Bottled Water</div>
+      </div>
+
+      <div class="card-price">$3</div>
+    </div>
+
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <strong>Lagom Terrace</strong> — Restaurant &amp; Bar · Belize<br>
+  <span style="color:var(--gold);font-size:0.8rem;">Tue – Sat: 11:00 AM – 11:30 PM &nbsp;|&nbsp; Closed Sunday &amp; Monday</span>
+</footer>
+
+<script>
+  function scrollTo(id, btn) {
+    document.getElementById(id).scrollIntoView({ behavior: 'smooth', block: 'start' });
+    document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+    btn.classList.add('active');
+  }
+
+  // Highlight active section on scroll
+  const sections = document.querySelectorAll('.menu-section');
+  const tabs = document.querySelectorAll('.nav-tab');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const id = entry.target.id;
+        tabs.forEach(t => {
+          t.classList.toggle('active', t.getAttribute('onclick').includes("'" + id + "'"));
+        });
+      }
+    });
+  }, { threshold: 0.25, rootMargin: '-80px 0px 0px 0px' });
+  sections.forEach(s => observer.observe(s));
+</script>
+</body>
+</html>
