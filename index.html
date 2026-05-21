@@ -38,10 +38,6 @@
     border: 1px solid rgba(219, 184, 89, 0.35);
     border-radius: var(--radius);
     padding: 14px 18px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 12px;
     transition: all 0.25s ease;
   }
   .menu-card:hover {
@@ -50,7 +46,6 @@
     transform: translateY(-2px);
   }
 
-  /* Two-column format for consistent item-price layout */
   .menu-item-row {
     display: flex;
     justify-content: space-between;
@@ -72,7 +67,7 @@
   }
   .menu-sub-item {
     padding-left: 18px;
-    font-size: 0.85rem;
+    font-size: 0.8rem;
     color: var(--text-muted);
     display: flex;
     justify-content: space-between;
@@ -80,6 +75,15 @@
     border-bottom: 1px dashed rgba(219, 184, 89, 0.1);
     padding-bottom: 6px;
     margin-bottom: 2px;
+  }
+  .item-description {
+    font-size: 0.7rem;
+    color: var(--text-muted);
+    padding-left: 0;
+    margin-top: -4px;
+    margin-bottom: 6px;
+    font-style: italic;
+    line-height: 1.3;
   }
   .flavor-tags {
     display: flex;
@@ -95,11 +99,6 @@
     padding: 4px 12px;
     font-size: 0.7rem;
     color: var(--gold-light);
-  }
-  .section-divider {
-    margin: 20px 0 12px;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, rgba(219,184,89,0.3), transparent);
   }
   .beer-table {
     width: 100%;
@@ -247,9 +246,6 @@
     grid-template-columns: 1fr 1fr;
     gap: 12px 24px;
   }
-  .full-width {
-    grid-column: span 2;
-  }
   .subsection-title {
     font-size: 1rem;
     font-weight: 500;
@@ -275,7 +271,6 @@
   }
   @media (max-width: 700px) {
     .two-col-grid { grid-template-columns: 1fr; }
-    .full-width { grid-column: span 1; }
     .nav-tab { padding: 5px 12px; font-size: 0.65rem; }
     .section-title { font-size: 1.5rem; }
     .hero h1 { font-size: 2.5rem; }
@@ -291,7 +286,7 @@
   <div class="hero-meta">
     <span>🕐 Tue – Sat: 11:00 AM – 11:30 PM</span>
     <span>✕ Closed Sunday &amp; Monday</span>
-    <span>📍 Belize City</span>
+    <span>📍 Belize</span>
   </div>
 </header>
 
@@ -314,19 +309,27 @@
 </nav>
 
 <main class="main">
+
   <!-- APPETIZERS -->
   <section class="menu-section" id="appetizers">
     <div class="section-header"><span class="section-icon">🥗</span><h2 class="section-title">Appetizers</h2><div class="section-line"></div></div>
     <div class="two-col-grid">
       <div>
-        <div class="menu-item-row"><span class="menu-item-name">Loaded Potato</span><span class="menu-item-price">Ask</span></div>
+        <div class="menu-item-row"><span class="menu-item-name">Loaded Potato</span><span class="menu-item-price">$15</span></div>
+        <div class="item-description">Creamy mashed potato with sautéed mushrooms, bacon bits, mozzarella and cream</div>
+        <div class="menu-sub-item"><span>+ Chicken</span><span>$20</span></div>
+        <div class="menu-sub-item"><span>+ Shrimp</span><span>$25</span></div>
+        <div class="menu-sub-item"><span>+ Arrachera</span><span>$25</span></div>
         <div class="menu-item-row"><span class="menu-item-name">Mozzarella Sticks</span><span class="menu-item-price">$17</span></div>
         <div class="menu-item-row"><span class="menu-item-name">Fried Dumplings</span><span class="menu-item-price">$16</span></div>
+        <div class="item-description">Fried Pork Dumplings</div>
         <div class="menu-item-row"><span class="menu-item-name">Shrimp Cocktail</span><span class="menu-item-price">$19</span></div>
         <div class="menu-item-row"><span class="menu-item-name">Nachos (Plain)</span><span class="menu-item-price">$16</span></div>
-        <div class="menu-sub-item"><span>+ Chicken / Beef</span><span>$21</span></div>
+        <div class="menu-sub-item"><span>+ Chicken</span><span>$21</span></div>
+        <div class="menu-sub-item"><span>+ Beef</span><span>$21</span></div>
         <div class="menu-item-row"><span class="menu-item-name">Cheesy Fries (Plain)</span><span class="menu-item-price">$16</span></div>
-        <div class="menu-sub-item"><span>+ Chicken / Beef</span><span>$21</span></div>
+        <div class="menu-sub-item"><span>+ Chicken</span><span>$21</span></div>
+        <div class="menu-sub-item"><span>+ Beef</span><span>$21</span></div>
         <div class="menu-item-row"><span class="menu-item-name">Chicken Botanas 5pc</span><span class="menu-item-price">$13</span></div>
         <div class="menu-sub-item"><span>10 pieces</span><span>$20</span></div>
       </div>
@@ -353,10 +356,11 @@
       <div class="menu-item-row"><span class="menu-item-name">10 pieces</span><span class="menu-item-price">$21</span></div>
       <div class="menu-item-row"><span class="menu-item-name">15 pieces</span><span class="menu-item-price">$29</span></div>
       <div class="flavor-tags">
-        <span class="flavor-pill">Honey Mustard</span><span class="flavor-pill">Lemon Pepper</span><span class="flavor-pill">Garlic Parmesan</span>
-        <span class="flavor-pill">Hawaiian BBQ</span><span class="flavor-pill">Spicy BBQ</span><span class="flavor-pill">Chipotle</span>
-        <span class="flavor-pill">Teriyaki BBQ</span><span class="flavor-pill">Creamy Jalapeño</span><span class="flavor-pill">Spicy Buffalo</span>
-        <span class="flavor-pill">Mango Habanero</span>
+        <span class="flavor-pill">Honey Mustard</span><span class="flavor-pill">Lemon Pepper</span>
+        <span class="flavor-pill">Garlic Parmesan</span><span class="flavor-pill">Hawaiian BBQ</span>
+        <span class="flavor-pill">Spicy BBQ</span><span class="flavor-pill">Chipotle</span>
+        <span class="flavor-pill">Teriyaki BBQ</span><span class="flavor-pill">Creamy Jalapeño</span>
+        <span class="flavor-pill">Spicy Buffalo</span><span class="flavor-pill">Mango Habanero</span>
       </div>
     </div>
   </section>
@@ -364,14 +368,14 @@
   <!-- BURGERS -->
   <section class="menu-section" id="burgers">
     <div class="section-header"><span class="section-icon">🍔</span><h2 class="section-title">Burgers</h2><div class="section-line"></div></div>
+    <div class="item-description" style="margin-bottom:12px;">🍔 Your choice between fried/grilled chicken or grilled beef</div>
     <div class="two-col-grid">
       <div>
-        <div class="menu-item-row"><span class="menu-item-name">Grilled Burger</span><span class="menu-item-price">$16</span></div>
+        <div class="menu-item-row"><span class="menu-item-name">Regular Burger</span><span class="menu-item-price">$16</span></div>
         <div class="menu-item-row"><span class="menu-item-name">Bacon Cheese Burger</span><span class="menu-item-price">$18</span></div>
-        <div class="menu-item-row"><span class="menu-item-name">Fish Burger</span><span class="menu-item-price">$19</span></div>
+        <div class="menu-item-row"><span class="menu-item-name">Teriyaki Hawaiian Burger</span><span class="menu-item-price">$21</span></div>
       </div>
       <div>
-        <div class="menu-item-row"><span class="menu-item-name">Teriyaki Hawaiian Burger</span><span class="menu-item-price">$21</span></div>
         <div class="menu-item-row"><span class="menu-item-name">Jalapeño Popper Burger</span><span class="menu-item-price">$21</span></div>
         <div class="menu-item-row"><span class="menu-item-name">Spicy Chipotle Burger</span><span class="menu-item-price">$21</span></div>
         <div class="menu-item-row"><span class="menu-item-name">Lagom Double Pattie Burger</span><span class="menu-item-price">$30</span></div>
@@ -393,21 +397,29 @@
   <!-- PASTAS -->
   <section class="menu-section" id="pastas">
     <div class="section-header"><span class="section-icon">🍝</span><h2 class="section-title">Pastas</h2><div class="section-line"></div></div>
-    <div class="menu-item-row"><span class="menu-item-name">Spaghetti ala Bolognese</span><span class="menu-item-price">$30</span></div>
+    <div class="menu-item-row"><span class="menu-item-name">Spaghetti ala Bolognese</span><span class="menu-item-price">$25</span></div>
+    <div class="item-description">Red pomodoro sauce with ground steak &amp; Parmesan cheese</div>
     <div class="menu-item-row"><span class="menu-item-name">Fettuccine Alfredo</span><span class="menu-item-price">$15</span></div>
-    <div class="menu-sub-item"><span>+ Chicken</span><span>$20</span></div>
-    <div class="menu-sub-item"><span>+ Shrimp</span><span>$25</span></div>
+    <div class="item-description">White Alfredo sauce with Parmesan cheese</div>
+    <div class="menu-sub-item"><span>+ Chicken</span><span>$22</span></div>
+    <div class="menu-sub-item"><span>+ Shrimp</span><span>$27</span></div>
   </section>
 
   <!-- CHICKEN -->
   <section class="menu-section" id="chicken">
     <div class="section-header"><span class="section-icon">🍽️</span><h2 class="section-title">Chicken</h2><div class="section-line"></div></div>
     <div class="two-col-grid">
-      <div><div class="menu-item-row"><span class="menu-item-name">Grilled Chicken</span><span class="menu-item-price">$19</span></div>
-      <div class="menu-item-row"><span class="menu-item-name">Chicken Fajitas</span><span class="menu-item-price">$23</span></div>
-      <div class="menu-item-row"><span class="menu-item-name">Mozzarella Chicken</span><span class="menu-item-price">$23</span></div></div>
-      <div><div class="menu-item-row"><span class="menu-item-name">Caribbean Jerk Chicken</span><span class="menu-item-price">$23</span></div>
-      <div class="menu-item-row"><span class="menu-item-name">Creamy Mushroom Chicken</span><span class="menu-item-price">$25</span></div></div>
+      <div>
+        <div class="menu-item-row"><span class="menu-item-name">Grilled Chicken</span><span class="menu-item-price">$19</span></div>
+        <div class="menu-item-row"><span class="menu-item-name">Chicken Fajitas</span><span class="menu-item-price">$23</span></div>
+        <div class="menu-item-row"><span class="menu-item-name">Mozzarella Chicken</span><span class="menu-item-price">$23</span></div>
+        <div class="item-description">Fried chicken breast with pomodoro sauce and mozzarella cheese</div>
+      </div>
+      <div>
+        <div class="menu-item-row"><span class="menu-item-name">Caribbean Jerk Chicken</span><span class="menu-item-price">$23</span></div>
+        <div class="menu-item-row"><span class="menu-item-name">Creamy Mushroom Chicken</span><span class="menu-item-price">$25</span></div>
+        <div class="item-description">Grilled chicken drizzled with creamy mushroom sauce</div>
+      </div>
     </div>
   </section>
 
@@ -415,10 +427,15 @@
   <section class="menu-section" id="shrimp">
     <div class="section-header"><span class="section-icon">🦐</span><h2 class="section-title">Shrimp</h2><div class="section-line"></div></div>
     <div class="two-col-grid">
-      <div><div class="menu-item-row"><span class="menu-item-name">Fried Shrimp</span><span class="menu-item-price">$19</span></div>
-      <div class="menu-item-row"><span class="menu-item-name">Garlic Shrimp</span><span class="menu-item-price">$22</span></div></div>
-      <div><div class="menu-item-row"><span class="menu-item-name">Shrimp Fajitas</span><span class="menu-item-price">$25</span></div>
-      <div class="menu-item-row"><span class="menu-item-name">Coconut Curry Shrimp</span><span class="menu-item-price">$25</span></div></div>
+      <div>
+        <div class="menu-item-row"><span class="menu-item-name">Grilled Shrimp</span><span class="menu-item-price">Ask</span></div>
+        <div class="menu-item-row"><span class="menu-item-name">Fried Shrimp</span><span class="menu-item-price">$19</span></div>
+        <div class="menu-item-row"><span class="menu-item-name">Garlic Shrimp</span><span class="menu-item-price">$22</span></div>
+      </div>
+      <div>
+        <div class="menu-item-row"><span class="menu-item-name">Shrimp Fajitas</span><span class="menu-item-price">$25</span></div>
+        <div class="menu-item-row"><span class="menu-item-name">Coconut Curry Fried Shrimp</span><span class="menu-item-price">$25</span></div>
+      </div>
     </div>
   </section>
 
@@ -426,20 +443,30 @@
   <section class="menu-section" id="fish">
     <div class="section-header"><span class="section-icon">🐟</span><h2 class="section-title">Fish</h2><div class="section-line"></div></div>
     <div class="two-col-grid">
-      <div><div class="menu-item-row"><span class="menu-item-name">Fish &amp; Chips</span><span class="menu-item-price">$19</span></div>
-      <div class="menu-item-row"><span class="menu-item-name">Fried Fish Fillet</span><span class="menu-item-price">$22</span></div></div>
-      <div><div class="menu-item-row"><span class="menu-item-name">Grilled Fish Fillet</span><span class="menu-item-price">$22</span></div></div>
+      <div>
+        <div class="menu-item-row"><span class="menu-item-name">Fish Burger</span><span class="menu-item-price">$19</span></div>
+        <div class="menu-item-row"><span class="menu-item-name">Fish &amp; Chips</span><span class="menu-item-price">$19</span></div>
+      </div>
+      <div>
+        <div class="menu-item-row"><span class="menu-item-name">Fried Fish Fillet</span><span class="menu-item-price">$22</span></div>
+        <div class="menu-item-row"><span class="menu-item-name">Grilled Fish Fillet</span><span class="menu-item-price">$22</span></div>
+      </div>
     </div>
   </section>
 
   <!-- MEATS -->
   <section class="menu-section" id="meats">
     <div class="section-header"><span class="section-icon">🥩</span><h2 class="section-title">Meats</h2><div class="section-line"></div></div>
+    <div class="menu-item-row"><span class="menu-item-name">Swedish Meatballs</span><span class="menu-item-price">$25</span></div>
+    <div class="item-description">Mixture of seasoned pork and beef meatballs covered in a rich savory creamy gravy with special mashed potato and side of greens</div>
     <div class="two-col-grid">
-      <div><div class="menu-item-row"><span class="menu-item-name">Swedish Meatballs</span><span class="menu-item-price">$25</span></div>
-      <div class="menu-item-row"><span class="menu-item-name">Pork Chops</span><span class="menu-item-price">$28</span></div></div>
-      <div><div class="menu-item-row"><span class="menu-item-name">Steak Fajitas</span><span class="menu-item-price">$26</span></div>
-      <div class="menu-item-row"><span class="menu-item-name">Grilled Arrachera</span><span class="menu-item-price">$35</span></div></div>
+      <div>
+        <div class="menu-item-row"><span class="menu-item-name">Grilled Pork Chops</span><span class="menu-item-price">$27</span></div>
+        <div class="menu-item-row"><span class="menu-item-name">Steak Fajitas</span><span class="menu-item-price">$25</span></div>
+      </div>
+      <div>
+        <div class="menu-item-row"><span class="menu-item-name">Grilled Arrachera</span><span class="menu-item-price">$33</span></div>
+      </div>
     </div>
   </section>
 
@@ -458,23 +485,28 @@
           <tr><td>Hard Seltzer</td><td class="price">$6</td><td class="price">$33</td></tr>
           <tr><td>Heineken</td><td class="price">$7</td><td class="price">$39</td></tr>
           <tr><td>Guinness</td><td class="price">$7</td><td class="price">$39</td></tr>
-          <tr><td>Smirnoff</td><td class="price">$8</td><td>—</td></tr>
-          <tr><td>Red Stripe</td><td class="price">$8</td><td>—</td></tr>
-          <tr><td>Rude Boy</td><td class="price">$8</td><td>—</td></tr>
+          <tr><td>Bakehouse Citrus</td><td class="price">$7</td><td>—</td></tr>
+          <tr><td>Kayn Cola</td><td class="price">$7</td><td>—</td></tr>
+          <tr><td>Ova Drive</td><td class="price">$8</td><td>—</td></tr>
+          <tr><td>Smirnoff</td><td class="price">$8.50</td><td>—</td></tr>
+          <tr><td>Red Stripe</td><td class="price">$8.50</td><td>—</td></tr>
+          <tr><td>Rude Boy</td><td class="price">$8.50</td><td>—</td></tr>
+          <tr><td>XXL Wine Can</td><td class="price">$15</td><td>—</td></tr>
           <tr><td>Draft Two-5 Craft Beer</td><td class="price">$9</td><td>—</td></tr>
-          <tr><td>Flight Two-5 Craft Beer</td><td class="price">$18</td><td>—</td></tr>
+          <tr><td>Flight Two-5 Craft Beer</td><td class="price">$20</td><td>—</td></tr>
         </tbody>
       </table>
     </div>
     <div class="subsection-title">🍺 Two-5 Craft Beer Varieties</div>
     <div class="craft-grid">
       <span class="craft-pill">Valencia IPA</span>
-      <span class="craft-pill">Piña Pale Ale <span class="seasonal-badge">Seasonal</span></span>
+      <span class="craft-pill">Piña Pale Ale</span>
+      <span class="craft-pill">Sour Sop Hazy IPA</span>
       <span class="craft-pill">Fever Grass Witbier</span>
-      <span class="craft-pill">Grapefruit IPA <span class="seasonal-badge">Seasonal</span></span>
       <span class="craft-pill">Mango Ale <span class="seasonal-badge">Seasonal</span></span>
-      <span class="craft-pill">Sour Sop Hazy IPA <span class="seasonal-badge">Seasonal</span></span>
+      <span class="craft-pill">Coconut <span class="seasonal-badge">Seasonal</span></span>
       <span class="craft-pill">Pumpkin Spice Ale <span class="seasonal-badge">Seasonal</span></span>
+      <span class="craft-pill">Chamoy <span class="seasonal-badge">Seasonal</span></span>
     </div>
     <div class="menu-item-row"><span class="menu-item-name">🍻 Towers Available</span><span class="menu-item-price">—</span></div>
   </section>
@@ -489,33 +521,154 @@
     </div>
     <div class="subsection-title">🌎 Imported Premium</div>
     <div class="two-col-grid">
-      <div><div class="menu-item-row"><span>Absolut Vodka</span><span>$14</span></div><div class="menu-item-row"><span>Svedka Vodka</span><span>$14</span></div><div class="menu-item-row"><span>Tito's Vodka</span><span>$16</span></div><div class="menu-item-row"><span>Ciroc Vodka</span><span>$20</span></div><div class="menu-item-row"><span>Grey Goose</span><span>$20</span></div><div class="menu-item-row"><span>Bombay Gin</span><span>$15</span></div><div class="menu-item-row"><span>Tanqueray Gin</span><span>$14</span></div><div class="menu-item-row"><span>Hendrick's Gin</span><span>$20</span></div><div class="menu-item-row"><span>Havana Club 7</span><span>$13</span></div><div class="menu-item-row"><span>Appleton</span><span>$13</span></div><div class="menu-item-row"><span>Bacardi</span><span>$13</span></div></div>
-      <div><div class="menu-item-row"><span>Flor de Caña (4/7/12/18)</span><span>$10/$13/$16/$22</span></div><div class="menu-item-row"><span>Captain Morgan</span><span>$14</span></div><div class="menu-item-row"><span>Malibu Rum</span><span>$13</span></div><div class="menu-item-row"><span>Kraken</span><span>$16</span></div><div class="menu-item-row"><span>Zacapa 23</span><span>$27</span></div><div class="menu-item-row"><span>Jose Cuervo</span><span>$13</span></div><div class="menu-item-row"><span>Patrón</span><span>$19</span></div><div class="menu-item-row"><span>Don Julio</span><span>$22</span></div><div class="menu-item-row"><span>Johnnie Walker Black</span><span>$16</span></div><div class="menu-item-row"><span>Buchanan's 12/18</span><span>$18/$30</span></div><div class="menu-item-row"><span>Hennessy VS/VSOP</span><span>$22/$27</span></div></div>
+      <div>
+        <div class="menu-item-row"><span>Absolut Vodka</span><span>$14</span></div>
+        <div class="menu-item-row"><span>Svedka Vodka</span><span>$14</span></div>
+        <div class="menu-item-row"><span>Tito's Vodka</span><span>$16</span></div>
+        <div class="menu-item-row"><span>Ciroc Vodka</span><span>$20</span></div>
+        <div class="menu-item-row"><span>Grey Goose</span><span>$20</span></div>
+        <div class="menu-item-row"><span>Bombay Gin</span><span>$15</span></div>
+        <div class="menu-item-row"><span>Tanqueray Gin</span><span>$14</span></div>
+        <div class="menu-item-row"><span>Tanqueray 10/Sevilla</span><span>$16</span></div>
+        <div class="menu-item-row"><span>Beefeater</span><span>$13</span></div>
+        <div class="menu-item-row"><span>Hendrick's Gin</span><span>$20</span></div>
+        <div class="menu-item-row"><span>Havana Club 7</span><span>$13</span></div>
+        <div class="menu-item-row"><span>Appleton</span><span>$13</span></div>
+        <div class="menu-item-row"><span>Bacardi</span><span>$13</span></div>
+        <div class="menu-item-row"><span>Flor de Caña 4</span><span>$10</span></div>
+        <div class="menu-item-row"><span>Flor de Caña 7</span><span>$13</span></div>
+        <div class="menu-item-row"><span>Flor de Caña 12</span><span>$16</span></div>
+        <div class="menu-item-row"><span>Flor de Caña 18</span><span>$22</span></div>
+        <div class="menu-item-row"><span>Captain Morgan</span><span>$14</span></div>
+        <div class="menu-item-row"><span>Captain Morgan Private Stock</span><span>$16</span></div>
+        <div class="menu-item-row"><span>Malibu Coconut Rum</span><span>$13</span></div>
+        <div class="menu-item-row"><span>Rumchata</span><span>$13</span></div>
+        <div class="menu-item-row"><span>Kraken</span><span>$16</span></div>
+        <div class="menu-item-row"><span>Zacapa 23</span><span>$27</span></div>
+      </div>
+      <div>
+        <div class="menu-item-row"><span>Jose Cuervo</span><span>$13</span></div>
+        <div class="menu-item-row"><span>1800's</span><span>$15</span></div>
+        <div class="menu-item-row"><span>Milagro</span><span>$15</span></div>
+        <div class="menu-item-row"><span>Zignum Mezcal</span><span>$16</span></div>
+        <div class="menu-item-row"><span>Patrón</span><span>$19</span></div>
+        <div class="menu-item-row"><span>Don Julio</span><span>$22</span></div>
+        <div class="menu-item-row"><span>Disaronno</span><span>$14</span></div>
+        <div class="menu-item-row"><span>Campari</span><span>$10</span></div>
+        <div class="menu-item-row"><span>Jägermeister</span><span>$13</span></div>
+        <div class="menu-item-row"><span>Fireball</span><span>$13</span></div>
+        <div class="menu-item-row"><span>Kahlua</span><span>$13</span></div>
+        <div class="menu-item-row"><span>Tía Maria</span><span>$13</span></div>
+        <div class="menu-item-row"><span>Sambuca</span><span>$13</span></div>
+        <div class="menu-item-row"><span>Baileys</span><span>$13</span></div>
+        <div class="menu-item-row"><span>John Barr</span><span>$10</span></div>
+        <div class="menu-item-row"><span>Jameson</span><span>$14</span></div>
+        <div class="menu-item-row"><span>Chivas Regal</span><span>$14</span></div>
+        <div class="menu-item-row"><span>Jack Daniel's</span><span>$14</span></div>
+        <div class="menu-item-row"><span>Maker's Mark</span><span>$14</span></div>
+        <div class="menu-item-row"><span>Crown Royal</span><span>$14</span></div>
+        <div class="menu-item-row"><span>Johnnie Walker Black</span><span>$16</span></div>
+        <div class="menu-item-row"><span>Johnnie Walker Gold Reserve</span><span>$27</span></div>
+        <div class="menu-item-row"><span>Buchanan's 12</span><span>$18</span></div>
+        <div class="menu-item-row"><span>Buchanan's 18</span><span>$30</span></div>
+        <div class="menu-item-row"><span>Glenfiddich</span><span>$22</span></div>
+        <div class="menu-item-row"><span>Glenfiddich 18</span><span>$32</span></div>
+        <div class="menu-item-row"><span>Glenlivet</span><span>$22</span></div>
+        <div class="menu-item-row"><span>Akashi Red Japanese Blend</span><span>$18</span></div>
+        <div class="menu-item-row"><span>Akashi White Oak Blend</span><span>$18</span></div>
+        <div class="menu-item-row"><span>Matsui Japanese Whiskey</span><span>$20</span></div>
+        <div class="menu-item-row"><span>Macallan</span><span>$25</span></div>
+        <div class="menu-item-row"><span>Screwball</span><span>$18</span></div>
+        <div class="menu-item-row"><span>Grand Marnier</span><span>$20</span></div>
+        <div class="menu-item-row"><span>Hennessy VS</span><span>$22</span></div>
+        <div class="menu-item-row"><span>Hennessy Pure White</span><span>$25</span></div>
+        <div class="menu-item-row"><span>Hennessy VSOP</span><span>$28</span></div>
+        <div class="menu-item-row"><span>Dusse</span><span>$28</span></div>
+      </div>
     </div>
   </section>
 
-  <!-- COCKTAILS & DRINKS -->
+  <!-- COCKTAILS -->
   <section class="menu-section" id="cocktails">
     <div class="section-header"><span class="section-icon">🍹</span><h2 class="section-title">Cocktails &amp; Drinks</h2><div class="section-line"></div></div>
     <div class="subsection-title">🍸 Signature Cocktails</div>
     <div class="two-col-grid">
-      <div><div class="menu-item-row"><span>Panty Rippers</span><span>$10</span></div><div class="menu-item-row"><span>Leap Frog</span><span>$10</span></div><div class="menu-item-row"><span>Green Hurricane</span><span>$10</span></div><div class="menu-item-row"><span>Rum Punch</span><span>$10</span></div><div class="menu-item-row"><span>Jolly Rancher</span><span>$13</span></div></div>
-      <div><div class="menu-item-row"><span>Admiral's Quencher</span><span>$13</span></div><div class="menu-item-row"><span>Crocodile Cooler</span><span>$13</span></div><div class="menu-item-row"><span>Electric Lemonade</span><span>$13</span></div><div class="menu-item-row"><span>Blue Monkey Wrench</span><span>$13</span></div></div>
+      <div>
+        <div class="menu-item-row"><span>Panty Rippers</span><span>$10</span></div>
+        <div class="menu-item-row"><span>Leap Frog</span><span>$10</span></div>
+        <div class="menu-item-row"><span>Green Hurricane</span><span>$10</span></div>
+        <div class="menu-item-row"><span>Rum Punch</span><span>$10</span></div>
+        <div class="menu-item-row"><span>Admiral's Quencher</span><span>$13</span></div>
+        <div class="menu-item-row"><span>Crocodile Cooler</span><span>$13</span></div>
+      </div>
+      <div>
+        <div class="menu-item-row"><span>Electric Lemonade</span><span>$13</span></div>
+        <div class="menu-item-row"><span>Blue Monkey Wrench</span><span>$13</span></div>
+        <div class="menu-item-row"><span>Kayn Smash</span><span>$14</span></div>
+        <div class="menu-item-row"><span>Berries Gin Sour</span><span>$14</span></div>
+        <div class="menu-item-row"><span>Bakehouse Nutty Fudge Martini</span><span>$15</span></div>
+        <div class="menu-item-row"><span>Passion Gin Fizz</span><span>$14</span></div>
+        <div class="menu-item-row"><span>Porn Star</span><span>$15</span></div>
+      </div>
     </div>
     <div class="subsection-title">🍷 Classics &amp; Wine</div>
     <div class="two-col-grid">
-      <div><div class="menu-item-row"><span>Tequila Sunrise</span><span>$14</span></div><div class="menu-item-row"><span>Paloma</span><span>$14</span></div><div class="menu-item-row"><span>Mojito</span><span>$15</span></div><div class="menu-item-row"><span>Piña Colada</span><span>$15</span></div><div class="menu-item-row"><span>Margarita</span><span>$16</span></div><div class="menu-item-row"><span>Long Island Iced Tea</span><span>$17</span></div></div>
-      <div><div class="menu-item-row"><span>Red Wine (Merlot/Cab)</span><span>$14</span></div><div class="menu-item-row"><span>White Wine (Chardonnay)</span><span>$14</span></div><div class="menu-item-row"><span>Wine Bottle</span><span>$60-100</span></div><div class="menu-item-row"><span>Michelada</span><span>$8-11</span></div><div class="menu-item-row"><span>Sangria</span><span>$17</span></div></div>
+      <div>
+        <div class="menu-item-row"><span>Tequila Sunrise</span><span>$14</span></div>
+        <div class="menu-item-row"><span>Paloma</span><span>$14</span></div>
+        <div class="menu-item-row"><span>White/Black Russian</span><span>$15</span></div>
+        <div class="menu-item-row"><span>Daiquiri</span><span>$15</span></div>
+        <div class="menu-item-row"><span>Mojito</span><span>$15</span></div>
+        <div class="menu-item-row"><span>Piña Colada</span><span>$15</span></div>
+        <div class="menu-item-row"><span>Baileys Colada</span><span>$17</span></div>
+      </div>
+      <div>
+        <div class="menu-item-row"><span>Margarita</span><span>$16</span></div>
+        <div class="menu-item-row"><span>Beerita</span><span>$19-23</span></div>
+        <div class="menu-item-row"><span>Sangria</span><span>$17</span></div>
+        <div class="menu-item-row"><span>Long Island Iced Tea</span><span>$17</span></div>
+        <div class="menu-item-row"><span>Michelada</span><span>$8-11</span></div>
+        <div class="menu-item-row"><span>Red Wine (Merlot/Cab)</span><span>$14</span></div>
+        <div class="menu-item-row"><span>White Wine (Chardonnay/Zin)</span><span>$14</span></div>
+        <div class="menu-item-row"><span>Wine Bottle</span><span>$60-100</span></div>
+      </div>
     </div>
-    <div class="subsection-title">🔥 Lagom Favorites &amp; Batches</div>
+    <div class="subsection-title">🥤 Other Drinks</div>
     <div class="two-col-grid">
-      <div><div class="menu-item-row"><span>Liter Michingona</span><span>$15-21</span></div><div class="menu-item-row"><span>Fire Bombs</span><span>$21</span></div><div class="menu-item-row"><span>Irish Bombs</span><span>$21</span></div><div class="menu-item-row"><span>Rude Bombs</span><span>$28</span></div></div>
-      <div><div class="menu-item-row"><span>Deez Nuts Batch</span><span>$32</span></div><div class="menu-item-row"><span>Crocodile Sperm</span><span>$32</span></div><div class="menu-item-row"><span>Kamikazee Batch</span><span>$32</span></div><div class="menu-item-row"><span>Sex @ My Friend's House</span><span>$37</span></div></div>
+      <div>
+        <div class="menu-item-row"><span>Water</span><span>$2.50</span></div>
+        <div class="menu-item-row"><span>Sodas</span><span>$2.50</span></div>
+        <div class="menu-item-row"><span>Natural Juices</span><span>$4</span></div>
+      </div>
+      <div>
+        <div class="menu-item-row"><span>Iced Coffee</span><span>$10</span></div>
+        <div class="menu-item-row"><span>Frozen Coffee</span><span>$12</span></div>
+      </div>
     </div>
-    <div class="subsection-title">🥤 Non-Alcoholic</div>
+    <div class="subsection-title">🔥 Lagom Favorites</div>
     <div class="two-col-grid">
-      <div><div class="menu-item-row"><span>Water</span><span>$2.50</span></div><div class="menu-item-row"><span>Sodas</span><span>$2.50</span></div></div>
-      <div><div class="menu-item-row"><span>Natural Juices</span><span>$4</span></div></div>
+      <div>
+        <div class="menu-item-row"><span>Liter Michingona</span><span>$15-21</span></div>
+        <div class="menu-item-row"><span>Liter Rum &amp; Coke</span><span>$14</span></div>
+        <div class="menu-item-row"><span>Fire Bombs</span><span>$21</span></div>
+        <div class="menu-item-row"><span>Irish Bombs</span><span>$21</span></div>
+      </div>
+      <div>
+        <div class="menu-item-row"><span>Liter Panty Ripper</span><span>$18</span></div>
+        <div class="menu-item-row"><span>Liter Coolers</span><span>$22</span></div>
+        <div class="menu-item-row"><span>Rude Bombs</span><span>$28</span></div>
+      </div>
+    </div>
+    <div class="subsection-title">🧪 Batches</div>
+    <div class="two-col-grid">
+      <div>
+        <div class="menu-item-row"><span>Deez Nuts</span><span>$32</span></div>
+        <div class="menu-item-row"><span>Crocodile Sperm</span><span>$32</span></div>
+      </div>
+      <div>
+        <div class="menu-item-row"><span>Kamikazee</span><span>$32</span></div>
+        <div class="menu-item-row"><span>Sex @ My Friend's House</span><span>$37</span></div>
+      </div>
     </div>
   </section>
 
@@ -523,15 +676,29 @@
   <section class="menu-section" id="shots">
     <div class="section-header"><span class="section-icon">🥂</span><h2 class="section-title">Shots</h2><div class="section-line"></div></div>
     <div class="two-col-grid">
-      <div><div class="menu-item-row"><span>Brain Cell</span><span>$13</span></div><div class="menu-item-row"><span>Cinnamon Toast Crunch</span><span>$13</span></div><div class="menu-item-row"><span>Cuervo Miester</span><span>$13</span></div><div class="menu-item-row"><span>Liquid Cocaine</span><span>$13</span></div><div class="menu-item-row"><span>Crystal Meth</span><span>$13</span></div><div class="menu-item-row"><span>Melon Drop</span><span>$13</span></div></div>
-      <div><div class="menu-item-row"><span>Flaming Cucaracha</span><span>$13</span></div><div class="menu-item-row"><span>Baby Guinness</span><span>$13</span></div><div class="menu-item-row"><span>Blow Job</span><span>$13</span></div><div class="menu-item-row"><span>Screaming Orgasm</span><span>$13</span></div><div class="menu-item-row"><span>Jager Bomb</span><span>$15</span></div><div class="menu-item-row"><span>Blazing French Connection</span><span>$27</span></div></div>
+      <div>
+        <div class="menu-item-row"><span>Brain Cell</span><span>$13</span></div>
+        <div class="menu-item-row"><span>Cinnamon Toast Crunch</span><span>$13</span></div>
+        <div class="menu-item-row"><span>Cuervo Miester</span><span>$13</span></div>
+        <div class="menu-item-row"><span>Liquid Cocaine</span><span>$13</span></div>
+        <div class="menu-item-row"><span>Crystal Meth</span><span>$13</span></div>
+        <div class="menu-item-row"><span>Melon Drop</span><span>$13</span></div>
+        <div class="menu-item-row"><span>Flaming Cucaracha</span><span>$13</span></div>
+      </div>
+      <div>
+        <div class="menu-item-row"><span>Baby Guinness</span><span>$13</span></div>
+        <div class="menu-item-row"><span>Blow Job</span><span>$13</span></div>
+        <div class="menu-item-row"><span>Screaming Orgasm</span><span>$13</span></div>
+        <div class="menu-item-row"><span>Jager Bomb</span><span>$15</span></div>
+        <div class="menu-item-row"><span>Blazing French Connection</span><span>$27</span></div>
+      </div>
     </div>
   </section>
 </main>
 
 <footer>
   <strong>Lagom Terrace</strong> — Restaurant &amp; Bar · Belize<br>
-  <span>📞 Contact for reservations | Tue – Sat: 11:00 AM – 11:30 PM | Closed Sun &amp; Mon</span>
+  <span>📞 Tue – Sat: 11:00 AM – 11:30 PM | Closed Sunday &amp; Monday</span>
 </footer>
 
 <script>
