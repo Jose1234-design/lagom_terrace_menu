@@ -2,751 +2,525 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, viewfit=cover">
-<title>Lagom Terrace — Restaurant & Bar | Belize</title>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lagom Terrace — Belize City's Neighbourhood Rooftop Gem</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
-  * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
+/* ═══════════════════════════════════════════════════════════════
+   DESIGN TOKENS — teal-based Lagom Terrace palette
+═══════════════════════════════════════════════════════════════ */
+:root {
+  --teal-primary:  #17a99b;
+  --teal-dark:     #0d7068;
+  --teal-deep:     #0a3d39;
+  --teal-light:    #42c4bb;
+  --gold-warm:     #c9a52c;
+  --gold-pale:     #dfc07a;
+  --charcoal:      #0f1c1c;
+  --dark-teal:     #0a1515;
+  --text-light:    #f0f8f7;
+  --text-muted:    #7ab8b3;
+  --glass:         rgba(255,255,255,0.06);
+  --glass-border:  rgba(66,196,187,0.25);
+}
 
-  body {
-    background: linear-gradient(135deg, #0a4a46 0%, #06322f 100%);
-    color: #fef7e8;
-    font-family: 'Jost', sans-serif;
-    overflow-x: hidden;
-  }
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--charcoal);
+  color: var(--text-light);
+  overflow-x: hidden;
+}
 
-  :root {
-    --teal-deep: #0a4743;
-    --teal-mid: #0f5f5a;
-    --teal-bright: #1f8a82;
-    --gold: #dbb859;
-    --gold-light: #eedc9a;
-    --cream: #fff7ec;
-    --text-muted: #bfddd9;
-    --card-bg: rgba(10, 71, 67, 0.75);
-    --card-border: rgba(219, 184, 89, 0.28);
-    --radius: 18px;
-  }
+/* ═══════════════════════════════════════════════════════════════
+   NAVIGATION with CENTER LOGO
+═══════════════════════════════════════════════════════════════ */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  padding: 15px 60px;
+  display: flex; align-items: center; justify-content: space-between;
+  background: linear-gradient(to bottom, rgba(15,28,28,0.95), transparent);
+  backdrop-filter: blur(4px);
+  transition: background 0.4s;
+}
+nav.scrolled { background: rgba(10,21,21,0.97); }
 
-  .menu-card {
-    background: rgba(10, 71, 67, 0.85);
-    backdrop-filter: blur(2px);
-    border: 1px solid rgba(219, 184, 89, 0.35);
-    border-radius: var(--radius);
-    padding: 14px 18px;
-    transition: all 0.25s ease;
-  }
-  .menu-card:hover {
-    background: rgba(31, 138, 130, 0.9);
-    border-color: var(--gold);
-    transform: translateY(-2px);
-  }
+.nav-logo {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.5rem; font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--gold-warm);
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.nav-logo-img {
+  height: 45px;
+  width: auto;
+  display: block;
+}
 
-  .menu-item-row {
-    display: flex;
-    justify-content: space-between;
-    align-items: baseline;
-    padding: 8px 0;
-    border-bottom: 1px dashed rgba(219, 184, 89, 0.2);
-  }
-  .menu-item-name {
-    font-size: 0.95rem;
-    font-weight: 400;
-    color: var(--cream);
-  }
-  .menu-item-price {
-    font-size: 0.95rem;
-    font-weight: 500;
-    color: var(--gold);
-    white-space: nowrap;
-    margin-left: 16px;
-  }
-  .menu-sub-item {
-    padding-left: 18px;
-    font-size: 0.8rem;
-    color: var(--text-muted);
-    display: flex;
-    justify-content: space-between;
-    align-items: baseline;
-    border-bottom: 1px dashed rgba(219, 184, 89, 0.1);
-    padding-bottom: 6px;
-    margin-bottom: 2px;
-  }
-  .item-description {
-    font-size: 0.7rem;
-    color: var(--text-muted);
-    padding-left: 0;
-    margin-top: -4px;
-    margin-bottom: 6px;
-    font-style: italic;
-    line-height: 1.3;
-  }
-  .featured-badge {
-    background: var(--gold);
-    color: #0a3c38;
-    font-size: 0.6rem;
-    font-weight: 600;
-    padding: 2px 8px;
-    border-radius: 20px;
-    margin-left: 8px;
-    vertical-align: middle;
-    text-transform: uppercase;
-  }
-  .flavor-tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 6px;
-    margin-top: 10px;
-    padding-top: 6px;
-  }
-  .flavor-pill {
-    background: rgba(219, 184, 89, 0.12);
-    border: 1px solid rgba(219, 184, 89, 0.4);
-    border-radius: 20px;
-    padding: 4px 12px;
-    font-size: 0.7rem;
-    color: var(--gold-light);
-  }
-  .beer-table {
-    width: 100%;
-    border-collapse: collapse;
-  }
-  .beer-table th, .beer-table td {
-    padding: 10px 12px;
-    text-align: left;
-    border-bottom: 1px solid rgba(255,255,255,0.08);
-  }
-  .beer-table th {
-    color: var(--gold);
-    font-weight: 500;
-    font-size: 0.7rem;
-    letter-spacing: 0.1em;
-  }
-  .beer-table td.price {
-    color: var(--gold);
-    font-weight: 500;
-  }
-  .craft-grid {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    margin: 12px 0;
-  }
-  .craft-pill {
-    background: rgba(15, 95, 90, 0.8);
-    border: 1px solid rgba(219, 184, 89, 0.3);
-    border-radius: 40px;
-    padding: 6px 16px;
-    font-size: 0.8rem;
-  }
-  .seasonal-badge {
-    background: rgba(219,184,89,0.2);
-    font-size: 0.65rem;
-    padding: 2px 8px;
-    border-radius: 12px;
-    margin-left: 8px;
-  }
-  .hero {
-    background: radial-gradient(circle at 30% 20%, #0d5f5a, #06322f);
-    padding: 50px 24px 40px;
-    text-align: center;
-  }
-  .hero h1 {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(2.8rem, 8vw, 4.8rem);
-    font-weight: 600;
-    color: var(--cream);
-    letter-spacing: -0.02em;
-  }
-  .hero-desc {
-    color: #bfddd9;
-    max-width: 500px;
-    margin: 12px auto 0;
-    font-size: 1rem;
-    font-weight: 300;
-  }
-  .hero-meta {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 24px;
-    margin-top: 20px;
-    font-size: 0.85rem;
-  }
-  .hero-meta span {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-  }
-  .sticky-nav {
-    position: sticky;
-    top: 0;
-    z-index: 100;
-    background: rgba(7, 55, 51, 0.97);
-    backdrop-filter: blur(14px);
-    border-bottom: 1px solid rgba(219, 184, 89, 0.3);
-    padding: 10px 12px;
-  }
-  .nav-tabs {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 6px;
-    max-width: 1200px;
-    margin: 0 auto;
-  }
-  .nav-tab {
-    background: rgba(255,255,255,0.06);
-    border: 1px solid rgba(219,184,89,0.25);
-    color: #e0f0ed;
-    padding: 6px 16px;
-    border-radius: 40px;
-    font-size: 0.7rem;
-    font-weight: 500;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    cursor: pointer;
-    transition: all 0.2s;
-    white-space: nowrap;
-  }
-  .nav-tab:hover {
-    background: rgba(219,184,89,0.2);
-    border-color: var(--gold);
-  }
-  .nav-tab.active {
-    background: var(--gold);
-    color: #0a3c38;
-    border-color: var(--gold);
-  }
-  .main {
-    max-width: 1000px;
-    margin: 0 auto;
-    padding: 40px 20px 80px;
-  }
-  .menu-section {
-    margin-bottom: 55px;
-    scroll-margin-top: 85px;
-  }
-  .section-header {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    border-left: 4px solid var(--gold);
-    padding-left: 18px;
-    margin-bottom: 22px;
-  }
-  .section-title {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 1.8rem;
-    font-weight: 600;
-  }
-  .section-icon {
-    font-size: 1.8rem;
-  }
-  .section-line {
-    flex: 1;
-    height: 1px;
-    background: linear-gradient(90deg, rgba(219,184,89,0.4), transparent);
-  }
-  .two-col-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 12px 24px;
-  }
-  .subsection-title {
-    font-size: 1rem;
-    font-weight: 500;
-    color: var(--gold);
-    margin: 22px 0 12px 0;
-    letter-spacing: 0.5px;
-    border-left: 2px solid var(--gold);
-    padding-left: 12px;
-  }
-  .subsection-title:first-of-type {
-    margin-top: 8px;
-  }
-  footer {
-    text-align: center;
-    padding: 30px 20px;
-    border-top: 1px solid rgba(219,184,89,0.2);
-    font-size: 0.8rem;
-    color: var(--text-muted);
-  }
-  footer strong {
-    color: var(--gold);
-    font-weight: 500;
-  }
-  @media (max-width: 700px) {
-    .two-col-grid { grid-template-columns: 1fr; }
-    .nav-tab { padding: 5px 12px; font-size: 0.65rem; }
-    .section-title { font-size: 1.5rem; }
-    .hero h1 { font-size: 2.5rem; }
-    .hero-meta { gap: 14px; font-size: 0.75rem; }
-  }
+.nav-links { display: flex; gap: 36px; list-style: none; }
+.nav-links a {
+  font-size: 0.82rem; font-weight: 500;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--text-muted); text-decoration: none;
+  transition: color 0.3s;
+}
+.nav-links a:hover { color: var(--teal-light); }
+
+.nav-cta {
+  background: var(--teal-primary) !important;
+  color: #fff !important;
+  padding: 10px 22px !important;
+  border-radius: 2px !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.1em !important;
+  transition: background 0.3s, transform 0.2s !important;
+}
+.nav-cta:hover {
+  background: var(--teal-dark) !important;
+  transform: translateY(-1px) !important;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   HERO (unchanged, beautiful as is)
+═══════════════════════════════════════════════════════════════ */
+#hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex; align-items: center; justify-content: center;
+  overflow: hidden;
+}
+.hero-bg {
+  position: absolute; inset: 0;
+  background: linear-gradient(135deg, rgba(10,21,21,0.88) 0%, rgba(10,61,57,0.60) 50%, rgba(23,169,155,0.30) 100%),
+              radial-gradient(ellipse at 70% 50%, rgba(23,169,155,0.18) 0%, transparent 60%);
+  background-color: #061414;
+}
+.hero-skyline {
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse at 65% 35%, rgba(23,169,155,0.45) 0%, transparent 55%),
+              radial-gradient(ellipse at 30% 70%, rgba(13,112,104,0.32) 0%, transparent 50%);
+  animation: skyPulse 8s ease-in-out infinite alternate;
+}
+@keyframes skyPulse {
+  from { opacity: 0.7; }
+  to   { opacity: 1;   }
+}
+.city-silhouette {
+  position: absolute; bottom: 0; left: 0; right: 0; height: 45%;
+  background: linear-gradient(to top, var(--charcoal) 0%, rgba(15,28,28,0.95) 40%, transparent 100%);
+  clip-path: polygon(0% 100%, 0% 70%, 2% 70%, 2% 55%, 4% 55%, 4% 62%, 6% 62%, 6% 45%, 8% 45%, 8% 65%, 10% 65%, 10% 50%, 12% 50%, 12% 58%, 14% 58%, 14% 40%, 15% 40%, 15% 35%, 16% 35%, 16% 55%, 18% 55%, 18% 48%, 20% 48%, 20% 60%, 22% 60%, 22% 42%, 24% 42%, 24% 68%, 26% 68%, 26% 52%, 28% 52%, 28% 45%, 30% 45%, 30% 62%, 32% 62%, 32% 38%, 34% 38%, 34% 30%, 35% 30%, 35% 50%, 37% 50%, 37% 55%, 40% 55%, 40% 44%, 42% 44%, 42% 65%, 45% 65%, 45% 50%, 47% 50%, 47% 42%, 50% 42%, 50% 60%, 52% 60%, 52% 48%, 55% 48%, 55% 35%, 56% 35%, 56% 28%, 58% 28%, 58% 48%, 60% 48%, 60% 55%, 63% 55%, 63% 45%, 66% 45%, 66% 58%, 68% 58%, 68% 42%, 70% 42%, 70% 52%, 73% 52%, 73% 38%, 75% 38%, 75% 60%, 78% 60%, 78% 48%, 80% 48%, 80% 55%, 82% 55%, 82% 44%, 85% 44%, 85% 62%, 88% 62%, 88% 50%, 90% 50%, 90% 40%, 92% 40%, 92% 55%, 94% 55%, 94% 65%, 96% 65%, 96% 48%, 98% 48%, 98% 58%, 100% 58%, 100% 100%);
+}
+.hero-content {
+  position: relative; z-index: 10;
+  text-align: center;
+  padding: 0 24px;
+  max-width: 820px;
+  animation: heroFadeIn 1.2s ease-out both;
+}
+@keyframes heroFadeIn {
+  from { opacity: 0; transform: translateY(30px); }
+  to   { opacity: 1; transform: translateY(0);    }
+}
+.hero-tag {
+  display: inline-block;
+  font-size: 0.72rem; font-weight: 600;
+  letter-spacing: 0.25em; text-transform: uppercase;
+  color: var(--gold-warm);
+  border: 1px solid var(--glass-border);
+  padding: 6px 18px; border-radius: 50px;
+  margin-bottom: 28px;
+  backdrop-filter: blur(8px);
+  background: rgba(23,169,155,0.10);
+}
+.hero-headline {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2.8rem, 7vw, 5.5rem);
+  font-weight: 900;
+  line-height: 1.08;
+  margin-bottom: 20px;
+}
+.hero-headline em { font-style: italic; color: var(--teal-light); }
+.hero-sub {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(1.1rem, 2.2vw, 1.4rem);
+  font-weight: 300; line-height: 1.65;
+  color: rgba(240,248,247,0.82);
+  max-width: 600px; margin: 0 auto 44px;
+}
+.hero-btns { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+.btn-primary {
+  background: linear-gradient(135deg, var(--teal-primary), var(--teal-dark));
+  color: #fff;
+  padding: 16px 38px;
+  border: none; border-radius: 3px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.9rem; font-weight: 600;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  text-decoration: none; cursor: pointer;
+  transition: transform 0.25s, box-shadow 0.25s;
+  box-shadow: 0 8px 32px rgba(23,169,155,0.40);
+  display: inline-block;
+}
+.btn-primary:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 14px 40px rgba(23,169,155,0.60);
+}
+.btn-secondary {
+  background: transparent;
+  color: var(--teal-light);
+  padding: 15px 38px;
+  border: 1.5px solid var(--teal-primary);
+  border-radius: 3px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.9rem; font-weight: 500;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  text-decoration: none; cursor: pointer;
+  transition: background 0.25s, transform 0.25s;
+  display: inline-block;
+}
+.btn-secondary:hover {
+  background: rgba(23,169,155,0.12);
+  transform: translateY(-3px);
+}
+.hero-scroll {
+  position: absolute; bottom: 36px; left: 50%; transform: translateX(-50%);
+  display: flex; flex-direction: column; align-items: center; gap: 8px;
+  color: var(--text-muted);
+  font-size: 0.72rem; letter-spacing: 0.18em;
+  animation: bounce 2.5s ease-in-out infinite;
+}
+@keyframes bounce {
+  0%, 100% { transform: translateX(-50%) translateY(0); }
+  50% { transform: translateX(-50%) translateY(8px); }
+}
+.scroll-line { width: 1px; height: 40px; background: linear-gradient(to bottom, var(--gold-warm), transparent); }
+
+/* ═══════════════════════════════════════════════════════════════
+   SECTION COMMONS
+═══════════════════════════════════════════════════════════════ */
+section { padding: 100px 60px; }
+.section-tag {
+  font-size: 0.72rem; font-weight: 600;
+  letter-spacing: 0.22em; text-transform: uppercase;
+  color: var(--gold-warm);
+  margin-bottom: 14px; display: block;
+}
+.section-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 700; line-height: 1.15; margin-bottom: 16px;
+}
+.section-title em { font-style: italic; color: var(--teal-light); }
+.section-sub {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.15rem; font-weight: 300;
+  color: var(--text-muted); line-height: 1.7;
+}
+.divider {
+  width: 60px; height: 2px;
+  background: linear-gradient(to right, var(--teal-primary), transparent);
+  margin: 20px 0;
+}
+.container { max-width: 1200px; margin: 0 auto; }
+
+/* ═══════════════════════════════════════════════════════════════
+   MENU SECTION with IMAGE BANNERS
+═══════════════════════════════════════════════════════════════ */
+#menu {
+  background: linear-gradient(180deg, #091212 0%, #0d2020 100%);
+  position: relative;
+}
+.menu-header { text-align: center; margin-bottom: 60px; }
+.scarcity-banner {
+  background: linear-gradient(135deg, rgba(23,169,155,0.12), rgba(13,112,104,0.12));
+  border: 1px solid rgba(23,169,155,0.32);
+  border-radius: 4px; padding: 18px 28px;
+  text-align: center; margin-bottom: 60px;
+  font-size: 0.92rem; color: var(--gold-pale);
+}
+.menu-tabs {
+  display: flex; justify-content: center; gap: 8px; flex-wrap: wrap;
+  margin-bottom: 48px;
+}
+.tab-btn {
+  background: transparent;
+  border: 1px solid rgba(66,196,187,0.25);
+  color: var(--text-muted);
+  padding: 9px 22px; border-radius: 2px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.8rem; font-weight: 600;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  cursor: pointer; transition: all 0.25s;
+}
+.tab-btn.active, .tab-btn:hover {
+  background: var(--teal-primary);
+  border-color: var(--teal-primary);
+  color: #fff;
+}
+.menu-panel { display: none; }
+.menu-panel.active { display: block; animation: fadeTab 0.35s ease; }
+@keyframes fadeTab {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Section image banner */
+.section-image-banner {
+  width: 100%;
+  max-height: 300px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 30px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+  border: 1px solid rgba(66,196,187,0.2);
+}
+
+.menu-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2px;
+}
+.menu-item {
+  display: flex; justify-content: space-between; align-items: baseline;
+  padding: 16px 20px;
+  background: rgba(255,255,255,0.03);
+  border-left: 2px solid transparent;
+  transition: background 0.2s, border-color 0.2s;
+  gap: 12px;
+}
+.menu-item:hover {
+  background: rgba(255,255,255,0.06);
+  border-left-color: var(--teal-primary);
+}
+.menu-item-name { font-size: 0.92rem; color: var(--text-light); font-weight: 400; flex: 1; }
+.menu-item-dots { flex: 1; border-bottom: 1px dotted rgba(255,255,255,0.12); margin: 0 8px; min-width: 20px; }
+.menu-item-price { font-size: 0.9rem; font-weight: 600; color: var(--gold-warm); white-space: nowrap; }
+.menu-section-head {
+  grid-column: 1 / -1;
+  font-family: 'Playfair Display', serif;
+  font-size: 0.75rem; font-weight: 700;
+  letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--teal-primary);
+  padding: 24px 20px 8px;
+  border-bottom: 1px solid rgba(23,169,155,0.20);
+  margin-bottom: 4px;
+}
+.menu-note {
+  grid-column: 1 / -1;
+  font-size: 0.8rem; color: var(--text-muted);
+  padding: 8px 20px; font-style: italic;
+}
+
+/* Other sections (Reviews, Features, Atmosphere, Reserve, Footer) remain unchanged */
+#reviews { background: linear-gradient(135deg, #0d2020 0%, #091515 100%); position: relative; }
+.reviews-header { text-align: center; margin-bottom: 60px; }
+.reviews-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; }
+.review-card { background: rgba(255,255,255,0.04); border: 1px solid rgba(66,196,187,0.15); border-radius: 4px; padding: 36px 32px; transition: transform 0.3s; }
+.review-card:hover { transform: translateY(-6px); border-color: rgba(66,196,187,0.40); }
+.review-quote { font-family: 'Playfair Display', serif; font-size: 4rem; line-height: 0.6; color: var(--teal-primary); opacity: 0.5; margin-bottom: 16px; }
+.stars { color: var(--gold-warm); font-size: 1rem; letter-spacing: 2px; margin-bottom: 16px; }
+.review-text { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; font-style: italic; line-height: 1.75; margin-bottom: 24px; }
+.reviewer { display: flex; align-items: center; gap: 12px; }
+.reviewer-avatar { width: 42px; height: 42px; border-radius: 50%; background: linear-gradient(135deg, var(--teal-primary), var(--teal-deep)); display: flex; align-items: center; justify-content: center; font-weight: 700; }
+.reviewer-name { font-weight: 600; color: var(--gold-pale); }
+
+#features { background: var(--charcoal); }
+.features-header { text-align: center; margin-bottom: 70px; }
+.features-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; }
+.feature-card { background: rgba(255,255,255,0.03); padding: 50px 40px; transition: background 0.3s; position: relative; }
+.feature-card:hover { background: rgba(255,255,255,0.06); }
+.feature-card::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 2px; background: linear-gradient(to right, var(--teal-primary), transparent); transform: scaleX(0); transition: transform 0.4s; }
+.feature-card:hover::after { transform: scaleX(1); }
+.feature-icon { font-size: 2.4rem; margin-bottom: 22px; display: block; }
+.feature-title { font-family: 'Playfair Display', serif; font-size: 1.4rem; font-weight: 700; margin-bottom: 14px; color: var(--gold-pale); }
+.feature-text { font-size: 0.95rem; line-height: 1.75; color: var(--text-muted); }
+
+#atmosphere { display: grid; grid-template-columns: 1fr 1fr; gap: 0; padding: 0; }
+.atm-visual { background: linear-gradient(135deg, var(--teal-deep), #041212); min-height: 560px; display: flex; align-items: center; justify-content: center; position: relative; }
+.atm-sun { width: 160px; height: 160px; border-radius: 50%; background: radial-gradient(circle, #a0ede8 0%, var(--teal-primary) 50%, var(--teal-dark) 100%); box-shadow: 0 0 80px rgba(66,196,187,0.60); margin: 0 auto 30px; animation: sunPulse 4s ease-in-out infinite alternate; }
+@keyframes sunPulse { from { box-shadow: 0 0 80px rgba(66,196,187,0.60); } to { box-shadow: 0 0 120px rgba(66,196,187,0.85); } }
+.atm-visual-text { font-family: 'Playfair Display', serif; font-size: 1.6rem; font-style: italic; text-align: center; }
+.atm-content { padding: 80px 70px; background: #0a1212; }
+.atm-hours { margin-top: 40px; padding: 28px; background: rgba(23,169,155,0.06); border: 1px solid rgba(66,196,187,0.20); border-radius: 3px; }
+.atm-hours-row { display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid rgba(255,255,255,0.06); }
+
+#reserve { background: linear-gradient(180deg, #060e0e 0%, #0d2020 100%); padding: 100px 60px; }
+.reserve-inner { max-width: 780px; margin: 0 auto; }
+.reserve-header { text-align: center; margin-bottom: 52px; }
+.booking-form { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+.form-group { display: flex; flex-direction: column; gap: 8px; }
+.form-group.full { grid-column: 1 / -1; }
+.form-group label { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: var(--gold-warm); }
+.form-group input, .form-group select, .form-group textarea { background: rgba(255,255,255,0.04); border: 1px solid rgba(66,196,187,0.22); border-radius: 3px; padding: 14px 18px; font-family: 'DM Sans', sans-serif; font-size: 0.92rem; color: var(--text-light); outline: none; width: 100%; }
+.form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-color: var(--teal-light); background: rgba(255,255,255,0.07); }
+.form-submit-row { grid-column: 1 / -1; display: flex; flex-direction: column; align-items: center; gap: 16px; margin-top: 8px; }
+#booking-status { display: none; grid-column: 1 / -1; text-align: center; padding: 20px; border-radius: 3px; }
+#booking-status.success { display: block; background: rgba(23,169,155,0.10); border: 1px solid rgba(23,169,155,0.35); color: var(--teal-light); }
+#booking-status.error { display: block; background: rgba(201,165,44,0.10); border: 1px solid rgba(201,165,44,0.40); color: var(--gold-pale); }
+
+#footer-cta { background: linear-gradient(135deg, var(--teal-deep) 0%, #031010 100%); text-align: center; padding: 100px 60px; }
+.footer-cta-title { font-family: 'Playfair Display', serif; font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 900; margin-bottom: 20px; }
+.btn-call { background: rgba(255,255,255,0.08); color: #fff; padding: 15px 38px; border: 1.5px solid rgba(255,255,255,0.28); border-radius: 3px; text-decoration: none; display: inline-block; transition: 0.25s; }
+.btn-call:hover { background: rgba(255,255,255,0.18); transform: translateY(-3px); }
+
+footer { background: var(--dark-teal); padding: 48px 60px; display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 40px; border-top: 1px solid rgba(66,196,187,0.10); }
+.footer-logo small { display: block; font-size: 0.72rem; color: var(--text-muted); margin-top: 4px; }
+.footer-links { display: flex; gap: 24px; list-style: none; }
+.footer-links a { color: var(--text-muted); text-decoration: none; }
+.footer-links a:hover { color: var(--gold-pale); }
+
+.reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.6s ease, transform 0.6s ease; }
+.reveal.visible { opacity: 1; transform: translateY(0); }
+
+@media (max-width: 900px) {
+  nav { padding: 15px 24px; }
+  .nav-links { display: none; }
+  section { padding: 70px 24px; }
+  .reviews-grid, .features-grid { grid-template-columns: 1fr; }
+  .menu-grid { grid-template-columns: 1fr; }
+  #atmosphere { grid-template-columns: 1fr; }
+  footer { grid-template-columns: 1fr; text-align: center; }
+  .booking-form { grid-template-columns: 1fr; }
+}
 </style>
 </head>
 <body>
 
-<header class="hero">
-  <h1>Lagom Terrace</h1>
-  <p class="hero-desc">Belize · Restaurant &amp; Bar — the perfect balance of flavors</p>
-  <div class="hero-meta">
-    <span>🕐 Tue – Sat: 11:00 AM – 11:30 PM</span>
-    <span>✕ Closed Sunday &amp; Monday</span>
-    <span>📍 Belize</span>
-  </div>
-</header>
-
-<nav class="sticky-nav">
-  <div class="nav-tabs" id="navTabs">
-    <button class="nav-tab" data-target="appetizers">Appetizers</button>
-    <button class="nav-tab" data-target="wings">Wings</button>
-    <button class="nav-tab" data-target="burgers">Burgers</button>
-    <button class="nav-tab" data-target="quesadillas">Quesadillas</button>
-    <button class="nav-tab" data-target="pastas">Pastas</button>
-    <button class="nav-tab" data-target="chicken">Chicken</button>
-    <button class="nav-tab" data-target="shrimp">Shrimp</button>
-    <button class="nav-tab" data-target="fish">Fish</button>
-    <button class="nav-tab" data-target="meats">Meats</button>
-    <button class="nav-tab" data-target="beers">Beers</button>
-    <button class="nav-tab" data-target="spirits">Spirits</button>
-    <button class="nav-tab" data-target="cocktails">Cocktails</button>
-    <button class="nav-tab" data-target="lagom-favorites">⭐ Lagom Favorites</button>
-    <button class="nav-tab" data-target="shots">Shots</button>
-  </div>
+<nav id="navbar">
+  <a href="#" class="nav-logo">
+    <img src="https://res.cloudinary.com/dor8p7jxw/image/upload/f_auto,q_auto/WhatsApp_Image_2026-05-20_at_8.43.09_PM_kzrsvl" alt="Lagom Terrace Logo" class="nav-logo-img">
+  </a>
+  <ul class="nav-links">
+    <li><a href="#reviews">Reviews</a></li>
+    <li><a href="#features">Experience</a></li>
+    <li><a href="#menu">Menu</a></li>
+    <li><a href="#atmosphere">Hours</a></li>
+    <li><a href="#reserve" class="nav-cta">Reserve Now</a></li>
+  </ul>
 </nav>
 
-<main class="main">
+<!-- Hero Section -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-skyline"></div>
+  <div class="city-silhouette"></div>
+  <div class="hero-content">
+    <span class="hero-tag">🌅 Belize City's Neighbourhood Rooftop Gem</span>
+    <h1 class="hero-headline">Savor the <em>Flavors,</em><br>Soak in the Views.</h1>
+    <p class="hero-sub">Experience authentic Belizean cuisine and signature cocktails at the city's most coveted rooftop.</p>
+    <div class="hero-btns">
+      <a href="#reserve" class="btn-primary">🍽️ Reserve Your Table</a>
+      <a href="#menu" class="btn-secondary">View Our Menu</a>
+    </div>
+  </div>
+  <div class="hero-scroll"><div class="scroll-line"></div>Scroll</div>
+</section>
 
-  <!-- APPETIZERS -->
-  <section class="menu-section" id="appetizers">
-    <div class="section-header"><span class="section-icon">🥗</span><h2 class="section-title">Appetizers</h2><div class="section-line"></div></div>
-    <div class="two-col-grid">
-      <div>
-        <div class="menu-item-row"><span class="menu-item-name">Loaded Potato</span><span class="menu-item-price">$15</span></div>
-        <div class="item-description">Creamy mashed potato with sautéed mushrooms, bacon bits, mozzarella and cream</div>
-        <div class="menu-sub-item"><span>+ Chicken</span><span>$20</span></div>
-        <div class="menu-sub-item"><span>+ Shrimp</span><span>$25</span></div>
-        <div class="menu-sub-item"><span>+ Arrachera</span><span>$25</span></div>
-        <div class="menu-item-row"><span class="menu-item-name">Mozzarella Sticks</span><span class="menu-item-price">$17</span></div>
-        <div class="menu-item-row"><span class="menu-item-name">Fried Dumplings</span><span class="menu-item-price">$16</span></div>
-        <div class="item-description">Fried Pork Dumplings</div>
-        <div class="menu-item-row"><span class="menu-item-name">Shrimp Cocktail</span><span class="menu-item-price">$19</span></div>
-        <div class="menu-item-row"><span class="menu-item-name">Nachos (Plain)</span><span class="menu-item-price">$16</span></div>
-        <div class="menu-sub-item"><span>+ Chicken</span><span>$21</span></div>
-        <div class="menu-sub-item"><span>+ Beef</span><span>$21</span></div>
-        <div class="menu-item-row"><span class="menu-item-name">Cheesy Fries (Plain)</span><span class="menu-item-price">$16</span></div>
-        <div class="menu-sub-item"><span>+ Chicken</span><span>$21</span></div>
-        <div class="menu-sub-item"><span>+ Beef</span><span>$21</span></div>
-        <div class="menu-item-row"><span class="menu-item-name">Chicken Botanas 5pc</span><span class="menu-item-price">$13</span></div>
-        <div class="menu-sub-item"><span>10 pieces</span><span>$20</span></div>
-      </div>
-      <div>
-        <div class="menu-item-row"><span class="menu-item-name">Smoked Pork Salpicon</span><span class="menu-item-price">Small $20</span></div>
-        <div class="menu-sub-item"><span>Large</span><span>$35</span></div>
-        <div class="menu-item-row"><span class="menu-item-name">Ceviche Shrimp</span><span class="menu-item-price">Small $20</span></div>
-        <div class="menu-sub-item"><span>Large</span><span>$35</span></div>
-        <div class="menu-item-row"><span class="menu-item-name">Ceviche Octopus</span><span class="menu-item-price">Small $20</span></div>
-        <div class="menu-sub-item"><span>Large</span><span>$35</span></div>
-        <div class="menu-item-row"><span class="menu-item-name">Ceviche Conchs (Seasonal)</span><span class="menu-item-price">Small $20</span></div>
-        <div class="menu-sub-item"><span>Large</span><span>$35</span></div>
-        <div class="menu-item-row"><span class="menu-item-name">Ceviche Mix (2 options)</span><span class="menu-item-price">$35</span></div>
-        <div class="menu-item-row"><span class="menu-item-name">Ceviche Mix (3 options)</span><span class="menu-item-price">$47</span></div>
-      </div>
-    </div>
-  </section>
+<!-- Reviews -->
+<section id="reviews"><div class="container"><div class="reviews-header"><span class="section-tag">★ Guest Experiences</span><h2 class="section-title">What Our <em>Guests Say</em></h2><div class="divider" style="margin:20px auto;"></div><p class="section-sub">Don't just take our word for it — here's what Lagom lovers are saying.</p></div><div class="reviews-grid"><div class="review-card reveal"><div class="review-quote">"</div><div class="stars">★★★★★</div><p class="review-text">The absolute best place to unwind! The terrace seating during sunset provides an enchanting backdrop.</p><div class="reviewer"><div class="reviewer-avatar">M</div><div><div class="reviewer-name">Maria R.</div><div class="reviewer-detail">Local Guest</div></div></div></div><div class="review-card reveal"><div class="review-quote">"</div><div class="stars">★★★★★</div><p class="review-text">You have to try their famous wings — locals say they are absolute fire!</p><div class="reviewer"><div class="reviewer-avatar">J</div><div><div class="reviewer-name">James K.</div><div class="reviewer-detail">Foodie</div></div></div></div><div class="review-card reveal"><div class="review-quote">"</div><div class="stars">★★★★★</div><p class="review-text">Stunning views, incredible signature drinks, and amazing food.</p><div class="reviewer"><div class="reviewer-avatar">S</div><div><div class="reviewer-name">Sophie T.</div><div class="reviewer-detail">Tourist</div></div></div></div></div></div></section>
 
-  <!-- WINGS -->
-  <section class="menu-section" id="wings">
-    <div class="section-header"><span class="section-icon">🍗</span><h2 class="section-title">Wings &amp; Chicken Fingers</h2><div class="section-line"></div></div>
-    <div class="menu-card" style="flex-direction:column; align-items:stretch;">
-      <div class="menu-item-row"><span class="menu-item-name">5 pieces</span><span class="menu-item-price">$13</span></div>
-      <div class="menu-item-row"><span class="menu-item-name">10 pieces</span><span class="menu-item-price">$21</span></div>
-      <div class="menu-item-row"><span class="menu-item-name">15 pieces</span><span class="menu-item-price">$29</span></div>
-      <div class="flavor-tags">
-        <span class="flavor-pill">Honey Mustard</span><span class="flavor-pill">Lemon Pepper</span>
-        <span class="flavor-pill">Garlic Parmesan</span><span class="flavor-pill">Hawaiian BBQ</span>
-        <span class="flavor-pill">Spicy BBQ</span><span class="flavor-pill">Chipotle</span>
-        <span class="flavor-pill">Teriyaki BBQ</span><span class="flavor-pill">Creamy Jalapeño</span>
-        <span class="flavor-pill">Spicy Buffalo</span><span class="flavor-pill">Mango Habanero</span>
-      </div>
-    </div>
-  </section>
+<!-- Features -->
+<section id="features"><div class="container"><div class="features-header"><span class="section-tag">✦ The Experience</span><h2 class="section-title">The <em>Lagom</em> Experience</h2><div class="divider" style="margin:20px auto;"></div><p class="section-sub">Three reasons guests keep coming back.</p></div><div class="features-grid"><div class="feature-card reveal"><span class="feature-icon">🌇</span><h3 class="feature-title">Breathtaking Views</h3><p class="feature-text">Watch Belize City light up as the golden hour transforms our terrace.</p></div><div class="feature-card reveal"><span class="feature-icon">🦐</span><h3 class="feature-title">Local Favorites</h3><p class="feature-text">From legendary fire wings to Belizean-inspired seafood plates.</p></div><div class="feature-card reveal"><span class="feature-icon">🍹</span><h3 class="feature-title">Vibrant Ambiance</h3><p class="feature-text">Perfect for date nights, family dinners, or cocktails with friends.</p></div></div></div></section>
 
-  <!-- BURGERS -->
-  <section class="menu-section" id="burgers">
-    <div class="section-header"><span class="section-icon">🍔</span><h2 class="section-title">Burgers</h2><div class="section-line"></div></div>
-    <div class="item-description" style="margin-bottom:12px;">🍔 Your choice between fried/grilled chicken or grilled beef</div>
-    <div class="two-col-grid">
-      <div>
-        <div class="menu-item-row"><span class="menu-item-name">Regular Burger</span><span class="menu-item-price">$16</span></div>
-        <div class="menu-item-row"><span class="menu-item-name">Bacon Cheese Burger</span><span class="menu-item-price">$18</span></div>
-        <div class="menu-item-row"><span class="menu-item-name">Teriyaki Hawaiian Burger</span><span class="menu-item-price">$21</span></div>
-      </div>
-      <div>
-        <div class="menu-item-row"><span class="menu-item-name">Jalapeño Popper Burger</span><span class="menu-item-price">$21</span></div>
-        <div class="menu-item-row"><span class="menu-item-name">Spicy Chipotle Burger</span><span class="menu-item-price">$21</span></div>
-        <div class="menu-item-row"><span class="menu-item-name">Lagom Double Pattie Burger</span><span class="menu-item-price">$30</span></div>
-      </div>
-    </div>
-  </section>
+<!-- MENU with all 12 images -->
+<section id="menu"><div class="container"><div class="menu-header"><span class="section-tag">🍽️ Our Menu</span><h2 class="section-title">Good Food. <em>Great Vibes.</em></h2><div class="divider" style="margin:20px auto;"></div><p class="section-sub">Fresh ingredients, bold flavors — all served with a view.</p></div><div class="scarcity-banner">🔥 <span>Weekends fill up fast!</span> Secure your terrace spot ahead of time.</div><div class="menu-tabs"><button class="tab-btn active" onclick="showTab('appetizers', this)">Appetizers</button><button class="tab-btn" onclick="showTab('mains', this)">Mains</button><button class="tab-btn" onclick="showTab('drinks', this)">Drinks</button><button class="tab-btn" onclick="showTab('shots', this)">Shots & Draft</button><button class="tab-btn" onclick="showTab('liquor', this)">Liquor</button></div>
 
-  <!-- QUESADILLAS -->
-  <section class="menu-section" id="quesadillas">
-    <div class="section-header"><span class="section-icon">🫓</span><h2 class="section-title">Quesadillas</h2><div class="section-line"></div></div>
-    <div class="two-col-grid">
-      <div><div class="menu-item-row"><span class="menu-item-name">Cheese</span><span class="menu-item-price">$12</span></div>
-      <div class="menu-item-row"><span class="menu-item-name">Chicken</span><span class="menu-item-price">$17</span></div></div>
-      <div><div class="menu-item-row"><span class="menu-item-name">Shrimp</span><span class="menu-item-price">$23</span></div>
-      <div class="menu-item-row"><span class="menu-item-name">Arrachera</span><span class="menu-item-price">$25</span></div></div>
-    </div>
-  </section>
+<!-- Appetizers Tab -->
+<div id="tab-appetizers" class="menu-panel active">
+  <img src="https://res.cloudinary.com/dor8p7jxw/image/upload/f_auto,q_auto/WhatsApp_Image_2026-05-21_at_4.03.17_PM_2_p3xqgj" alt="Appetizers" class="section-image-banner">
+  <div class="menu-grid"><div class="menu-section-head">Starters</div><div class="menu-item"><span class="menu-item-name">Loaded Potato</span><span class="menu-item-dots"></span><span class="menu-item-price">$15</span></div><div class="menu-item"><span class="menu-item-name">Mozzarella Sticks</span><span class="menu-item-dots"></span><span class="menu-item-price">$17</span></div><div class="menu-item"><span class="menu-item-name">Fried Dumplings (Pork)</span><span class="menu-item-dots"></span><span class="menu-item-price">$16</span></div><div class="menu-item"><span class="menu-item-name">Shrimp Cocktail</span><span class="menu-item-dots"></span><span class="menu-item-price">$19</span></div><div class="menu-item"><span class="menu-item-name">Nachos</span><span class="menu-item-dots"></span><span class="menu-item-price">$21</span></div><div class="menu-item"><span class="menu-item-name">Cheesy Fries</span><span class="menu-item-dots"></span><span class="menu-item-price">$16</span></div><div class="menu-section-head">Ceviche</div><div class="menu-item"><span class="menu-item-name">Ceviche Shrimp (Small)</span><span class="menu-item-dots"></span><span class="menu-item-price">$20</span></div><div class="menu-item"><span class="menu-item-name">Ceviche Octopus (Small)</span><span class="menu-item-dots"></span><span class="menu-item-price">$20</span></div><div class="menu-item"><span class="menu-item-name">Ceviche Mix</span><span class="menu-item-dots"></span><span class="menu-item-price">$35</span></div></div>
+</div>
 
-  <!-- PASTAS -->
-  <section class="menu-section" id="pastas">
-    <div class="section-header"><span class="section-icon">🍝</span><h2 class="section-title">Pastas</h2><div class="section-line"></div></div>
-    <div class="menu-item-row"><span class="menu-item-name">Spaghetti ala Bolognese</span><span class="menu-item-price">$25</span></div>
-    <div class="item-description">Red pomodoro sauce with ground steak &amp; Parmesan cheese</div>
-    <div class="menu-item-row"><span class="menu-item-name">Fettuccine Alfredo</span><span class="menu-item-price">$15</span></div>
-    <div class="item-description">White Alfredo sauce with Parmesan cheese</div>
-    <div class="menu-sub-item"><span>+ Chicken</span><span>$22</span></div>
-    <div class="menu-sub-item"><span>+ Shrimp</span><span>$27</span></div>
-  </section>
+<!-- Mains Tab (with multiple sub-section images) -->
+<div id="tab-mains" class="menu-panel">
+  <img src="https://res.cloudinary.com/dor8p7jxw/image/upload/f_auto,q_auto/WhatsApp_Image_2026-05-21_at_4.03.18_PM_5_rzgjov" alt="Burgers" class="section-image-banner">
+  <div class="menu-grid"><div class="menu-section-head">Burgers</div><div class="menu-item"><span class="menu-item-name">Grilled Burger</span><span class="menu-item-dots"></span><span class="menu-item-price">$16</span></div><div class="menu-item"><span class="menu-item-name">Bacon Cheese Burger</span><span class="menu-item-dots"></span><span class="menu-item-price">$18</span></div><div class="menu-item"><span class="menu-item-name">Fish Burger</span><span class="menu-item-dots"></span><span class="menu-item-price">$19</span></div><div class="menu-item"><span class="menu-item-name">Lagom Double Pattie</span><span class="menu-item-dots"></span><span class="menu-item-price">$30</span></div></div>
+  
+  <img src="https://res.cloudinary.com/dor8p7jxw/image/upload/f_auto,q_auto/mozerella_chiciken_wetk9z" alt="Chicken Dishes" class="section-image-banner" style="margin-top:20px">
+  <div class="menu-grid"><div class="menu-section-head">Chicken</div><div class="menu-item"><span class="menu-item-name">Grilled Chicken</span><span class="menu-item-dots"></span><span class="menu-item-price">$19</span></div><div class="menu-item"><span class="menu-item-name">Mozzarella Chicken</span><span class="menu-item-dots"></span><span class="menu-item-price">$23</span></div><div class="menu-item"><span class="menu-item-name">Caribbean Jerk Chicken</span><span class="menu-item-dots"></span><span class="menu-item-price">$23</span></div></div>
+  
+  <img src="https://res.cloudinary.com/dor8p7jxw/image/upload/f_auto,q_auto/WhatsApp_Image_2026-05-21_at_4.03.18_PM_1_a7vv9g" alt="Fish Dishes" class="section-image-banner" style="margin-top:20px">
+  <div class="menu-grid"><div class="menu-section-head">Fish</div><div class="menu-item"><span class="menu-item-name">Fish & Chips</span><span class="menu-item-dots"></span><span class="menu-item-price">$19</span></div><div class="menu-item"><span class="menu-item-name">Grilled Fish Fillet</span><span class="menu-item-dots"></span><span class="menu-item-price">$22</span></div></div>
+  
+  <img src="https://res.cloudinary.com/dor8p7jxw/image/upload/f_auto,q_auto/WhatsApp_Image_2026-05-21_at_4.03.18_PM_3_ztnzdn" alt="Shrimp Dishes" class="section-image-banner" style="margin-top:20px">
+  <div class="menu-grid"><div class="menu-section-head">Shrimp</div><div class="menu-item"><span class="menu-item-name">Fried Shrimp</span><span class="menu-item-dots"></span><span class="menu-item-price">$19</span></div><div class="menu-item"><span class="menu-item-name">Garlic Shrimp</span><span class="menu-item-dots"></span><span class="menu-item-price">$22</span></div><div class="menu-item"><span class="menu-item-name">Coconut Curry Shrimp</span><span class="menu-item-dots"></span><span class="menu-item-price">$25</span></div></div>
+  
+  <img src="https://res.cloudinary.com/dor8p7jxw/image/upload/f_auto,q_auto/WhatsApp_Image_2026-05-21_at_4.03.18_PM_gewt3i" alt="Meats" class="section-image-banner" style="margin-top:20px">
+  <div class="menu-grid"><div class="menu-section-head">Meats</div><div class="menu-item"><span class="menu-item-name">Swedish Meatballs</span><span class="menu-item-dots"></span><span class="menu-item-price">$25</span></div><div class="menu-item"><span class="menu-item-name">Grilled Pork Chops</span><span class="menu-item-dots"></span><span class="menu-item-price">$27</span></div><div class="menu-item"><span class="menu-item-name">Grilled Arrachera</span><span class="menu-item-dots"></span><span class="menu-item-price">$33</span></div></div>
+  
+  <img src="https://res.cloudinary.com/dor8p7jxw/image/upload/f_auto,q_auto/WhatsApp_Image_2026-05-21_at_4.03.18_PM_2_gxi7en" alt="Wings" class="section-image-banner" style="margin-top:20px">
+  <div class="menu-grid"><div class="menu-section-head">Wings</div><div class="menu-item"><span class="menu-item-name">Wings (5pc)</span><span class="menu-item-dots"></span><span class="menu-item-price">$13</span></div><div class="menu-item"><span class="menu-item-name">Wings (10pc)</span><span class="menu-item-dots"></span><span class="menu-item-price">$21</span></div><div class="menu-item"><span class="menu-item-name">Wings (15pc)</span><span class="menu-item-dots"></span><span class="menu-item-price">$29</span></div><div class="menu-note">11 flavors: Mango Habanero, Creamy Jalapeño, Spicy Buffalo & more</div></div>
+</div>
 
-  <!-- CHICKEN -->
-  <section class="menu-section" id="chicken">
-    <div class="section-header"><span class="section-icon">🍽️</span><h2 class="section-title">Chicken</h2><div class="section-line"></div></div>
-    <div class="two-col-grid">
-      <div>
-        <div class="menu-item-row"><span class="menu-item-name">Grilled Chicken</span><span class="menu-item-price">$19</span></div>
-        <div class="menu-item-row"><span class="menu-item-name">Chicken Fajitas</span><span class="menu-item-price">$23</span></div>
-        <div class="menu-item-row"><span class="menu-item-name">Mozzarella Chicken</span><span class="menu-item-price">$23</span></div>
-        <div class="item-description">Fried chicken breast with pomodoro sauce and mozzarella cheese</div>
-      </div>
-      <div>
-        <div class="menu-item-row"><span class="menu-item-name">Caribbean Jerk Chicken</span><span class="menu-item-price">$23</span></div>
-        <div class="menu-item-row"><span class="menu-item-name">Creamy Mushroom Chicken</span><span class="menu-item-price">$25</span></div>
-        <div class="item-description">Grilled chicken drizzled with creamy mushroom sauce</div>
-      </div>
-    </div>
-  </section>
+<!-- Drinks Tab -->
+<div id="tab-drinks" class="menu-panel">
+  <img src="https://res.cloudinary.com/dor8p7jxw/image/upload/f_auto,q_auto/WhatsApp_Image_2026-05-21_at_4.03.17_PM_1_zjaoen" alt="Cocktails" class="section-image-banner">
+  <div class="menu-grid"><div class="menu-section-head">Cocktails</div><div class="menu-item"><span class="menu-item-name">Panty Rippers</span><span class="menu-item-dots"></span><span class="menu-item-price">$10</span></div><div class="menu-item"><span class="menu-item-name">Leap Frog</span><span class="menu-item-dots"></span><span class="menu-item-price">$10</span></div><div class="menu-item"><span class="menu-item-name">Blue Monkey Wrench</span><span class="menu-item-dots"></span><span class="menu-item-price">$13</span></div><div class="menu-item"><span class="menu-item-name">Piña Colada</span><span class="menu-item-dots"></span><span class="menu-item-price">$15</span></div><div class="menu-item"><span class="menu-item-name">Margarita</span><span class="menu-item-dots"></span><span class="menu-item-price">$16</span></div><div class="menu-section-head">Beers</div><div class="menu-item"><span class="menu-item-name">Belikin / Belikin Light</span><span class="menu-item-dots"></span><span class="menu-item-price">$5 / $26</span></div><div class="menu-item"><span class="menu-item-name">Heineken</span><span class="menu-item-dots"></span><span class="menu-item-price">$7 / $39</span></div><div class="menu-item"><span class="menu-item-name">Land Shark</span><span class="menu-item-dots"></span><span class="menu-item-price">$6 / $33</span></div></div>
+  
+  <img src="https://res.cloudinary.com/dor8p7jxw/image/upload/f_auto,q_auto/WhatsApp_Image_2026-05-21_at_4.03.17_PM_abeswl" alt="Beers" class="section-image-banner" style="margin-top:20px">
+  <div class="menu-grid"><div class="menu-section-head">Premium & Craft Beers</div><div class="menu-item"><span class="menu-item-name">Guinness</span><span class="menu-item-dots"></span><span class="menu-item-price">$7</span></div><div class="menu-item"><span class="menu-item-name">Valencia IPA (Draft)</span><span class="menu-item-dots"></span><span class="menu-item-price">$9</span></div><div class="menu-item"><span class="menu-item-name">Mango Ale (Seasonal)</span><span class="menu-item-dots"></span><span class="menu-item-price">$9</span></div></div>
+</div>
 
-  <!-- SHRIMP -->
-  <section class="menu-section" id="shrimp">
-    <div class="section-header"><span class="section-icon">🦐</span><h2 class="section-title">Shrimp</h2><div class="section-line"></div></div>
-    <div class="two-col-grid">
-      <div>
-        <div class="menu-item-row"><span class="menu-item-name">Grilled Shrimp</span><span class="menu-item-price">Ask</span></div>
-        <div class="menu-item-row"><span class="menu-item-name">Fried Shrimp</span><span class="menu-item-price">$19</span></div>
-        <div class="menu-item-row"><span class="menu-item-name">Garlic Shrimp</span><span class="menu-item-price">$22</span></div>
-      </div>
-      <div>
-        <div class="menu-item-row"><span class="menu-item-name">Shrimp Fajitas</span><span class="menu-item-price">$25</span></div>
-        <div class="menu-item-row"><span class="menu-item-name">Coconut Curry Fried Shrimp</span><span class="menu-item-price">$25</span></div>
-      </div>
-    </div>
-  </section>
+<!-- Shots & Draft Tab -->
+<div id="tab-shots" class="menu-panel">
+  <img src="https://res.cloudinary.com/dor8p7jxw/image/upload/f_auto,q_auto/WhatsApp_Image_2026-05-21_at_4.03.45_PM_zqzcod" alt="Shots" class="section-image-banner">
+  <div class="menu-grid"><div class="menu-section-head">Signature Shots</div><div class="menu-item"><span class="menu-item-name">Brain Cell</span><span class="menu-item-dots"></span><span class="menu-item-price">$13</span></div><div class="menu-item"><span class="menu-item-name">Cinnamon Toast Crunch</span><span class="menu-item-dots"></span><span class="menu-item-price">$13</span></div><div class="menu-item"><span class="menu-item-name">Jager Bomb</span><span class="menu-item-dots"></span><span class="menu-item-price">$15</span></div><div class="menu-item"><span class="menu-item-name">Baby Guinness</span><span class="menu-item-dots"></span><span class="menu-item-price">$13</span></div><div class="menu-section-head">Draft Beer</div><div class="menu-item"><span class="menu-item-name">Belikin Draft</span><span class="menu-item-dots"></span><span class="menu-item-price">$6</span></div><div class="menu-item"><span class="menu-item-name">Flight (4 tastes)</span><span class="menu-item-dots"></span><span class="menu-item-price">$20</span></div></div>
+</div>
 
-  <!-- FISH -->
-  <section class="menu-section" id="fish">
-    <div class="section-header"><span class="section-icon">🐟</span><h2 class="section-title">Fish</h2><div class="section-line"></div></div>
-    <div class="two-col-grid">
-      <div>
-        <div class="menu-item-row"><span class="menu-item-name">Fish Burger</span><span class="menu-item-price">$19</span></div>
-        <div class="menu-item-row"><span class="menu-item-name">Fish &amp; Chips</span><span class="menu-item-price">$19</span></div>
-      </div>
-      <div>
-        <div class="menu-item-row"><span class="menu-item-name">Fried Fish Fillet</span><span class="menu-item-price">$22</span></div>
-        <div class="menu-item-row"><span class="menu-item-name">Grilled Fish Fillet</span><span class="menu-item-price">$22</span></div>
-      </div>
-    </div>
-  </section>
+<!-- Liquor Tab -->
+<div id="tab-liquor" class="menu-panel">
+  <img src="https://res.cloudinary.com/dor8p7jxw/image/upload/f_auto,q_auto/WhatsApp_Image_2026-05-21_at_4.03.17_PM_3_yyp9gf" alt="Spirits" class="section-image-banner">
+  <div class="menu-grid"><div class="menu-section-head">Local Rum</div><div class="menu-item"><span class="menu-item-name">3 Barrel / 5 Barrel</span><span class="menu-item-dots"></span><span class="menu-item-price">$8</span></div><div class="menu-item"><span class="menu-item-name">Belizean Blue Signature</span><span class="menu-item-dots"></span><span class="menu-item-price">$12</span></div><div class="menu-section-head">Imported Whiskey</div><div class="menu-item"><span class="menu-item-name">Jack Daniel's</span><span class="menu-item-dots"></span><span class="menu-item-price">$14</span></div><div class="menu-item"><span class="menu-item-name">Jameson</span><span class="menu-item-dots"></span><span class="menu-item-price">$14</span></div><div class="menu-item"><span class="menu-item-name">Black Label</span><span class="menu-item-dots"></span><span class="menu-item-price">$16</span></div><div class="menu-section-head">Tequila</div><div class="menu-item"><span class="menu-item-name">Patron</span><span class="menu-item-dots"></span><span class="menu-item-price">$19</span></div><div class="menu-item"><span class="menu-item-name">Don Julio</span><span class="menu-item-dots"></span><span class="menu-item-price">$22</span></div><div class="menu-section-head">Premium</div><div class="menu-item"><span class="menu-item-name">Hennessy VS</span><span class="menu-item-dots"></span><span class="menu-item-price">$22</span></div><div class="menu-item"><span class="menu-item-name">Grey Goose Vodka</span><span class="menu-item-dots"></span><span class="menu-item-price">$20</span></div></div>
+</div>
 
-  <!-- MEATS -->
-  <section class="menu-section" id="meats">
-    <div class="section-header"><span class="section-icon">🥩</span><h2 class="section-title">Meats</h2><div class="section-line"></div></div>
-    <div class="menu-item-row"><span class="menu-item-name">Swedish Meatballs</span><span class="menu-item-price">$25</span></div>
-    <div class="item-description">Mixture of seasoned pork and beef meatballs covered in a rich savory creamy gravy with special mashed potato and side of greens</div>
-    <div class="two-col-grid">
-      <div>
-        <div class="menu-item-row"><span class="menu-item-name">Grilled Pork Chops</span><span class="menu-item-price">$27</span></div>
-        <div class="menu-item-row"><span class="menu-item-name">Steak Fajitas</span><span class="menu-item-price">$25</span></div>
-      </div>
-      <div>
-        <div class="menu-item-row"><span class="menu-item-name">Grilled Arrachera</span><span class="menu-item-price">$33</span></div>
-      </div>
-    </div>
-  </section>
+<p style="text-align:center; color: var(--text-muted); margin-top:40px;">Before ordering, please inform your server of any allergies.</p>
+</div></section>
 
-  <!-- BEERS -->
-  <section class="menu-section" id="beers">
-    <div class="section-header"><span class="section-icon">🍺</span><h2 class="section-title">Beers</h2><div class="section-line"></div></div>
-    <div class="beer-wrap" style="background:rgba(10,71,67,0.7); border-radius:18px; overflow-x:auto;">
-      <table class="beer-table">
-        <thead><tr><th>Beer</th><th>Regular</th><th>Bucket</th></tr></thead>
-        <tbody>
-          <tr><td>Light House</td><td class="price">$5</td><td class="price">$26</td></tr>
-          <tr><td>Belikin</td><td class="price">$5</td><td class="price">$26</td></tr>
-          <tr><td>Belikin Light</td><td class="price">$5</td><td class="price">$26</td></tr>
-          <tr><td>Stout</td><td class="price">$5</td><td class="price">$26</td></tr>
-          <tr><td>Land Shark</td><td class="price">$6</td><td class="price">$33</td></tr>
-          <tr><td>Hard Seltzer</td><td class="price">$6</td><td class="price">$33</td></tr>
-          <tr><td>Heineken</td><td class="price">$7</td><td class="price">$39</td></tr>
-          <tr><td>Guinness</td><td class="price">$7</td><td class="price">$39</td></tr>
-          <tr><td>Bakehouse Citrus</td><td class="price">$7</td><td class="price">—</td></tr>
-          <tr><td>Kayn Cola</td><td class="price">$7</td><td class="price">—</td></tr>
-          <tr><td>Ova Drive</td><td class="price">$8</td><td class="price">—</td></tr>
-          <tr><td>Smirnoff</td><td class="price">$8.50</td><td class="price">—</td></tr>
-          <tr><td>Red Stripe</td><td class="price">$8.50</td><td class="price">—</td></tr>
-          <tr><td>Rude Boy</td><td class="price">$8.50</td><td class="price">—</td></tr>
-          <tr><td>XXL Wine Can</td><td class="price">$15</td><td class="price">—</td></tr>
-          <tr><td>Draft Two-5 Craft Beer</td><td class="price">$9</td><td class="price">—</td></tr>
-          <tr><td>Flight Two-5 Craft Beer</td><td class="price">$20</td><td class="price">—</td></tr>
-        </tbody>
-      </table>
-    </div>
-    <div class="subsection-title">🍺 Two-5 Craft Beer Varieties</div>
-    <div class="craft-grid">
-      <span class="craft-pill">Valencia IPA</span>
-      <span class="craft-pill">Piña Pale Ale</span>
-      <span class="craft-pill">Sour Sop Hazy IPA</span>
-      <span class="craft-pill">Fever Grass Witbier</span>
-      <span class="craft-pill">Mango Ale <span class="seasonal-badge">Seasonal</span></span>
-      <span class="craft-pill">Coconut <span class="seasonal-badge">Seasonal</span></span>
-      <span class="craft-pill">Pumpkin Spice Ale <span class="seasonal-badge">Seasonal</span></span>
-      <span class="craft-pill">Chamoy <span class="seasonal-badge">Seasonal</span></span>
-    </div>
-    <div class="menu-item-row"><span class="menu-item-name">🍻 Towers Available</span><span class="menu-item-price">—</span></div>
-  </section>
+<!-- Atmosphere & Hours -->
+<section id="atmosphere"><div class="atm-visual"><div class="atm-visual-inner"><div class="atm-sun"></div><p class="atm-visual-text">"The best kind of evening<br>starts at Lagom."</p></div></div><div class="atm-content"><span class="section-tag">📍 Find Us</span><h2 class="section-title">Come Up,<br><em>Stay Awhile.</em></h2><div class="divider"></div><p class="section-sub">Your rooftop escape in the heart of Belize City.</p><div class="atm-hours"><div class="atm-hours-title">⏰ Opening Hours</div><div class="atm-hours-row"><span>Tuesday – Saturday</span><strong>11:00 AM – 11:30 PM</strong></div><div class="atm-hours-row"><span>Sunday – Monday</span><strong>Closed</strong></div><div class="atm-hours-row"><span>Location</span><strong>Belize City, Belize</strong></div></div></div></section>
 
-  <!-- SPIRITS -->
-  <section class="menu-section" id="spirits">
-    <div class="section-header"><span class="section-icon">🥃</span><h2 class="section-title">Spirits</h2><div class="section-line"></div></div>
-    <div class="subsection-title">🏝️ Local Rum &amp; Spirits</div>
-    <div class="two-col-grid">
-      <div><div class="menu-item-row"><span>Local Rum</span><span>$5</span></div><div class="menu-item-row"><span>Coconut Rum</span><span>$8</span></div><div class="menu-item-row"><span>5 Barrel</span><span>$8</span></div><div class="menu-item-row"><span>Extra Mature</span><span>$8</span></div><div class="menu-item-row"><span>Copali</span><span>$10</span></div><div class="menu-item-row"><span>Kayn Rum</span><span>$10</span></div><div class="menu-item-row"><span>Belizean Blue Signature</span><span>$12</span></div></div>
-      <div><div class="menu-item-row"><span>Local Vodka</span><span>$8</span></div><div class="menu-item-row"><span>Bake House Vodka</span><span>$10</span></div><div class="menu-item-row"><span>Local Gin</span><span>$8</span></div><div class="menu-item-row"><span>3 Fingers Gin</span><span>$8</span></div></div>
-    </div>
-    <div class="subsection-title">🌎 Imported Premium</div>
-    <div class="two-col-grid">
-      <div>
-        <div class="menu-item-row"><span>Absolut Vodka</span><span>$14</span></div>
-        <div class="menu-item-row"><span>Svedka Vodka</span><span>$14</span></div>
-        <div class="menu-item-row"><span>Tito's Vodka</span><span>$16</span></div>
-        <div class="menu-item-row"><span>Ciroc Vodka</span><span>$20</span></div>
-        <div class="menu-item-row"><span>Grey Goose</span><span>$20</span></div>
-        <div class="menu-item-row"><span>Bombay Gin</span><span>$15</span></div>
-        <div class="menu-item-row"><span>Tanqueray Gin</span><span>$14</span></div>
-        <div class="menu-item-row"><span>Tanqueray 10/Sevilla</span><span>$16</span></div>
-        <div class="menu-item-row"><span>Beefeater</span><span>$13</span></div>
-        <div class="menu-item-row"><span>Hendrick's Gin</span><span>$20</span></div>
-        <div class="menu-item-row"><span>Havana Club 7</span><span>$13</span></div>
-        <div class="menu-item-row"><span>Appleton</span><span>$13</span></div>
-        <div class="menu-item-row"><span>Bacardi</span><span>$13</span></div>
-        <div class="menu-item-row"><span>Flor de Caña 4</span><span>$10</span></div>
-        <div class="menu-item-row"><span>Flor de Caña 7</span><span>$13</span></div>
-        <div class="menu-item-row"><span>Flor de Caña 12</span><span>$16</span></div>
-        <div class="menu-item-row"><span>Flor de Caña 18</span><span>$22</span></div>
-        <div class="menu-item-row"><span>Captain Morgan</span><span>$14</span></div>
-        <div class="menu-item-row"><span>Captain Morgan Private Stock</span><span>$16</span></div>
-        <div class="menu-item-row"><span>Malibu Coconut Rum</span><span>$13</span></div>
-        <div class="menu-item-row"><span>Rumchata</span><span>$13</span></div>
-        <div class="menu-item-row"><span>Kraken</span><span>$16</span></div>
-        <div class="menu-item-row"><span>Zacapa 23</span><span>$27</span></div>
-      </div>
-      <div>
-        <div class="menu-item-row"><span>Jose Cuervo</span><span>$13</span></div>
-        <div class="menu-item-row"><span>1800's</span><span>$15</span></div>
-        <div class="menu-item-row"><span>Milagro</span><span>$15</span></div>
-        <div class="menu-item-row"><span>Zignum Mezcal</span><span>$16</span></div>
-        <div class="menu-item-row"><span>Patrón</span><span>$19</span></div>
-        <div class="menu-item-row"><span>Don Julio</span><span>$22</span></div>
-        <div class="menu-item-row"><span>Disaronno</span><span>$14</span></div>
-        <div class="menu-item-row"><span>Campari</span><span>$10</span></div>
-        <div class="menu-item-row"><span>Jägermeister</span><span>$13</span></div>
-        <div class="menu-item-row"><span>Fireball</span><span>$13</span></div>
-        <div class="menu-item-row"><span>Kahlua</span><span>$13</span></div>
-        <div class="menu-item-row"><span>Tía Maria</span><span>$13</span></div>
-        <div class="menu-item-row"><span>Sambuca</span><span>$13</span></div>
-        <div class="menu-item-row"><span>Baileys</span><span>$13</span></div>
-        <div class="menu-item-row"><span>John Barr</span><span>$10</span></div>
-        <div class="menu-item-row"><span>Jameson</span><span>$14</span></div>
-        <div class="menu-item-row"><span>Chivas Regal</span><span>$14</span></div>
-        <div class="menu-item-row"><span>Jack Daniel's</span><span>$14</span></div>
-        <div class="menu-item-row"><span>Maker's Mark</span><span>$14</span></div>
-        <div class="menu-item-row"><span>Crown Royal</span><span>$14</span></div>
-        <div class="menu-item-row"><span>Johnnie Walker Black</span><span>$16</span></div>
-        <div class="menu-item-row"><span>Johnnie Walker Gold Reserve</span><span>$27</span></div>
-        <div class="menu-item-row"><span>Buchanan's 12</span><span>$18</span></div>
-        <div class="menu-item-row"><span>Buchanan's 18</span><span>$30</span></div>
-        <div class="menu-item-row"><span>Glenfiddich</span><span>$22</span></div>
-        <div class="menu-item-row"><span>Glenfiddich 18</span><span>$32</span></div>
-        <div class="menu-item-row"><span>Glenlivet</span><span>$22</span></div>
-        <div class="menu-item-row"><span>Akashi Red Japanese Blend</span><span>$18</span></div>
-        <div class="menu-item-row"><span>Akashi White Oak Blend</span><span>$18</span></div>
-        <div class="menu-item-row"><span>Matsui Japanese Whiskey</span><span>$20</span></div>
-        <div class="menu-item-row"><span>Macallan</span><span>$25</span></div>
-        <div class="menu-item-row"><span>Screwball</span><span>$18</span></div>
-        <div class="menu-item-row"><span>Grand Marnier</span><span>$20</span></div>
-        <div class="menu-item-row"><span>Hennessy VS</span><span>$22</span></div>
-        <div class="menu-item-row"><span>Hennessy Pure White</span><span>$25</span></div>
-        <div class="menu-item-row"><span>Hennessy VSOP</span><span>$28</span></div>
-        <div class="menu-item-row"><span>Dusse</span><span>$28</span></div>
-      </div>
-    </div>
-  </section>
+<!-- Reservation -->
+<section id="reserve"><div class="reserve-inner"><div class="reserve-header"><span class="section-tag">🍽️ Make a Reservation</span><h2 class="section-title">Book Your <em>Table</em></h2><div class="divider" style="margin:20px auto;"></div><p class="section-sub">Secure your spot on Belize City's most coveted rooftop.</p></div><div class="booking-form"><div class="form-group"><label>Full Name</label><input type="text" id="res-name" placeholder="Maria Rodriguez"></div><div class="form-group"><label>Phone Number</label><input type="tel" id="res-phone" placeholder="+501 600-0000"></div><div class="form-group"><label>Guests</label><select id="res-guests"><option disabled selected>Party size</option><option>2</option><option>4</option><option>6</option><option>8+</option></select></div><div class="form-group"><label>Date</label><input type="date" id="res-date"></div><div class="form-group full"><label>Time</label><select id="res-time"><option disabled selected>Select time</option><option>5:00 PM</option><option>6:00 PM</option><option>7:00 PM</option><option>8:00 PM</option></select></div><div class="form-group full"><label>Special Requests</label><textarea id="res-message" placeholder="Dietary needs, occasion..."></textarea></div><div id="booking-status"></div><div class="form-submit-row"><button class="btn-primary" onclick="submitReservation()">🍽️ Confirm Reservation</button><p class="form-note">Open Tue–Sat, 11am–11:30pm. Closed Sun & Mon.</p></div></div></div></section>
 
-  <!-- COCKTAILS -->
-  <section class="menu-section" id="cocktails">
-    <div class="section-header"><span class="section-icon">🍹</span><h2 class="section-title">Cocktails &amp; Drinks</h2><div class="section-line"></div></div>
-    <div class="subsection-title">🍸 Signature Cocktails</div>
-    <div class="two-col-grid">
-      <div>
-        <div class="menu-item-row"><span>Panty Rippers</span><span>$10</span></div>
-        <div class="menu-item-row"><span>Leap Frog</span><span>$10</span></div>
-        <div class="menu-item-row"><span>Green Hurricane</span><span>$10</span></div>
-        <div class="menu-item-row"><span>Rum Punch</span><span>$10</span></div>
-        <div class="menu-item-row"><span>Admiral's Quencher</span><span>$13</span></div>
-        <div class="menu-item-row"><span>Crocodile Cooler</span><span>$13</span></div>
-      </div>
-      <div>
-        <div class="menu-item-row"><span>Electric Lemonade</span><span>$13</span></div>
-        <div class="menu-item-row"><span>Blue Monkey Wrench</span><span>$13</span></div>
-        <div class="menu-item-row"><span>Kayn Smash</span><span>$14</span></div>
-        <div class="menu-item-row"><span>Berries Gin Sour</span><span>$14</span></div>
-        <div class="menu-item-row"><span>Bakehouse Nutty Fudge Martini</span><span>$15</span></div>
-        <div class="menu-item-row"><span>Passion Gin Fizz</span><span>$14</span></div>
-        <div class="menu-item-row"><span>Porn Star</span><span>$15</span></div>
-      </div>
-    </div>
-    <div class="subsection-title">🍷 Classics &amp; Wine</div>
-    <div class="two-col-grid">
-      <div>
-        <div class="menu-item-row"><span>Tequila Sunrise</span><span>$14</span></div>
-        <div class="menu-item-row"><span>Paloma</span><span>$14</span></div>
-        <div class="menu-item-row"><span>White/Black Russian</span><span>$15</span></div>
-        <div class="menu-item-row"><span>Daiquiri</span><span>$15</span></div>
-        <div class="menu-item-row"><span>Mojito</span><span>$15</span></div>
-        <div class="menu-item-row"><span>Piña Colada</span><span>$15</span></div>
-        <div class="menu-item-row"><span>Baileys Colada</span><span>$17</span></div>
-      </div>
-      <div>
-        <div class="menu-item-row"><span>Margarita</span><span>$16</span></div>
-        <div class="menu-item-row"><span>Beerita</span><span>$19-23</span></div>
-        <div class="menu-item-row"><span>Sangria</span><span>$17</span></div>
-        <div class="menu-item-row"><span>Long Island Iced Tea</span><span>$17</span></div>
-        <div class="menu-item-row"><span>Michelada</span><span>$8-11</span></div>
-        <div class="menu-item-row"><span>Red Wine (Merlot/Cab)</span><span>$14</span></div>
-        <div class="menu-item-row"><span>White Wine (Chardonnay/Zin)</span><span>$14</span></div>
-        <div class="menu-item-row"><span>Wine Bottle</span><span>$60-100</span></div>
-      </div>
-    </div>
-    <div class="subsection-title">🥤 Other Drinks</div>
-    <div class="two-col-grid">
-      <div>
-        <div class="menu-item-row"><span>Water</span><span>$2.50</span></div>
-        <div class="menu-item-row"><span>Sodas</span><span>$2.50</span></div>
-        <div class="menu-item-row"><span>Natural Juices</span><span>$4</span></div>
-      </div>
-      <div>
-        <div class="menu-item-row"><span>Iced Coffee</span><span>$10</span></div>
-        <div class="menu-item-row"><span>Frozen Coffee</span><span>$12</span></div>
-      </div>
-    </div>
-  </section>
+<!-- Footer CTA -->
+<section id="footer-cta"><div class="footer-cta-content"><span class="section-tag" style="display:block; text-align:center;">✦ Don't Miss Out</span><h2 class="footer-cta-title">Your Table is<br><em>Waiting.</em></h2><p class="footer-cta-sub">The view is stunning, the food is incredible. Book ahead and make it a night to remember.</p><div class="footer-cta-btns"><a href="#reserve" class="btn-primary">🍽️ Book a Table</a><a href="tel:+5016279202" class="btn-call">📞 Call to Order</a></div></div></section>
 
-  <!-- LAGOM FAVORITES - SEPARATE SECTION -->
-  <section class="menu-section" id="lagom-favorites">
-    <div class="section-header"><span class="section-icon">⭐</span><h2 class="section-title">Lagom Favorites</h2><div class="section-line"></div></div>
-    <div class="menu-card" style="background: linear-gradient(135deg, rgba(31,138,130,0.3), rgba(10,71,67,0.9)); border: 2px solid var(--gold);">
-      <div style="width:100%">
-        <div class="menu-item-row"><span class="menu-item-name">🔥 Liter Michingona</span><span class="menu-item-price">$15 - $21</span></div>
-        <div class="menu-item-row"><span class="menu-item-name">🥤 Liter Rum &amp; Coke</span><span class="menu-item-price">$14</span></div>
-        <div class="menu-item-row"><span class="menu-item-name">🍹 Liter Panty Ripper</span><span class="menu-item-price">$18</span></div>
-        <div class="menu-item-row"><span class="menu-item-name">🧊 Liter Coolers</span><span class="menu-item-price">$22</span></div>
-        <div class="menu-item-row"><span class="menu-item-name">💣 Fire Bombs</span><span class="menu-item-price">$21</span></div>
-        <div class="menu-item-row"><span class="menu-item-name">🍀 Irish Bombs</span><span class="menu-item-price">$21</span></div>
-        <div class="menu-item-row"><span class="menu-item-name">⚡ Rude Bombs</span><span class="menu-item-price">$28</span></div>
-      </div>
-    </div>
-    <div class="subsection-title" style="margin-top: 20px;">🧪 Batch Cocktails</div>
-    <div class="two-col-grid">
-      <div>
-        <div class="menu-item-row"><span>Deez Nuts</span><span>$32</span></div>
-        <div class="menu-item-row"><span>Crocodile Sperm</span><span>$32</span></div>
-      </div>
-      <div>
-        <div class="menu-item-row"><span>Kamikazee</span><span>$32</span></div>
-        <div class="menu-item-row"><span>Sex @ My Friend's House</span><span>$37</span></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- SHOTS -->
-  <section class="menu-section" id="shots">
-    <div class="section-header"><span class="section-icon">🥂</span><h2 class="section-title">Shots</h2><div class="section-line"></div></div>
-    <div class="two-col-grid">
-      <div>
-        <div class="menu-item-row"><span>Brain Cell</span><span>$13</span></div>
-        <div class="menu-item-row"><span>Cinnamon Toast Crunch</span><span>$13</span></div>
-        <div class="menu-item-row"><span>Cuervo Miester</span><span>$13</span></div>
-        <div class="menu-item-row"><span>Liquid Cocaine</span><span>$13</span></div>
-        <div class="menu-item-row"><span>Crystal Meth</span><span>$13</span></div>
-        <div class="menu-item-row"><span>Melon Drop</span><span>$13</span></div>
-        <div class="menu-item-row"><span>Flaming Cucaracha</span><span>$13</span></div>
-      </div>
-      <div>
-        <div class="menu-item-row"><span>Baby Guinness</span><span>$13</span></div>
-        <div class="menu-item-row"><span>Blow Job</span><span>$13</span></div>
-        <div class="menu-item-row"><span>Screaming Orgasm</span><span>$13</span></div>
-        <div class="menu-item-row"><span>Jager Bomb</span><span>$15</span></div>
-        <div class="menu-item-row"><span>Blazing French Connection</span><span>$27</span></div>
-      </div>
-    </div>
-  </section>
-</main>
-
-<footer>
-  <strong>Lagom Terrace</strong> — Restaurant &amp; Bar · Belize<br>
-  <span>📞 Tue – Sat: 11:00 AM – 11:30 PM | Closed Sunday &amp; Monday</span>
-</footer>
+<footer><div class="footer-logo"><span>ll</span> Lagom Terrace <small>Belize City's Neighbourhood Rooftop Gem</small></div><div class="footer-center">Belize City, Belize<br>Tue–Sat 11am–11:30pm<br>© 2025 Lagom Terrace</div><div class="footer-right"><ul class="footer-links"><li><a href="#hero">Home</a></li><li><a href="#menu">Menu</a></li><li><a href="#reserve">Reserve</a></li></ul></div></footer>
 
 <script>
-  const navBtns = document.querySelectorAll('.nav-tab');
-  const sections = document.querySelectorAll('.menu-section');
-  const navBar = document.querySelector('.sticky-nav');
-  
-  function scrollToSection(id) {
-    const el = document.getElementById(id);
-    if (el) {
-      const offset = navBar.offsetHeight + 10;
-      window.scrollTo({ top: el.offsetTop - offset, behavior: 'smooth' });
-    }
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => navbar.classList.toggle('scrolled', window.scrollY > 60));
+  function showTab(tabId, btn) {
+    document.querySelectorAll('.menu-panel').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById('tab-' + tabId).classList.add('active');
+    btn.classList.add('active');
   }
-  
-  function updateActiveNav() {
-    let currentId = '';
-    const scrollPos = window.scrollY + navBar.offsetHeight + 50;
-    sections.forEach(section => {
-      const top = section.offsetTop;
-      const bottom = top + section.offsetHeight;
-      if (scrollPos >= top && scrollPos < bottom) currentId = section.id;
-    });
-    navBtns.forEach(btn => {
-      btn.classList.toggle('active', btn.dataset.target === currentId);
-    });
+  new IntersectionObserver((entries) => { entries.forEach(e => { if(e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } }); }, { threshold: 0.12 }).observe = function(el) { document.querySelectorAll('.reveal').forEach(e => this.observe(e)); };
+  document.querySelectorAll('.reveal').forEach(el => { new IntersectionObserver((entries, obs) => { entries.forEach(e => { if(e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } }); }, { threshold: 0.12 }).observe(el); });
+  document.addEventListener('DOMContentLoaded', () => { const dateInput = document.getElementById('res-date'); if(dateInput) dateInput.setAttribute('min', new Date().toISOString().split('T')[0]); });
+  async function submitReservation() {
+    const btn = document.getElementById('submitBtn');
+    const status = document.getElementById('booking-status');
+    const name = document.getElementById('res-name').value.trim();
+    const phone = document.getElementById('res-phone').value.trim();
+    const guests = document.getElementById('res-guests').value;
+    const date = document.getElementById('res-date').value;
+    const time = document.getElementById('res-time').value;
+    if(!name || !phone || !guests || !date || !time) { status.className = 'error'; status.textContent = '⚠️ Please fill all required fields.'; status.style.display = 'block'; return; }
+    btn.classList.add('btn-loading'); btn.textContent = '⏳ Sending…'; status.style.display = 'none';
+    try {
+      await Promise.race([fetch('https://formspree.io/f/mwvzpogj', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ name, phone, guests, date, time, message: document.getElementById('res-message').value, _subject: `Reservation - ${name}` }) }), new Promise((_, reject) => setTimeout(() => reject(new Error('Timeout')), 5000))]);
+      status.className = 'success'; status.innerHTML = '✅ Reservation received! We\'ll confirm soon.'; status.style.display = 'block';
+      document.getElementById('res-name').value = ''; document.getElementById('res-phone').value = ''; document.getElementById('res-message').value = '';
+    } catch(e) { status.className = 'error'; status.innerHTML = '❌ Please call us directly to book.'; status.style.display = 'block'; }
+    finally { btn.classList.remove('btn-loading'); btn.textContent = '🍽️ Confirm Reservation'; }
   }
-  
-  navBtns.forEach(btn => {
-    btn.addEventListener('click', () => scrollToSection(btn.dataset.target));
-  });
-  
-  window.addEventListener('scroll', updateActiveNav);
-  window.addEventListener('load', updateActiveNav);
 </script>
 </body>
 </html>
